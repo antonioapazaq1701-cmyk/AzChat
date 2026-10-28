@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentación de AzChat</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <h1>Documentación de AzChat</h1>
+    <p>Etapa I. Planificación</p>
+    <p>AzChat es una aplicación web de mensajería privada. Permite conversar mediante texto y conservar el historial, desde una computadora o un celular.</p>
+    <p class="metodo">Metodología <a href="#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Documentos disponibles</h2>
+    <table>
+      <caption>Avance de los 12 pasos</caption>
+      <thead><tr><th scope="col">Paso</th><th scope="col">Estado</th></tr></thead>
+      <tbody>
+        <tr><td><a href="Planificacion/P1_Problema_y_alcance/index.html">P1. Problema y alcance</a></td><td>Disponible.</td></tr>
+        <tr><td><a href="Planificacion/P2_Actores_y_necesidades/index.html">P2. Actores y necesidades</a></td><td>Disponible.</td></tr>
+        <tr><td><a href="Planificacion/P3_Catalogo_de_requisitos/index.html">P3. Catálogo de requisitos</a></td><td>Disponible.</td></tr>
+        <tr><td><a href="Planificacion/P4_Modelo_de_casos_de_uso/index.html">P4. Modelo de casos de uso</a></td><td>Disponible en HTML y Draw.io.</td></tr>
+        <tr><td>P5 a P12</td><td>Pendientes de desarrollar.</td></tr>
+      </tbody>
+    </table>
+    <h2>Características de la primera versión</h2>
+    <ul>
+      <li>Solo web, adaptable a computadora y celular.</li>
+      <li>Chats privados de texto entre dos personas.</li>
+      <li>Los mensajes se guardan para consultar el historial al volver a entrar.</li>
+      <li>Hasta 4 personas al inicio; meta de 30 conectadas simultáneamente.</li>
+      <li>Cada persona puede registrarse por su cuenta.</li>
+      <li>El registro solicita nombre completo, código de estudiante, nombre de usuario y contraseña.</li>
+      <li>El ingreso permite utilizar el nombre de usuario o el código de estudiante, junto con la contraseña.</li>
+      <li>La búsqueda de destinatarios se realiza por nombre de usuario exacto.</li>
+      <li>Los participantes se identifican por su nombre de usuario en los chats.</li>
+      <li>Los mensajes admiten hasta 1000 caracteres y se conservan sin edición ni borrado en esta versión.</li>
+      <li>Un único tipo de usuario; sin administrador dentro de la web.</li>
+      <li>Desarrollo lo más sencillo posible, con JavaScript y servicios en la nube.</li>
+      <li>Proveedor en la nube pendiente de definir.</li>
+      <li>Primera versión sin cifrado de extremo a extremo.</li>
+    </ul>
+    <h2>Cómo leer esta documentación</h2>
+    <p>P1 explica qué problema resuelve AzChat y cuál es su alcance. P2 describe quién utiliza el sistema y qué necesita hacer. P3 detalla las funciones y condiciones que deberá cumplir la aplicación. P4 representa las interacciones entre los usuarios y el sistema mediante casos de uso.</p>
+    <p>Los documentos describen el sistema previsto. Su implementación y la comprobación de los requisitos corresponden a la etapa de construcción.</p>
+    <section aria-labelledby="metodologia">
+      <h2 id="metodologia">Metodología Ágil</h2>
+      <p>AzChat emplea una metodología Ágil con un enfoque incremental e iterativo. El trabajo se organiza en entregas pequeñas que se revisan y ajustan según las necesidades del sistema.</p>
+      <ul>
+        <li><strong>Priorización:</strong> atender primero las funciones esenciales de registro, acceso, conversaciones privadas y mensajes con historial.</li>
+        <li><strong>Revisión frecuente:</strong> comprobar cada entrega y actualizar los requisitos y modelos cuando sea necesario.</li>
+        <li><strong>Construcción incremental:</strong> incorporar funciones en partes pequeñas y verificar su funcionamiento antes de integrar nuevas funciones.</li>
+        <li><strong>Simplicidad:</strong> mantener los componentes y las funciones necesarios para el alcance de la primera versión.</li>
+        <li><strong>Mejora continua:</strong> utilizar los resultados de las revisiones y pruebas para orientar la siguiente entrega.</li>
+      </ul>
+      <p>Los pasos P1 a P12 organizan la documentación y pueden actualizarse durante las iteraciones. El avance de la construcción se comprobará mediante funciones operativas y pruebas; los documentos describen el diseño previsto.</p>
+      <p>Referencia: <a href="https://agilemanifesto.org/iso/es/principles.html">Principios del Manifiesto Ágil</a>.</p>
+    </section>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><p>AzChat · Actualizado el 28 de octubre de 2026.</p></footer>
+</body>
+</html>

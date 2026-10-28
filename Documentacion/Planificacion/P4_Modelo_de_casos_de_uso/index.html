@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P4. Modelo de casos de uso | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P3_Catalogo_de_requisitos/index.html">P3. Catálogo de requisitos</a></nav>
+    <h1>P4. Modelo de casos de uso</h1>
+    <p>Interacciones de los usuarios con AzChat para registrarse, acceder a sus conversaciones e intercambiar mensajes privados.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Actor y alcance</h2>
+    <p>El actor <strong>Usuario del chat</strong> representa a cualquier persona que utiliza AzChat. Una misma persona puede enviar o recibir mensajes. Cada conversación tiene dos participantes, con las mismas funciones.</p>
+    <p>El modelo contiene ocho casos de uso y corresponde a los requisitos de P3. Los servicios en la nube son componentes internos de apoyo; no se representan como actores humanos ni como funciones del usuario.</p>
+    <h2>Diagrama general</h2>
+    <figure>
+      <a href="Casos_de_uso_AzChat.svg" aria-label="Ver el diagrama de casos de uso a tamaño completo"><img class="diagrama" src="Casos_de_uso_AzChat.svg" alt="Un usuario del chat se relaciona con los ocho casos de uso de AzChat: registrarse, iniciar sesión, iniciar chat privado, consultar conversaciones, enviar mensaje, recibir mensajes, consultar historial y cerrar sesión."></a>
+      <figcaption>El rectángulo delimita AzChat. Cada óvalo representa un caso de uso y cada línea indica la participación del actor. Los códigos identifican los casos; no establecen un orden obligatorio.</figcaption>
+    </figure>
+    <p>La imagen puede abrirse a tamaño completo. El modelo editable se encuentra en <a href="Casos_de_uso_AzChat.drawio">Casos_de_uso_AzChat.drawio</a>. Para editarlo en Draw.io, se utiliza <strong>Archivo → Abrir desde → Dispositivo</strong> y se selecciona ese archivo.</p>
+    <h2>Relación con los requisitos</h2>
+    <table class="detalle">
+      <caption>Casos de uso y requisitos funcionales asociados</caption>
+      <thead><tr><th scope="col">Caso de uso</th><th scope="col">Requisitos de P3</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="#CU-01">CU-01. Registrarse</a></th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-01">RF-01</a></td></tr>
+        <tr><th scope="row"><a href="#CU-02">CU-02. Iniciar sesión</a></th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-02">RF-02</a></td></tr>
+        <tr><th scope="row"><a href="#CU-03">CU-03. Iniciar chat privado</a></th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-04">RF-04</a></td></tr>
+        <tr><th scope="row"><a href="#CU-04">CU-04. Consultar conversaciones</a></th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-07">RF-07</a></td></tr>
+        <tr><th scope="row"><a href="#CU-05">CU-05. Enviar mensaje</a></th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-05">RF-05</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-03">RF-03</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-09">RF-09</a></td></tr>
+        <tr><th scope="row"><a href="#CU-06">CU-06. Recibir mensajes</a></th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-06">RF-06</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-03">RF-03</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-09">RF-09</a></td></tr>
+        <tr><th scope="row"><a href="#CU-07">CU-07. Consultar historial</a></th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-08">RF-08</a></td></tr>
+        <tr><th scope="row"><a href="#CU-08">CU-08. Cerrar sesión</a></th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-02">RF-02</a></td></tr>
+      </tbody>
+    </table>
+    <h2>Descripción de los casos de uso</h2>
+    <p>El inicio de sesión es una condición previa para utilizar las conversaciones. Los permisos se comprueban al consultar o enviar mensajes. La búsqueda exacta del destinatario forma parte de «Iniciar chat privado».</p>
+    <section aria-labelledby="CU-01">
+      <h3 id="CU-01">CU-01. Registrarse</h3>
+      <p><strong>Condición previa:</strong> La persona dispone de acceso a la web y todavía no tiene una cuenta.</p>
+      <p><strong>Flujo principal:</strong> Ingresa su nombre completo, código de estudiante, nombre de usuario y contraseña. El sistema valida los datos y crea la cuenta.</p>
+      <p><strong>Resultado:</strong> La cuenta queda registrada. La contraseña se almacena mediante un hash seguro.</p>
+      <p><strong>Regla o situación alternativa:</strong> Si faltan datos o los identificadores están ocupados o son ambiguos, se informa el problema y la cuenta no se crea.</p>
+    </section>
+    <section aria-labelledby="CU-02">
+      <h3 id="CU-02">CU-02. Iniciar sesión</h3>
+      <p><strong>Condición previa:</strong> La persona tiene una cuenta registrada.</p>
+      <p><strong>Flujo principal:</strong> Ingresa su nombre de usuario o su código de estudiante, junto con la contraseña. El sistema comprueba las credenciales y permite el acceso.</p>
+      <p><strong>Resultado:</strong> La persona accede a sus conversaciones.</p>
+      <p><strong>Regla o situación alternativa:</strong> Si las credenciales son incorrectas o no hay conexión con el servicio, se informa el problema y no se inicia sesión.</p>
+    </section>
+    <section aria-labelledby="CU-03">
+      <h3 id="CU-03">CU-03. Iniciar chat privado</h3>
+      <p><strong>Condición previa:</strong> La persona ha iniciado sesión y conoce el nombre de usuario exacto del destinatario.</p>
+      <p><strong>Flujo principal:</strong> Busca el nombre de usuario exacto de otra persona registrada, selecciona el resultado y abre una conversación privada entre ambas.</p>
+      <p><strong>Resultado:</strong> Los dos participantes pueden utilizar el chat; las demás cuentas no tienen acceso.</p>
+      <p><strong>Regla o situación alternativa:</strong> Si no existe una coincidencia, se informa que el usuario no fue encontrado. La búsqueda no permite acceder a conversaciones ajenas.</p>
+    </section>
+    <section aria-labelledby="CU-04">
+      <h3 id="CU-04">CU-04. Consultar conversaciones</h3>
+      <p><strong>Condición previa:</strong> La persona ha iniciado sesión.</p>
+      <p><strong>Flujo principal:</strong> Consulta la lista de sus conversaciones y selecciona una para abrirla.</p>
+      <p><strong>Resultado:</strong> Se muestra la conversación seleccionada, identificada por el nombre de usuario del otro participante.</p>
+      <p><strong>Regla o situación alternativa:</strong> Si todavía no tiene conversaciones, se muestra la lista vacía. Un intento de abrir un chat ajeno se rechaza.</p>
+    </section>
+    <section aria-labelledby="CU-05">
+      <h3 id="CU-05">CU-05. Enviar mensaje</h3>
+      <p><strong>Condición previa:</strong> La persona ha iniciado sesión, participa en el chat abierto y tiene conexión con el servicio.</p>
+      <p><strong>Flujo principal:</strong> Escribe un texto de hasta 1000 caracteres y lo envía. El sistema comprueba los permisos y el contenido, guarda el mensaje y lo distribuye a los participantes conectados.</p>
+      <p><strong>Resultado:</strong> El mensaje queda conservado en el historial e identificado con el nombre de usuario del emisor.</p>
+      <p><strong>Regla o situación alternativa:</strong> Un texto vacío, formado solo por espacios o superior al límite se rechaza. Si falla el envío, se informa el fallo y no se presenta como confirmado.</p>
+    </section>
+    <section aria-labelledby="CU-06">
+      <h3 id="CU-06">CU-06. Recibir mensajes</h3>
+      <p><strong>Condición previa:</strong> La persona ha iniciado sesión, participa en el chat y está conectada para recibir sus actualizaciones.</p>
+      <p><strong>Flujo principal:</strong> Cuando llega un mensaje nuevo, la aplicación lo muestra en la conversación sin recargar la página e indica el nombre de usuario del emisor.</p>
+      <p><strong>Resultado:</strong> Los participantes conectados visualizan los mensajes nuevos de su conversación.</p>
+      <p><strong>Regla o situación alternativa:</strong> Si se pierde la conexión, se informa el estado. Los mensajes conservados podrán consultarse al recuperar el acceso.</p>
+    </section>
+    <section aria-labelledby="CU-07">
+      <h3 id="CU-07">CU-07. Consultar historial</h3>
+      <p><strong>Condición previa:</strong> La persona ha iniciado sesión y participa en la conversación.</p>
+      <p><strong>Flujo principal:</strong> Abre una conversación y consulta sus mensajes anteriores, incluidos los recibidos mientras estuvo ausente.</p>
+      <p><strong>Resultado:</strong> Se muestra el historial conservado de ese chat, sin duplicar los mensajes guardados.</p>
+      <p><strong>Regla o situación alternativa:</strong> Si aún no hay mensajes, se muestra la conversación vacía. Si falla la consulta, se informa el problema; no se elimina el historial.</p>
+    </section>
+    <section aria-labelledby="CU-08">
+      <h3 id="CU-08">CU-08. Cerrar sesión</h3>
+      <p><strong>Condición previa:</strong> La persona tiene una sesión iniciada.</p>
+      <p><strong>Flujo principal:</strong> Selecciona la opción de cerrar sesión y la aplicación termina el acceso de esa sesión.</p>
+      <p><strong>Resultado:</strong> Para volver a consultar las conversaciones deberá iniciar sesión de nuevo. Los mensajes se conservan.</p>
+      <p><strong>Regla o situación alternativa:</strong> Salir de la cuenta no permite editar ni borrar mensajes.</p>
+    </section>
+    <h2>Reglas comunes</h2>
+    <ul>
+      <li>Los mensajes y las conversaciones identifican a las personas mediante su nombre de usuario.</li>
+      <li>Cada participante accede únicamente a sus propias conversaciones.</li>
+      <li>El historial se conserva sin borrado automático y no se permiten la edición ni el borrado de mensajes.</li>
+      <li>La recepción en directo requiere conexión. Los mensajes conservados durante una ausencia se recuperan al consultar el historial.</li>
+    </ul>
+    <h2>Referencia del formato</h2>
+    <p>El archivo Draw.io contiene figuras y conectores editables en XML. La imagen SVG permite consultar el diagrama desde el navegador. Véase la <a href="https://www.drawio.com/docs/manual/advanced/diagram-source-edit/">documentación del formato XML de Draw.io</a>.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P3_Catalogo_de_requisitos/index.html">Volver a P3</a></nav></footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="azchat-casos-uso" name="Casos de uso de AzChat">
+    <mxGraphModel dx="760" dy="1220" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="760" pageHeight="1220" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="P4. Casos de uso de AzChat" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=26;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="10" width="700" height="40" />
+        </mxCell>
+        <mxCell id="sistema" value="AzChat" style="rounded=0;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=24;fontStyle=1;fontColor=#222222;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="70" width="400" height="850" />
+        </mxCell>
+        <mxCell id="actor" value="Usuario del&#10;chat" style="shape=umlActor;html=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;fillColor=#ffffff;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="80" y="430" width="60" height="110" />
+        </mxCell>
+        <mxCell id="asociacion-CU-01" edge="1" parent="1" source="actor" target="CU-01" style="endArrow=none;startArrow=none;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="asociacion-CU-02" edge="1" parent="1" source="actor" target="CU-02" style="endArrow=none;startArrow=none;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="asociacion-CU-03" edge="1" parent="1" source="actor" target="CU-03" style="endArrow=none;startArrow=none;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="asociacion-CU-04" edge="1" parent="1" source="actor" target="CU-04" style="endArrow=none;startArrow=none;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="asociacion-CU-05" edge="1" parent="1" source="actor" target="CU-05" style="endArrow=none;startArrow=none;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="asociacion-CU-06" edge="1" parent="1" source="actor" target="CU-06" style="endArrow=none;startArrow=none;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="asociacion-CU-07" edge="1" parent="1" source="actor" target="CU-07" style="endArrow=none;startArrow=none;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="asociacion-CU-08" edge="1" parent="1" source="actor" target="CU-08" style="endArrow=none;startArrow=none;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="CU-01" value="CU-01&#10;Registrarse" style="ellipse;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="340" y="130" width="300" height="70" />
+        </mxCell>
+        <mxCell id="CU-02" value="CU-02&#10;Iniciar sesión" style="ellipse;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="340" y="225" width="300" height="70" />
+        </mxCell>
+        <mxCell id="CU-03" value="CU-03&#10;Iniciar chat privado" style="ellipse;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="340" y="320" width="300" height="70" />
+        </mxCell>
+        <mxCell id="CU-04" value="CU-04&#10;Consultar conversaciones" style="ellipse;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="340" y="415" width="300" height="70" />
+        </mxCell>
+        <mxCell id="CU-05" value="CU-05&#10;Enviar mensaje" style="ellipse;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="340" y="510" width="300" height="70" />
+        </mxCell>
+        <mxCell id="CU-06" value="CU-06&#10;Recibir mensajes" style="ellipse;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="340" y="605" width="300" height="70" />
+        </mxCell>
+        <mxCell id="CU-07" value="CU-07&#10;Consultar historial" style="ellipse;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="340" y="700" width="300" height="70" />
+        </mxCell>
+        <mxCell id="CU-08" value="CU-08&#10;Cerrar sesión" style="ellipse;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#222222;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontColor=#222222;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="340" y="795" width="300" height="70" />
+        </mxCell>
+        <mxCell id="leyenda" value="Un mismo actor representa a todos los participantes." style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="935" width="700" height="35" />
+        </mxCell>
+        <mxCell id="equipo-titulo" value="Equipo del proyecto" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="985" width="700" height="30" />
+        </mxCell>
+        <mxCell id="integrante-236876" value="Apaza Quispe Antonio Vicente · 236876" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="1025" width="350" height="26" />
+        </mxCell>
+        <mxCell id="integrante-236104" value="Arias Ramirez Alex · 236104" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="1053" width="350" height="26" />
+        </mxCell>
+        <mxCell id="integrante-236567" value="Chura Chambilla Raul Cristian · 236567" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="1081" width="350" height="26" />
+        </mxCell>
+        <mxCell id="integrante-236171" value="Escobedo Arapa Kenyi Blanca · 236171" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="1109" width="350" height="26" />
+        </mxCell>
+        <mxCell id="integrante-237317" value="Mamani Pari Yimmy Jonathan · 237317" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="380" y="1025" width="350" height="26" />
+        </mxCell>
+        <mxCell id="integrante-236568" value="Quispe Ramos Daniel Jhosimar · 236568" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="380" y="1053" width="350" height="26" />
+        </mxCell>
+        <mxCell id="integrante-236232" value="Roque Mamani Vidman Ruis · 236232" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="380" y="1081" width="350" height="26" />
+        </mxCell>
+        <mxCell id="integrante-236535" value="Vidal Fuentes Jordy Anthony · 236535" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=13;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="380" y="1109" width="350" height="26" />
+        </mxCell>
+        <mxCell id="pie" value="Metodología Ágil - Primera versión" style="text;html=0;strokeColor=none;fillColor=none;fontFamily=Arial;fontColor=#222222;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="1165" width="700" height="30" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

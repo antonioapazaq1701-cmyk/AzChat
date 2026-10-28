@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P2. Actores y necesidades | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P1_Problema_y_alcance/index.html">P1. Problema y alcance</a></nav>
+    <h1>P2. Actores y necesidades</h1>
+    <p>Descripción de las personas que utilizarán AzChat y de las tareas que necesitan realizar.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>¿Qué es un actor?</h2>
+    <p>Es quien interactúa con la aplicación para realizar una tarea. En AzChat habrá un único actor humano: el usuario del chat.</p>
+    <h2>Actor principal: usuario del chat</h2>
+    <p>Es la persona que se registra y utiliza AzChat para conversar en privado con otra persona. Todos los usuarios tienen las mismas funciones.</p>
+    <table>
+      <caption>Necesidades del usuario</caption>
+      <thead><tr><th scope="col">Necesidad</th><th scope="col">Qué debe poder hacer</th></tr></thead>
+      <tbody>
+        <tr><td>Acceso</td><td>Registrarse con nombre completo, código de estudiante, nombre de usuario y contraseña. Ingresar con el nombre de usuario o el código, junto con la contraseña.</td></tr>
+        <tr><td>Identidad</td><td>Ser reconocido por su nombre de usuario en los mensajes y las conversaciones.</td></tr>
+        <tr><td>Nuevo chat</td><td>Buscar a otra persona por su nombre de usuario exacto para abrir un chat privado.</td></tr>
+        <tr><td>Mensajes</td><td>Enviar y recibir mensajes de texto sin recargar la página.</td></tr>
+        <tr><td>Historial</td><td>Volver a entrar y leer los mensajes conservados de sus conversaciones.</td></tr>
+        <tr><td>Privacidad</td><td>Acceder únicamente a los chats en los que participa.</td></tr>
+        <tr><td>Salir</td><td>Cerrar su sesión.</td></tr>
+      </tbody>
+    </table>
+    <h2>Registro y funciones</h2>
+    <ol>
+      <li><strong>Registro por cuenta propia:</strong> cada persona podrá registrarse; no será necesario crearle una cuenta previamente.</li>
+      <li><strong>Sin administrador dentro de la web:</strong> la aplicación solo tendrá usuarios que conversan. Esta versión no incluye un panel de administración.</li>
+    </ol>
+    <h2>Servicios de apoyo</h2>
+    <p>Los servicios en la nube verificarán el acceso, conservarán los mensajes y permitirán su entrega en tiempo real. Son componentes técnicos de apoyo; no representan otro tipo de usuario de AzChat.</p>
+    <p>El proveedor se definirá en la arquitectura. El mantenimiento técnico se realizará fuera de la web.</p>
+    <h2>Relación con los requisitos</h2>
+    <p>El catálogo de requisitos detalla el registro, el acceso, el inicio de conversaciones y las reglas de los mensajes. Las mismas condiciones se aplican a todos los usuarios.</p>
+    <h2>Resultado de P2</h2>
+    <p>AzChat tendrá un solo tipo de usuario. Cada persona podrá registrarse por su cuenta, conversar en privado y consultar su historial. No habrá un administrador dentro de la aplicación.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P1_Problema_y_alcance/index.html">Volver a P1</a><a href="../P3_Catalogo_de_requisitos/index.html">Continuar a P3</a></nav></footer>
+</body>
+</html>

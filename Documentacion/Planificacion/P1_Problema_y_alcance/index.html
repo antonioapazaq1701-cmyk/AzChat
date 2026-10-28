@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P1. Problema y alcance | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P2_Actores_y_necesidades/index.html">P2. Actores y necesidades</a></nav>
+    <h1>P1. Problema y alcance</h1>
+    <p>Descripción del problema, los objetivos y los límites de la primera versión de AzChat.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Problema</h2>
+    <p>Un grupo pequeño de personas necesita intercambiar mensajes privados desde sus navegadores, recibirlos automáticamente y poder consultar sus conversaciones al volver a entrar.</p>
+    <h2>Objetivo</h2>
+    <p>Desarrollar una aplicación web sencilla de mensajería privada, inspirada en el funcionamiento básico de Telegram y WhatsApp, que pueda utilizarse desde una computadora o un celular.</p>
+    <h2>Usuarios y capacidad prevista</h2>
+    <ul>
+      <li>Inicialmente la utilizarán hasta 4 personas.</li>
+      <li>El objetivo es permitir hasta 30 personas conectadas al mismo tiempo.</li>
+      <li>Cada conversación tendrá dos participantes.</li>
+    </ul>
+    <p>Las 30 personas son una meta de capacidad que deberá comprobarse mediante pruebas durante la construcción.</p>
+    <h2>Alcance de la primera versión</h2>
+    <ol>
+      <li>Acceder desde un navegador en computadora o celular.</li>
+      <li>Identificar a cada usuario para proteger sus conversaciones.</li>
+      <li>Mantener conversaciones privadas entre dos personas.</li>
+      <li>Enviar y recibir mensajes de texto en tiempo real, sin recargar la página.</li>
+      <li>Mostrar quién envía cada mensaje.</li>
+      <li>Permitir el acceso a cada conversación únicamente a sus participantes.</li>
+      <li>Guardar los mensajes para consultar su historial al volver a entrar.</li>
+      <li>Utilizar servicios en la nube para conectar a personas desde distintos lugares.</li>
+    </ol>
+    <h2>Funciones fuera de esta versión</h2>
+    <ul>
+      <li>Grupos y salas públicas.</li>
+      <li>Imágenes, documentos, audios y otros archivos.</li>
+      <li>Llamadas y videollamadas.</li>
+      <li>Cifrado de extremo a extremo.</li>
+      <li>Aplicación Android o iOS.</li>
+    </ul>
+    <p>La privacidad requiere verificar la identidad y los permisos de los participantes, aunque esta versión no incluya cifrado de extremo a extremo.</p>
+    <h2>Criterio de sencillez</h2>
+    <p>La construcción utilizará la menor cantidad de componentes necesaria para cumplir este alcance. La interfaz web utilizará JavaScript. El proveedor en la nube y el diseño de los datos se especificarán en los documentos de arquitectura y datos.</p>
+    <p>El crecimiento inicial previsto es pasar de 4 a 30 personas simultáneas, conservando los chats privados y su historial.</p>
+    <h2>Conservación del historial</h2>
+    <p>Los mensajes se conservarán sin borrado automático para que los participantes puedan leerlos al volver a entrar. Cerrar la sesión o el navegador no deberá eliminar el historial. La primera versión no permitirá editar ni borrar mensajes.</p>
+    <h2>Resultado esperado</h2>
+    <p>Dos personas pueden abrir AzChat desde navegadores diferentes, conversar de forma privada y consultar los mensajes anteriores. La web se adapta al celular y los mensajes nuevos aparecen automáticamente.</p>
+    <h2>Condiciones de uso</h2>
+    <p>La aplicación requiere conexión a Internet y una cuenta de usuario. Cada persona podrá registrarse con su nombre completo, código de estudiante, nombre de usuario y contraseña. El ingreso aceptará el nombre de usuario o el código de estudiante, junto con la contraseña.</p>
+    <p>Las conversaciones serán privadas y solo estarán disponibles para sus participantes. Cada persona buscará a su destinatario por su nombre de usuario exacto. Este nombre identificará al emisor en los mensajes. Cada mensaje admitirá hasta 1000 caracteres.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Siguiente paso"><a href="../../index.html">Volver al índice</a><a href="../P2_Actores_y_necesidades/index.html">Continuar a P2</a></nav></footer>
+</body>
+</html>

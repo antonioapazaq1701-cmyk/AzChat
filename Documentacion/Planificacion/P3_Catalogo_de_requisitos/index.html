@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P3. Catálogo de requisitos | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P2_Actores_y_necesidades/index.html">P2. Actores y necesidades</a></nav>
+    <h1>P3. Catálogo de requisitos</h1>
+    <p>Funciones y condiciones que deberá cumplir la primera versión de AzChat.</p>
+    <p>Alcance: chats privados de texto, con cuentas de usuario e historial conservado.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Propósito</h2>
+    <p>Este catálogo establece qué debe hacer AzChat y bajo qué condiciones debe funcionar. Sirve como referencia para el diseño, la construcción y las pruebas del sistema.</p>
+    <p>Los requisitos funcionales (RF) describen las tareas de la aplicación. Los requisitos no funcionales (RNF) describen sus condiciones de uso, capacidad y protección de datos.</p>
+
+    <h2>Requisitos funcionales</h2>
+    <table class="detalle">
+      <caption>Funciones de la primera versión</caption>
+      <thead><tr><th scope="col">Requisito</th><th scope="col">Comportamiento esperado</th></tr></thead>
+      <tbody>
+        <tr><th scope="row" id="RF-01">RF-01. Registro</th><td>La aplicación deberá permitir que cada persona cree su cuenta ingresando nombre completo, código de estudiante, nombre de usuario y contraseña. Todos estos campos serán obligatorios.</td></tr>
+        <tr><th scope="row" id="RF-02">RF-02. Sesión</th><td>La aplicación deberá permitir ingresar con el nombre de usuario o el código de estudiante, junto con la contraseña, y cerrar sesión. Será necesario iniciar sesión para acceder a las conversaciones.</td></tr>
+        <tr><th scope="row" id="RF-03">RF-03. Identidad</th><td>Los mensajes y las conversaciones deberán identificar a cada participante por su nombre de usuario.</td></tr>
+        <tr><th scope="row" id="RF-04">RF-04. Chat privado</th><td>Una persona deberá poder buscar a otra persona registrada por su nombre de usuario exacto e iniciar una conversación privada entre ambas. Si no existe una coincidencia, la aplicación deberá indicarlo.</td></tr>
+        <tr><th scope="row" id="RF-05">RF-05. Envío</th><td>El participante deberá poder enviar mensajes de texto de hasta 1000 caracteres. Se rechazarán los mensajes vacíos, formados únicamente por espacios o superiores al límite.</td></tr>
+        <tr><th scope="row" id="RF-06">RF-06. Recepción</th><td>Los mensajes nuevos deberán aparecer en la conversación de ambos participantes sin recargar la página, mientras estén conectados. Cada mensaje deberá mostrar su emisor.</td></tr>
+        <tr><th scope="row" id="RF-07">RF-07. Conversaciones</th><td>La aplicación deberá mostrar las conversaciones de la cuenta activa y permitir abrir cada una de ellas.</td></tr>
+        <tr><th scope="row" id="RF-08">RF-08. Historial</th><td>Los participantes deberán poder consultar los mensajes anteriores al volver a entrar, incluidos los recibidos durante su ausencia. Cerrar sesión o el navegador no deberá borrar los mensajes.</td></tr>
+        <tr><th scope="row" id="RF-09">RF-09. Estado de conexión</th><td>La aplicación deberá informar si se pierde la conexión o falla un envío. Un envío fallido no deberá mostrarse como confirmado.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Requisitos no funcionales</h2>
+    <table class="detalle">
+      <caption>Condiciones de funcionamiento</caption>
+      <thead><tr><th scope="col">Requisito</th><th scope="col">Condición esperada</th></tr></thead>
+      <tbody>
+        <tr><th scope="row" id="RNF-01">RNF-01. Uso en navegador</th><td>La web deberá permitir leer y enviar mensajes desde navegadores modernos, tanto en computadora como en celular. Los controles y textos deberán ser legibles en pantallas pequeñas.</td></tr>
+        <tr><th scope="row" id="RNF-02">RNF-02. Capacidad</th><td>La meta inicial será atender hasta 30 usuarios conectados simultáneamente, manteniendo el acceso, el envío y la recepción de mensajes. Esta capacidad deberá comprobarse durante la construcción.</td></tr>
+        <tr><th scope="row" id="RNF-03">RNF-03. Privacidad</th><td>El servicio deberá comprobar la identidad y la participación en la conversación antes de permitir leer o enviar mensajes, tanto en el historial como en la comunicación en tiempo real. Ocultar un chat en la interfaz no será suficiente para protegerlo.</td></tr>
+        <tr><th scope="row" id="RNF-04">RNF-04. Validación</th><td>El contenido deberá validarse en la web y en el servicio que almacene los mensajes. Los mensajes deberán mostrarse como texto, sin ejecutar código incluido en ellos.</td></tr>
+        <tr><th scope="row" id="RNF-05">RNF-05. Conservación</th><td>Las cuentas, las conversaciones y los mensajes deberán almacenarse en la nube. El historial deberá conservarse entre sesiones y al reiniciar la aplicación.</td></tr>
+        <tr><th scope="row" id="RNF-06">RNF-06. Recuperación de conexión</th><td>Después de recuperar el acceso, la aplicación deberá poder consultar el historial para obtener los mensajes que no recibió en directo. Cada mensaje guardado deberá aparecer una sola vez en el historial mostrado.</td></tr>
+        <tr><th scope="row" id="RNF-07">RNF-07. Contraseñas</th><td>La contraseña deberá almacenarse mediante un hash seguro: una representación que permita comprobarla sin guardar su texto original. El sistema no deberá mostrarla ni devolverla al consultar los datos de una cuenta.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Reglas generales</h2>
+    <ul>
+      <li>Todos los usuarios tendrán las mismas funciones; no habrá un administrador dentro de la web.</li>
+      <li>Cada conversación tendrá únicamente dos participantes.</li>
+      <li>La primera versión permitirá mensajes de texto.</li>
+      <li>Los mensajes se conservarán para consultar el historial.</li>
+      <li>No habrá borrado automático del historial ni funciones para editar o borrar mensajes en la primera versión.</li>
+      <li>El nombre de usuario y el código de estudiante deberán ser únicos. El identificador utilizado para ingresar deberá corresponder a una única cuenta, sin confundir el nombre de usuario de una persona con el código de otra.</li>
+      <li>Las funciones excluidas se detallan en P1: grupos, archivos, audios, llamadas, aplicaciones Android o iOS y cifrado de extremo a extremo.</li>
+    </ul>
+
+    <h2>Datos de registro</h2>
+    <p>El registro solicitará los siguientes datos. El acceso no requerirá correo electrónico ni número de teléfono.</p>
+    <table class="detalle">
+      <caption>Información asociada a cada cuenta</caption>
+      <thead><tr><th scope="col">Dato</th><th scope="col">Uso</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Nombre completo</th><td>Registrar los nombres y apellidos del titular de la cuenta.</td></tr>
+        <tr><th scope="row">Código de estudiante</th><td>Identificar al estudiante y permitir su ingreso como alternativa al nombre de usuario.</td></tr>
+        <tr><th scope="row">Nombre de usuario</th><td>Permitir el ingreso, la búsqueda exacta de destinatarios y la identificación visible en las conversaciones.</td></tr>
+        <tr><th scope="row">Contraseña</th><td>Comprobar el acceso a la cuenta. Se conservará únicamente su hash seguro.</td></tr>
+      </tbody>
+    </table>
+    <p>El proveedor en la nube, el modelo de datos y los componentes técnicos se especificarán en los documentos de diseño.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P2_Actores_y_necesidades/index.html">Volver a P2</a><a href="../P4_Modelo_de_casos_de_uso/index.html">Continuar a P4</a></nav></footer>
+</body>
+</html>
