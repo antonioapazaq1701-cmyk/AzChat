@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="Flujo_envio_AzChat" name="Flujo de envío de AzChat">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1080" pageHeight="1150" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="P5. Flujo de envío y conservación" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=28;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="1020" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="inicio" value="Sesión y chat abiertos" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;ellipse;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="escribir" value="Escribir texto en el chat" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="190" width="340" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="valido" value="¿Texto válido?&#10;1 a 1000 caracteres" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rhombus;" vertex="1" parent="1">
+          <mxGeometry x="400" y="310" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="validacion" value="Mostrar validación&#10;y conservar texto" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="335" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="servicio" value="Enviar al servicio;&#10;validar permisos y guardar" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="480" width="340" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="confirmado" value="¿Se confirma&#10;el envío?" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=19;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rhombus;" vertex="1" parent="1">
+          <mxGeometry x="400" y="620" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="fallo" value="Mostrar fallo&#10;y conservar texto" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="740" y="640" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="reintentar" value="Pulsar Reintentar&#10;con conexión recuperada" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="740" y="790" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="mostrar" value="Confirmar mensaje guardado&#10;y actualizar chats conectados" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="340" y="800" width="340" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fin" value="Fin del envío" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;ellipse;" vertex="1" parent="1">
+          <mxGeometry x="400" y="950" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="si-valido" value="Sí" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="525" y="440" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="no-valido" value="No" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="315" y="340" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="si-confirmado" value="Sí" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="525" y="755" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="no-confirmado" value="No" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="665" y="640" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nota" value="El reintento conserva la identidad del mensaje para evitar duplicados." style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1040" width="1020" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="metodo" value="Metodología Ágil · Primera versión" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1095" width="1020" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="inicio" target="escribir">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="escribir" target="valido">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0;exitY=0.5;exitPerimeter=1;entryX=1;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="valido" target="validacion">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=0;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="validacion" target="escribir">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="155" y="225" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="valido" target="servicio">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-5" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="servicio" target="confirmado">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-6" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="confirmado" target="fallo">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-7" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="fallo" target="reintentar">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-8" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.5;exitPerimeter=1;entryX=1;entryY=0.5;entryPerimeter=1;" edge="1" parent="1" source="reintentar" target="servicio">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1040" y="830" />
+              <mxPoint x="1040" y="525" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-9" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="confirmado" target="mostrar">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-10" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="mostrar" target="fin">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

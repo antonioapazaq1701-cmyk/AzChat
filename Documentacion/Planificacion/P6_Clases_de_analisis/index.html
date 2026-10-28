@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P6. Diagrama de clases de análisis | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P5_Especificacion_de_requisitos/index.html">P5. Especificación de requisitos</a></nav>
+    <h1>P6. Diagrama de clases de análisis</h1>
+    <p>Conceptos, responsabilidades y relaciones de la mensajería privada de AzChat.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Propósito del modelo</h2>
+    <p>El diagrama de clases de análisis organiza los conceptos necesarios para entender AzChat. Describe qué representa cada clase y cómo se relaciona con las demás. Se basa en los requisitos de P3, los casos de uso de P4 y las reglas detalladas de P5.</p>
+    <p>El modelo tiene tres entidades del dominio y una clase de control. Sus nombres y responsabilidades son conceptuales; el diseño de componentes, las bibliotecas y las tablas se definirán en pasos posteriores.</p>
+    <h2>Diagrama de clases de análisis</h2>
+    <figure>
+      <a href="Clases_analisis_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Clases_analisis_AzChat.svg" alt="Diagrama con Estudiante, ConversacionPrivada y Mensaje, unidos por asociaciones con multiplicidades, y GestorChat conectado mediante dependencias discontinuas."></a>
+      <figcaption>Los recuadros muestran clases, atributos y responsabilidades. Las asociaciones continuas incluyen cantidades en sus extremos. Las dependencias del gestor se representan con flechas discontinuas.</figcaption>
+    </figure>
+    <p>Modelo editable: <a href="Clases_analisis_AzChat.drawio">Clases_analisis_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
+    <h2>Clases y responsabilidades</h2>
+    <table class="detalle">
+      <caption>Conceptos del sistema</caption>
+      <thead><tr><th scope="col">Clase</th><th scope="col">Descripción</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Estudiante</th><td>Representa una cuenta que puede conversar. Contiene nombre completo, código de estudiante, nombre de usuario y una credencial protegida. El nombre de usuario identifica al participante en el chat.</td></tr>
+        <tr><th scope="row">ConversacionPrivada</th><td>Representa el chat compartido por dos estudiantes distintos. Conserva su fecha de creación y reúne los mensajes de esa pareja. La misma pareja utiliza una única conversación.</td></tr>
+        <tr><th scope="row">Mensaje</th><td>Representa un texto conservado, su identificador, su fecha y hora y las relaciones con su emisor y su conversación. El identificador permite reconocer el mismo mensaje durante un reintento.</td></tr>
+        <tr><th scope="row">GestorChat</th><td>Es la clase de control conceptual. Coordina registro y acceso, apertura de conversaciones, validación, conservación y distribución de mensajes. Sus operaciones describen responsabilidades; no constituyen código implementado.</td></tr>
+      </tbody>
+    </table>
+    <p>La credencial protegida de Estudiante corresponde al hash de contraseña exigido por la ERS. No representa una contraseña guardada en texto original. Los datos de acceso no se muestran al buscar destinatarios.</p>
+    <h2>Relaciones y multiplicidades</h2>
+    <table class="detalle">
+      <caption>Lectura de las relaciones</caption>
+      <thead><tr><th scope="col">Relación</th><th scope="col">Significado</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Estudiante — ConversacionPrivada</th><td>Una conversación tiene exactamente <strong>2</strong> estudiantes. Un estudiante puede participar en <strong>0..*</strong> conversaciones. El asterisco significa muchas.</td></tr>
+        <tr><th scope="row">Estudiante — Mensaje</th><td>Cada mensaje tiene <strong>1</strong> estudiante emisor. Un estudiante puede enviar <strong>0..*</strong> mensajes.</td></tr>
+        <tr><th scope="row">ConversacionPrivada — Mensaje</th><td>Cada mensaje pertenece a <strong>1</strong> conversación. Una conversación puede contener <strong>0..*</strong> mensajes; al crearse puede estar vacía.</td></tr>
+        <tr><th scope="row">GestorChat → entidades</th><td>Las líneas discontinuas indican que el control utiliza las entidades para cumplir sus responsabilidades. No expresan propiedad, herencia ni tablas de almacenamiento.</td></tr>
+      </tbody>
+    </table>
+    <h2>Reglas del modelo</h2>
+    <ol>
+      <li>Los dos participantes de una conversación son estudiantes distintos.</li>
+      <li>Una pareja comparte una única conversación, sin importar quién la inicia.</li>
+      <li>El emisor de un mensaje pertenece a la conversación de ese mensaje.</li>
+      <li>Un mensaje conservado tiene un identificador único. Repetir el intento de un envío no crea otro mensaje si el original ya fue guardado.</li>
+      <li>El historial permanece al cerrar sesión y no admite edición, borrado ni eliminación automática en la primera versión.</li>
+      <li>El usuario y el código de estudiante son únicos; el ingreso requiere verificar la credencial protegida.</li>
+    </ol>
+    <h2>Relación con los casos de uso</h2>
+    <table class="detalle">
+      <caption>Correspondencia con P4</caption>
+      <thead><tr><th scope="col">Casos de uso</th><th scope="col">Conceptos principales</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">CU-01 y CU-02. Registro y acceso</th><td>Estudiante y GestorChat permiten representar la cuenta y la comprobación de acceso.</td></tr>
+        <tr><th scope="row">CU-03 y CU-04. Inicio y consulta de chats</th><td>Estudiante y ConversacionPrivada representan los participantes y su conversación; GestorChat coordina la apertura y los permisos.</td></tr>
+        <tr><th scope="row">CU-05, CU-06 y CU-07. Mensajería e historial</th><td>Mensaje se relaciona con su emisor y su conversación. GestorChat coordina su conservación y distribución.</td></tr>
+        <tr><th scope="row">CU-08. Cerrar sesión</th><td>El acceso de la sesión termina. Estudiante, ConversacionPrivada y Mensaje permanecen conservados.</td></tr>
+      </tbody>
+    </table>
+    <p>La sesión es una condición de acceso en este modelo. Su representación técnica se definirá en el diseño, sin añadir una entidad de dominio adicional en este paso.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P5_Especificacion_de_requisitos/index.html">P5. Especificación de requisitos</a></nav></footer>
+</body>
+</html>

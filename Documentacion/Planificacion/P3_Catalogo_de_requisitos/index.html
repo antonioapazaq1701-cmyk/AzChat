@@ -25,15 +25,15 @@
       <caption>Funciones de la primera versión</caption>
       <thead><tr><th scope="col">Requisito</th><th scope="col">Comportamiento esperado</th></tr></thead>
       <tbody>
-        <tr><th scope="row" id="RF-01">RF-01. Registro</th><td>La aplicación deberá permitir que cada persona cree su cuenta ingresando nombre completo, código de estudiante, nombre de usuario y contraseña. Todos estos campos serán obligatorios.</td></tr>
+        <tr><th scope="row" id="RF-01">RF-01. Registro</th><td>La aplicación deberá permitir que cada persona cree su cuenta ingresando nombre completo, código de estudiante, nombre de usuario y contraseña. Todos estos campos serán obligatorios. El código tendrá 6 dígitos; el usuario tendrá de 3 a 20 caracteres, empezará por una letra y admitirá letras, números y guion bajo; la contraseña tendrá al menos 8 caracteres. El usuario no distinguirá mayúsculas y minúsculas.</td></tr>
         <tr><th scope="row" id="RF-02">RF-02. Sesión</th><td>La aplicación deberá permitir ingresar con el nombre de usuario o el código de estudiante, junto con la contraseña, y cerrar sesión. Será necesario iniciar sesión para acceder a las conversaciones.</td></tr>
         <tr><th scope="row" id="RF-03">RF-03. Identidad</th><td>Los mensajes y las conversaciones deberán identificar a cada participante por su nombre de usuario.</td></tr>
-        <tr><th scope="row" id="RF-04">RF-04. Chat privado</th><td>Una persona deberá poder buscar a otra persona registrada por su nombre de usuario exacto e iniciar una conversación privada entre ambas. Si no existe una coincidencia, la aplicación deberá indicarlo.</td></tr>
+        <tr><th scope="row" id="RF-04">RF-04. Chat privado</th><td>Una persona deberá poder buscar a otra persona registrada por su nombre de usuario exacto e iniciar una conversación privada entre ambas. Si no existe una coincidencia, la aplicación deberá indicarlo. Cada pareja de personas distintas tendrá una única conversación; las búsquedas posteriores abrirán ese mismo chat.</td></tr>
         <tr><th scope="row" id="RF-05">RF-05. Envío</th><td>El participante deberá poder enviar mensajes de texto de hasta 1000 caracteres. Se rechazarán los mensajes vacíos, formados únicamente por espacios o superiores al límite.</td></tr>
         <tr><th scope="row" id="RF-06">RF-06. Recepción</th><td>Los mensajes nuevos deberán aparecer en la conversación de ambos participantes sin recargar la página, mientras estén conectados. Cada mensaje deberá mostrar su emisor.</td></tr>
         <tr><th scope="row" id="RF-07">RF-07. Conversaciones</th><td>La aplicación deberá mostrar las conversaciones de la cuenta activa y permitir abrir cada una de ellas.</td></tr>
         <tr><th scope="row" id="RF-08">RF-08. Historial</th><td>Los participantes deberán poder consultar los mensajes anteriores al volver a entrar, incluidos los recibidos durante su ausencia. Cerrar sesión o el navegador no deberá borrar los mensajes.</td></tr>
-        <tr><th scope="row" id="RF-09">RF-09. Estado de conexión</th><td>La aplicación deberá informar si se pierde la conexión o falla un envío. Un envío fallido no deberá mostrarse como confirmado.</td></tr>
+        <tr><th scope="row" id="RF-09">RF-09. Estado de conexión</th><td>La aplicación deberá informar si se pierde la conexión o falla un envío. Un envío fallido no deberá mostrarse como confirmado. El texto se conservará mientras siga abierta la página y el reintento se realizará al pulsar un botón, sin reenvío automático ni duplicación de un mensaje ya guardado.</td></tr>
       </tbody>
     </table>
 
@@ -43,7 +43,7 @@
       <thead><tr><th scope="col">Requisito</th><th scope="col">Condición esperada</th></tr></thead>
       <tbody>
         <tr><th scope="row" id="RNF-01">RNF-01. Uso en navegador</th><td>La web deberá permitir leer y enviar mensajes desde navegadores modernos, tanto en computadora como en celular. Los controles y textos deberán ser legibles en pantallas pequeñas.</td></tr>
-        <tr><th scope="row" id="RNF-02">RNF-02. Capacidad</th><td>La meta inicial será atender hasta 30 usuarios conectados simultáneamente, manteniendo el acceso, el envío y la recepción de mensajes. Esta capacidad deberá comprobarse durante la construcción.</td></tr>
+        <tr><th scope="row" id="RNF-02">RNF-02. Capacidad</th><td>La meta inicial será atender hasta 30 usuarios conectados simultáneamente, manteniendo el acceso, el envío y la recepción de mensajes. Esta capacidad deberá comprobarse durante la construcción. Con conexión estable, la recepción tendrá como objetivo un máximo de 3 segundos por mensaje en el escenario CA-13 de P5.</td></tr>
         <tr><th scope="row" id="RNF-03">RNF-03. Privacidad</th><td>El servicio deberá comprobar la identidad y la participación en la conversación antes de permitir leer o enviar mensajes, tanto en el historial como en la comunicación en tiempo real. Ocultar un chat en la interfaz no será suficiente para protegerlo.</td></tr>
         <tr><th scope="row" id="RNF-04">RNF-04. Validación</th><td>El contenido deberá validarse en la web y en el servicio que almacene los mensajes. Los mensajes deberán mostrarse como texto, sin ejecutar código incluido en ellos.</td></tr>
         <tr><th scope="row" id="RNF-05">RNF-05. Conservación</th><td>Las cuentas, las conversaciones y los mensajes deberán almacenarse en la nube. El historial deberá conservarse entre sesiones y al reiniciar la aplicación.</td></tr>
@@ -57,6 +57,7 @@
       <li>Todos los usuarios tendrán las mismas funciones; no habrá un administrador dentro de la web.</li>
       <li>Cada conversación tendrá únicamente dos participantes.</li>
       <li>La primera versión permitirá mensajes de texto.</li>
+      <li>La recuperación y el cambio de contraseña quedan fuera de esta primera versión.</li>
       <li>Los mensajes se conservarán para consultar el historial.</li>
       <li>No habrá borrado automático del historial ni funciones para editar o borrar mensajes en la primera versión.</li>
       <li>El nombre de usuario y el código de estudiante deberán ser únicos. El identificador utilizado para ingresar deberá corresponder a una única cuenta, sin confundir el nombre de usuario de una persona con el código de otra.</li>

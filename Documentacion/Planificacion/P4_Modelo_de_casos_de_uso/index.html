@@ -58,7 +58,7 @@
     <section aria-labelledby="CU-03">
       <h3 id="CU-03">CU-03. Iniciar chat privado</h3>
       <p><strong>Condición previa:</strong> La persona ha iniciado sesión y conoce el nombre de usuario exacto del destinatario.</p>
-      <p><strong>Flujo principal:</strong> Busca el nombre de usuario exacto de otra persona registrada, selecciona el resultado y abre una conversación privada entre ambas.</p>
+      <p><strong>Flujo principal:</strong> Busca el nombre de usuario exacto de otra persona registrada, selecciona el resultado y abre la conversación privada compartida. Si ya existe un chat entre ambas personas, se utiliza ese mismo chat.</p>
       <p><strong>Resultado:</strong> Los dos participantes pueden utilizar el chat; las demás cuentas no tienen acceso.</p>
       <p><strong>Regla o situación alternativa:</strong> Si no existe una coincidencia, se informa que el usuario no fue encontrado. La búsqueda no permite acceder a conversaciones ajenas.</p>
     </section>
@@ -74,7 +74,7 @@
       <p><strong>Condición previa:</strong> La persona ha iniciado sesión, participa en el chat abierto y tiene conexión con el servicio.</p>
       <p><strong>Flujo principal:</strong> Escribe un texto de hasta 1000 caracteres y lo envía. El sistema comprueba los permisos y el contenido, guarda el mensaje y lo distribuye a los participantes conectados.</p>
       <p><strong>Resultado:</strong> El mensaje queda conservado en el historial e identificado con el nombre de usuario del emisor.</p>
-      <p><strong>Regla o situación alternativa:</strong> Un texto vacío, formado solo por espacios o superior al límite se rechaza. Si falla el envío, se informa el fallo y no se presenta como confirmado.</p>
+      <p><strong>Regla o situación alternativa:</strong> Un texto vacío, formado solo por espacios o superior al límite se rechaza. Si falla el envío, se informa el fallo, se conserva el texto mientras la página siga abierta y no se presenta como confirmado. El reintento se realiza mediante un botón y no duplica un mensaje ya guardado.</p>
     </section>
     <section aria-labelledby="CU-06">
       <h3 id="CU-06">CU-06. Recibir mensajes</h3>
@@ -124,6 +124,6 @@
       </table>
     </section>
   </main>
-  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P3_Catalogo_de_requisitos/index.html">Volver a P3</a></nav></footer>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P3_Catalogo_de_requisitos/index.html">Volver a P3</a><a href="../P5_Especificacion_de_requisitos/index.html">Continuar a P5</a></nav></footer>
 </body>
 </html>

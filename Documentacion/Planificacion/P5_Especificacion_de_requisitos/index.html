@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P5. Especificación de requisitos de software | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P4_Modelo_de_casos_de_uso/index.html">P4. Modelo de casos de uso</a></nav>
+    <h1>P5. Especificación de requisitos de software</h1>
+    <p>Reglas de funcionamiento y criterios de aceptación de la primera versión.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Propósito y alcance</h2>
+    <p>La Especificación de Requisitos de Software (ERS) precisa las reglas de AzChat y las condiciones con las que se comprobará su primera versión. El sistema permite que estudiantes registrados intercambien mensajes privados de texto y consulten su historial desde una web adaptable al celular.</p>
+    <p>El alcance mantiene una conversación privada por pareja, un solo tipo de usuario y una meta de 30 personas simultáneas. No incluye grupos, archivos, audios, llamadas, administrador ni cifrado de extremo a extremo. La recuperación y el cambio de contraseña quedan fuera de esta primera versión.</p>
+    <h2>Registro e identificación</h2>
+    <table class="detalle">
+      <caption>Reglas de los datos de registro</caption>
+      <thead><tr><th scope="col">Dato</th><th scope="col">Regla</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Nombre completo</th><td>Obligatorio. Registra los nombres y apellidos del titular. No se utiliza como identificador de ingreso ni se muestra en los mensajes.</td></tr>
+        <tr><th scope="row">Código de estudiante</th><td>Obligatorio, único y formado por exactamente 6 dígitos. Se conserva como texto para mantener posibles ceros iniciales. Es una alternativa al nombre de usuario para ingresar.</td></tr>
+        <tr><th scope="row">Nombre de usuario</th><td>Obligatorio y único. Entre 3 y 20 caracteres: letras, números y guion bajo; comienza con una letra. Se normaliza a minúsculas. El registro, el ingreso y la búsqueda no distinguen mayúsculas y minúsculas.</td></tr>
+        <tr><th scope="row">Contraseña</th><td>Obligatoria, de al menos 8 caracteres. Se comprueba sin guardar su texto original; únicamente se conserva un hash seguro. No se solicita correo electrónico ni teléfono.</td></tr>
+      </tbody>
+    </table>
+    <p>El código y el nombre de usuario identifican una cuenta de forma única. Al comenzar por una letra, el usuario no se confunde con un código numérico. El código se declara durante el registro; el alcance no incorpora una consulta al sistema de matrícula de una institución.</p>
+    <h2>Comportamiento requerido</h2>
+    <table class="detalle">
+      <caption>Especificaciones de la primera versión</caption>
+      <thead><tr><th scope="col">Especificación</th><th scope="col">Comportamiento</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">ERS-01. Registro y acceso</th><td>Se validan todos los datos antes de crear la cuenta. Se rechazan códigos o usuarios ocupados. El ingreso acepta usuario o código junto con la contraseña. Un acceso incorrecto muestra un aviso y no permite consultar conversaciones. <a href="../P3_Catalogo_de_requisitos/index.html#RF-01">RF-01</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-02">RF-02</a>.</td></tr>
+        <tr><th scope="row">ERS-02. Destinatario y chat</th><td>La búsqueda usa el nombre de usuario completo, normalizado a minúsculas; no devuelve coincidencias parciales ni una lista general de estudiantes. El resultado identifica al destinatario mediante su usuario. Cada pareja de personas distintas tiene una única conversación: al repetir la búsqueda se abre la existente. <a href="../P3_Catalogo_de_requisitos/index.html#RF-04">RF-04</a>.</td></tr>
+        <tr><th scope="row">ERS-03. Conversaciones propias</th><td>La lista contiene únicamente los chats en los que participa la cuenta activa. Una lista sin conversaciones se muestra como un estado vacío, no como un error. <a href="../P3_Catalogo_de_requisitos/index.html#RF-07">RF-07</a>.</td></tr>
+        <tr><th scope="row">ERS-04. Envío de texto</th><td>Con sesión y chat abiertos, se admite un texto no vacío de hasta 1000 caracteres. Un texto formado solo por espacios se rechaza. La web y el servicio validan el contenido y los permisos. El mensaje se confirma como enviado después de quedar guardado. <a href="../P3_Catalogo_de_requisitos/index.html#RF-05">RF-05</a>.</td></tr>
+        <tr><th scope="row">ERS-05. Recepción e identidad</th><td>Los participantes conectados reciben el mensaje sin recargar. La conversación y cada mensaje identifican al participante por su nombre de usuario. Los mensajes se presentan como texto; su contenido no ejecuta código. <a href="../P3_Catalogo_de_requisitos/index.html#RF-03">RF-03</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-06">RF-06</a>.</td></tr>
+        <tr><th scope="row">ERS-06. Historial</th><td>Los mensajes confirmados permanecen guardados, con su emisor y fecha y hora. Al volver a entrar se consultan también los recibidos durante la ausencia. Se presentan en orden de envío, sin duplicados. No hay eliminación automática, edición ni borrado de mensajes en esta versión. <a href="../P3_Catalogo_de_requisitos/index.html#RF-08">RF-08</a>.</td></tr>
+        <tr><th scope="row">ERS-07. Fallos y reintento</th><td>Ante un fallo se informa el estado y se conserva el texto en la página abierta. El reintento se realiza únicamente al pulsar un botón, con conexión recuperada; no existe reenvío automático. Si el mensaje ya se guardó y se perdió la confirmación, repetir el intento no debe crear otro mensaje. Un acceso vencido requiere iniciar sesión antes de continuar. <a href="../P3_Catalogo_de_requisitos/index.html#RF-09">RF-09</a>.</td></tr>
+        <tr><th scope="row">ERS-08. Privacidad y salida</th><td>El servicio comprueba sesión y pertenencia al chat para las consultas y actualizaciones en directo. No basta con ocultar enlaces. Cerrar sesión termina el acceso de esa sesión y conserva los mensajes. La búsqueda no expone las contraseñas, los códigos ni los nombres completos de otras cuentas. <a href="../P3_Catalogo_de_requisitos/index.html#RNF-03">RNF-03</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RNF-07">RNF-07</a>.</td></tr>
+      </tbody>
+    </table>
+    <h2>Flujo de envío y conservación</h2>
+    <figure>
+      <a href="Flujo_envio_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Flujo_envio_AzChat.svg" alt="Flujo de envío con validación del texto, almacenamiento, confirmación y reintento manual cuando falla la confirmación."></a>
+      <figcaption>El flujo parte de una sesión válida y una conversación propia abierta. La confirmación depende de la conservación del mensaje. Los reintentos deben evitar duplicar un mensaje ya guardado.</figcaption>
+    </figure>
+    <p>Modelo editable: <a href="Flujo_envio_AzChat.drawio">Flujo_envio_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
+    <h2>Criterios de aceptación</h2>
+    <p>Los siguientes escenarios son condiciones de aceptación previstas. Su ejecución corresponde a la etapa de construcción; este documento no presenta resultados de un sistema implementado.</p>
+    <table class="detalle">
+      <caption>Comprobaciones previstas</caption>
+      <thead><tr><th scope="col">Criterio</th><th scope="col">Procedimiento y resultado esperado</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">CA-01. Cuenta válida</th><td>Registrar nombre completo, código <code>012345</code>, usuario <code>alumno_01</code> y una contraseña de 8 o más caracteres. La cuenta se crea y mantiene el cero inicial del código. ERS-01.</td></tr>
+        <tr><th scope="row">CA-02. Registro inválido</th><td>Probar campos vacíos, códigos de 5 o 7 dígitos, usuarios de 2 o 21 caracteres, un usuario que comience por número, símbolos no permitidos o una contraseña de 7 caracteres. La cuenta no se crea. ERS-01.</td></tr>
+        <tr><th scope="row">CA-03. Unicidad</th><td>Intentar registrar el mismo código o un usuario ya registrado, incluso variando sus mayúsculas. Se rechaza el duplicado y no se modifica la cuenta existente. ERS-01.</td></tr>
+        <tr><th scope="row">CA-04. Inicio y cierre de sesión</th><td>Ingresar primero con usuario y luego con código, usando la contraseña correcta. Comprobar que una contraseña incorrecta no da acceso y que, después de cerrar sesión, el historial exige un nuevo ingreso. ERS-01 y ERS-08.</td></tr>
+        <tr><th scope="row">CA-05. Búsqueda exacta</th><td>Buscar el usuario completo de otra cuenta y comprobar la coincidencia sin distinguir mayúsculas. Una búsqueda parcial o de un usuario inexistente no devuelve otro destinatario. ERS-02.</td></tr>
+        <tr><th scope="row">CA-06. Una conversación por pareja</th><td>Abrir un chat entre A y B. Buscar B desde A y A desde B de nuevo: ambos accesos abren la misma conversación y conservan el mismo historial. No se permite crear un chat consigo mismo. ERS-02.</td></tr>
+        <tr><th scope="row">CA-07. Límites del texto</th><td>Aceptar mensajes de 1 y 1000 caracteres. Rechazar texto vacío, solo espacios y 1001 caracteres. Comprobar que el rechazo también ocurre al omitir la validación de la interfaz. ERS-04.</td></tr>
+        <tr><th scope="row">CA-08. Recepción e identidad</th><td>Enviar un mensaje de A a B con ambos conectados. Aparece una sola vez en ambos chats, sin recargar, con el usuario de A. Un texto con etiquetas o código se muestra sin ejecutarlo. ERS-05.</td></tr>
+        <tr><th scope="row">CA-09. Historial conservado</th><td>Desconectar B, enviar mensajes desde A y volver a ingresar con B. Los mensajes anteriores y los recibidos durante la ausencia permanecen ordenados y sin duplicados. ERS-06.</td></tr>
+        <tr><th scope="row">CA-10. Aislamiento</th><td>Con una tercera cuenta C, intentar consultar o enviar mensajes al chat A–B y recibir sus eventos en directo. Todos esos accesos se rechazan. La búsqueda tampoco devuelve los datos privados del registro. ERS-08.</td></tr>
+        <tr><th scope="row">CA-11. Fallo y reintento manual</th><td>Interrumpir un envío. La interfaz informa el fallo, conserva el texto mientras la página siga abierta y no lo confirma. Al recuperar la conexión, solo reintenta al pulsar el botón. Simular una confirmación perdida después de guardar: el reintento conserva un único mensaje. ERS-07.</td></tr>
+        <tr><th scope="row">CA-12. Datos y credenciales</th><td>Reiniciar el servicio y volver a entrar: las cuentas y los mensajes confirmados permanecen. Revisar que las contraseñas almacenadas sean hashes y que ninguna respuesta de consulta exponga la contraseña ni su hash. RNF-05 y RNF-07.</td></tr>
+        <tr><th scope="row">CA-13. Capacidad y tiempo</th><td>Con 30 usuarios conectados en 15 parejas, durante 2 minutos cada usuario envía un texto válido cada 10 segundos. En condiciones de conexión estable, cada mensaje aparece en el destinatario en un máximo de 3 segundos desde que se pulsa Enviar. No se pierden ni se duplican mensajes confirmados. Se registran los tiempos para comprobar el resultado. RNF-02.</td></tr>
+        <tr><th scope="row">CA-14. Lectura y controles</th><td>Comprobar el uso desde computadora y celular: campos, botones y mensajes legibles; navegación por teclado y controles accesibles sin desplazamiento horizontal de la página. RNF-01.</td></tr>
+      </tbody>
+    </table>
+    <h2>Aplicación del enfoque Ágil</h2>
+    <p>Los criterios se comprobarán en entregas pequeñas: primero registro y acceso, después conversaciones y finalmente mensajería e historial. La revisión de una entrega puede actualizar los requisitos y los modelos manteniendo su relación con P3 y P4.</p>
+    <p>El proveedor en la nube y los componentes de construcción se especificarán en el diseño. La capacidad y el tiempo de respuesta se verificarán mediante CA-13.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P4_Modelo_de_casos_de_uso/index.html">P4. Modelo de casos de uso</a><a href="../P6_Clases_de_analisis/index.html">Continuar a P6</a></nav></footer>
+</body>
+</html>

@@ -6,7 +6,7 @@ El proyecto utiliza una **metodología Ágil, incremental e iterativa**: entrega
 
 ## Consultar la documentación
 
-Descarga el repositorio y abre **[Documentacion/index.html](Documentacion/index.html)** con doble clic. Los documentos HTML y el diagrama se consultan sin instalar dependencias.
+Consulta la [documentación en GitHub Pages](https://antonioapazaq1701-cmyk.github.io/AzChat/). También puedes descargar el repositorio y abrir **[Documentacion/index.html](Documentacion/index.html)** con doble clic. Los documentos HTML y el diagrama se consultan sin instalar dependencias.
 
 | Paso | Documento |
 |---|---|
@@ -14,10 +14,14 @@ Descarga el repositorio y abre **[Documentacion/index.html](Documentacion/index.
 | P2 | [Actores y necesidades](Documentacion/Planificacion/P2_Actores_y_necesidades/index.html) |
 | P3 | [Catálogo de requisitos](Documentacion/Planificacion/P3_Catalogo_de_requisitos/index.html) |
 | P4 | [Modelo de casos de uso](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/index.html) |
+| P5 | [Especificación de requisitos](Documentacion/Planificacion/P5_Especificacion_de_requisitos/index.html) |
+| P6 | [Clases de análisis](Documentacion/Planificacion/P6_Clases_de_analisis/index.html) |
 
 El modelo de P4 está disponible como **[archivo editable de Draw.io](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.drawio)** y como **[vista SVG](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.svg)**.
 
-P5 a P12 se desarrollarán en los siguientes pasos. El contenido actual corresponde a la planificación del sistema.
+P5 incluye el flujo de envío y P6 el modelo de clases de análisis; ambos tienen archivos Draw.io editables y vistas SVG en sus carpetas.
+
+P7 a P12 se desarrollarán en los siguientes pasos. El contenido actual corresponde a la planificación del sistema.
 
 ## Funciones previstas
 
