@@ -9,12 +9,33 @@
 <body>
   <a class="saltar" href="#contenido">Ir al contenido</a>
   <header>
+    <div class="identidad">
+      <a class="identidad-azchat" href="../../index.html" aria-label="Inicio de la documentación de AzChat"><img src="../../recursos/logo-azchat.png" alt=""><span><strong>AzChat</strong><small>Proyecto académico</small></span></a>
+      <img class="identidad-unap" src="../../recursos/logo-unap.png" alt="Universidad Nacional del Altiplano" width="58" height="64">
+    </div>
     <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P4_Modelo_de_casos_de_uso/index.html">P4. Modelo de casos de uso</a></nav>
     <h1>P5. Especificación de requisitos de software</h1>
     <p>Reglas de funcionamiento y criterios de aceptación de la primera versión.</p>
+    <p class="enlace-documento"><a href="../../Documentos_Tecnicos/P05_Especificacion_de_requisitos.docx">Consultar documento técnico en Word</a></p>
     <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
   </header>
   <main id="contenido">
+    <section class="introduccion" aria-labelledby="resumen">
+      <h2 id="resumen">En pocas palabras</h2>
+      <p>Este paso precisa las reglas del registro, el acceso y los mensajes, y describe pruebas para comprobar si el sistema cumple lo acordado.</p>
+      <ul>
+        <li>Cada pareja tendrá una única conversación.</li>
+        <li>Si falla un envío, el texto se conserva en la página y el reintento es manual.</li>
+      </ul>
+    </section>
+    <section class="vista-modelo" id="vista-modelo"><h2>Vista del modelo</h2>
+    <figure>
+      <a href="Flujo_envio_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Flujo_envio_AzChat.svg" alt="Flujo de envío con validación del texto, almacenamiento, confirmación y reintento manual cuando falla la confirmación."></a>
+      <figcaption>El flujo parte de una sesión válida y una conversación propia abierta. La confirmación depende de la conservación del mensaje. Los reintentos deben evitar duplicar un mensaje ya guardado.</figcaption>
+    </figure>
+      <p>Seleccione la imagen para verla a tamaño completo.</p></section>
+    <details class="lectura-completa"><summary>Ver explicación y detalles del paso</summary>
+
     <h2>Propósito y alcance</h2>
     <p>La Especificación de Requisitos de Software (ERS) precisa las reglas de AzChat y las condiciones con las que se comprobará su primera versión. El sistema permite que estudiantes registrados intercambien mensajes privados de texto y consulten su historial desde una web adaptable al celular.</p>
     <p>El alcance mantiene una conversación privada por pareja, un solo tipo de usuario y una meta de 30 personas simultáneas. No incluye grupos, archivos, audios, llamadas, administrador ni cifrado de extremo a extremo. La recuperación y el cambio de contraseña quedan fuera de esta primera versión.</p>
@@ -46,10 +67,7 @@
       </tbody>
     </table>
     <h2>Flujo de envío y conservación</h2>
-    <figure>
-      <a href="Flujo_envio_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Flujo_envio_AzChat.svg" alt="Flujo de envío con validación del texto, almacenamiento, confirmación y reintento manual cuando falla la confirmación."></a>
-      <figcaption>El flujo parte de una sesión válida y una conversación propia abierta. La confirmación depende de la conservación del mensaje. Los reintentos deben evitar duplicar un mensaje ya guardado.</figcaption>
-    </figure>
+    <p><a href="#vista-modelo">Ver la imagen del modelo</a>.</p>
     <p>Modelo editable: <a href="Flujo_envio_AzChat.drawio">Flujo_envio_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
     <h2>Criterios de aceptación</h2>
     <p>Los siguientes escenarios son condiciones de aceptación previstas. Su ejecución corresponde a la etapa de construcción; este documento no presenta resultados de un sistema implementado.</p>
@@ -76,8 +94,10 @@
     <h2>Aplicación del enfoque Ágil</h2>
     <p>Los criterios se comprobarán en entregas pequeñas: primero registro y acceso, después conversaciones y finalmente mensajería e historial. La revisión de una entrega puede actualizar los requisitos y los modelos manteniendo su relación con P3 y P4.</p>
     <p>Los componentes de construcción se especifican en P8 y su alojamiento en Render y Supabase se describe en P9. La capacidad y el tiempo de respuesta se verificarán mediante CA-13.</p>
-    <section aria-labelledby="equipo">
-      <h2 id="equipo">Equipo del proyecto</h2>
+
+    </details>
+    <section aria-labelledby="equipo"><details class="equipo-desplegable">
+      <summary><h2 id="equipo">Equipo del proyecto</h2></summary>
       <table>
         <caption>Integrantes y c&#243;digos de estudiante</caption>
         <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
@@ -92,7 +112,7 @@
         <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
         </tbody>
       </table>
-    </section>
+    </details></section>
   </main>
   <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P4_Modelo_de_casos_de_uso/index.html">P4. Modelo de casos de uso</a><a href="../P6_Clases_de_analisis/index.html">Continuar a P6</a></nav></footer>
 </body>

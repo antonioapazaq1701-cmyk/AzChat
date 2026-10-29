@@ -6,32 +6,24 @@ El proyecto utiliza una **metodología Ágil, incremental e iterativa**: entrega
 
 ## Consultar la documentación
 
-Consulta la [documentación en GitHub Pages](https://antonioapazaq1701-cmyk.github.io/AzChat/). También puedes descargar el repositorio y abrir **[Documentacion/index.html](Documentacion/index.html)** con doble clic. Los documentos HTML, los diagramas y el prototipo se consultan sin instalar dependencias.
+Consulta la [presentación de la planificación en GitHub Pages](https://antonioapazaq1701-cmyk.github.io/AzChat/). También puedes descargar el repositorio y abrir **[Documentacion/index.html](Documentacion/index.html)** con doble clic. Cada paso tiene una explicación web y un documento Word con mayor detalle técnico. Las páginas, los diagramas y el prototipo se consultan sin instalar dependencias.
 
-| Paso | Documento |
-|---|---|
-| P1 | [Problema y alcance](Documentacion/Planificacion/P1_Problema_y_alcance/index.html) |
-| P2 | [Actores y necesidades](Documentacion/Planificacion/P2_Actores_y_necesidades/index.html) |
-| P3 | [Catálogo de requisitos](Documentacion/Planificacion/P3_Catalogo_de_requisitos/index.html) |
-| P4 | [Modelo de casos de uso](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/index.html) |
-| P5 | [Especificación de requisitos](Documentacion/Planificacion/P5_Especificacion_de_requisitos/index.html) |
-| P6 | [Clases de análisis](Documentacion/Planificacion/P6_Clases_de_analisis/index.html) |
-| P7 | [Documento de análisis](Documentacion/Planificacion/P7_Documento_de_analisis/index.html) |
-| P8 | [Clases de diseño](Documentacion/Planificacion/P8_Clases_de_diseno/index.html) |
-| P9 | [Arquitectura y capas](Documentacion/Planificacion/P9_Arquitectura_y_capas/index.html) |
-| P10 | [Diseño de interfaz](Documentacion/Planificacion/P10_Diseno_de_interfaz/index.html) |
-| P11 | [Modelo de datos y DER](Documentacion/Planificacion/P11_Modelo_de_datos/index.html) |
-| P12 | [Diseño y organización de la construcción](Documentacion/Planificacion/P12_Diseno_y_construccion/index.html) |
+| Paso | Presentación web | Documento técnico |
+|---|---|---|
+| P1 | [Problema y alcance](Documentacion/Planificacion/P1_Problema_y_alcance/index.html) | [Word](Documentacion/Documentos_Tecnicos/P01_Problema_y_alcance.docx) |
+| P2 | [Actores y necesidades](Documentacion/Planificacion/P2_Actores_y_necesidades/index.html) | [Word](Documentacion/Documentos_Tecnicos/P02_Actores_y_necesidades.docx) |
+| P3 | [Catálogo de requisitos](Documentacion/Planificacion/P3_Catalogo_de_requisitos/index.html) | [Word](Documentacion/Documentos_Tecnicos/P03_Catalogo_de_requisitos.docx) |
+| P4 | [Casos de uso](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/index.html) | [Word](Documentacion/Documentos_Tecnicos/P04_Casos_de_uso.docx) |
+| P5 | [Especificación de requisitos](Documentacion/Planificacion/P5_Especificacion_de_requisitos/index.html) | [Word](Documentacion/Documentos_Tecnicos/P05_Especificacion_de_requisitos.docx) |
+| P6 | [Clases de análisis](Documentacion/Planificacion/P6_Clases_de_analisis/index.html) | [Word](Documentacion/Documentos_Tecnicos/P06_Clases_de_analisis.docx) |
+| P7 | [Documento de análisis](Documentacion/Planificacion/P7_Documento_de_analisis/index.html) | [Word](Documentacion/Documentos_Tecnicos/P07_Analisis_del_sistema.docx) |
+| P8 | [Clases de diseño](Documentacion/Planificacion/P8_Clases_de_diseno/index.html) | [Word](Documentacion/Documentos_Tecnicos/P08_Clases_de_diseno.docx) |
+| P9 | [Arquitectura y capas](Documentacion/Planificacion/P9_Arquitectura_y_capas/index.html) | [Word](Documentacion/Documentos_Tecnicos/P09_Arquitectura_y_capas.docx) |
+| P10 | [Diseño de interfaz](Documentacion/Planificacion/P10_Diseno_de_interfaz/index.html) | [Word](Documentacion/Documentos_Tecnicos/P10_Diseno_de_interfaz.docx) |
+| P11 | [Modelo de datos y DER](Documentacion/Planificacion/P11_Modelo_de_datos/index.html) | [Word](Documentacion/Documentos_Tecnicos/P11_Modelo_de_datos.docx) |
+| P12 | [Diseño y construcción](Documentacion/Planificacion/P12_Diseno_y_construccion/index.html) | [Word](Documentacion/Documentos_Tecnicos/P12_Diseno_y_construccion.docx) |
 
-El modelo de P4 está disponible como **[archivo editable de Draw.io](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.drawio)** y como **[vista SVG](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.svg)**.
-
-P5 incluye el flujo de envío y P6 el modelo de clases de análisis; ambos tienen archivos Draw.io editables y vistas SVG en sus carpetas.
-
-P7 incluye la secuencia de envío, P8 las clases de diseño y P9 la arquitectura. Sus diagramas están disponibles como archivos Draw.io y vistas SVG.
-
-P10 incluye tres bocetos progresivos (estructura, color y contenido), ingreso, registro y adaptación al celular en un archivo Draw.io editable. El [prototipo navegable](Documentacion/Planificacion/P10_Diseno_de_interfaz/prototipo.html) utiliza datos ficticios y no requiere instalación.
-
-P11 define tres tablas del chat y una tabla técnica de sesiones, con un DER editable. P12 consolida el diseño y organiza cinco incrementos con criterios de aceptación; incluye su plan visual en Draw.io.
+Los diagramas cuentan con imágenes en la web y archivos editables de Draw.io en sus respectivas carpetas. El [prototipo de interfaz](Documentacion/Planificacion/P10_Diseno_de_interfaz/prototipo.html) utiliza datos ficticios.
 
 Los 12 pasos de planificación están documentados. El sistema conectado a la base de datos y sus pruebas de aceptación corresponden a la siguiente etapa de construcción.
 

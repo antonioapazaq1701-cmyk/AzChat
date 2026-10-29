@@ -9,20 +9,38 @@
 <body>
   <a class="saltar" href="#contenido">Ir al contenido</a>
   <header>
+    <div class="identidad">
+      <a class="identidad-azchat" href="../../index.html" aria-label="Inicio de la documentación de AzChat"><img src="../../recursos/logo-azchat.png" alt=""><span><strong>AzChat</strong><small>Proyecto académico</small></span></a>
+      <img class="identidad-unap" src="../../recursos/logo-unap.png" alt="Universidad Nacional del Altiplano" width="58" height="64">
+    </div>
     <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P7_Documento_de_analisis/index.html">P7. Documento de análisis</a></nav>
     <h1>P8. Diagrama de clases de diseño</h1>
     <p>Componentes implementables, sus responsabilidades y las interfaces mínimas de AzChat.</p>
+    <p class="enlace-documento"><a href="../../Documentos_Tecnicos/P08_Clases_de_diseno.docx">Consultar documento técnico en Word</a></p>
     <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
   </header>
   <main id="contenido">
-    <h2>Propósito y criterio de sencillez</h2>
-    <p>El diseño transforma los conceptos de P6 en cinco componentes pequeños. La web utiliza HTML, CSS y JavaScript; un único proceso Node.js atiende las peticiones y las conexiones en directo. PostgreSQL conserva los datos.</p>
-    <p>Las clases del diagrama expresan responsabilidades. En la construcción pueden organizarse como módulos y funciones JavaScript, sin obligar a usar herencia ni una estructura de clases extensa.</p>
-    <h2>Diagrama de clases de diseño</h2>
+    <section class="introduccion" aria-labelledby="resumen">
+      <h2 id="resumen">En pocas palabras</h2>
+      <p>El diseño divide el trabajo entre la página web, el servidor, el acceso, las conversaciones y la consulta de datos. Cada parte tiene una responsabilidad concreta.</p>
+      <ul>
+        <li>El servidor comprueba quién puede acceder a cada conversación.</li>
+        <li>Los mensajes se confirman después de guardarse.</li>
+      </ul>
+    </section>
+    <section class="vista-modelo" id="vista-modelo"><h2>Vista del modelo</h2>
     <figure>
       <a href="Clases_diseno_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Clases_diseno_AzChat.svg" alt="Cinco componentes: ClienteChat utiliza ServidorChat; este utiliza ServicioAcceso y ServicioChat, que comparten AccesoDatos."></a>
       <figcaption>Las flechas discontinuas indican dependencias de uso. Los datos Estudiante, ConversacionPrivada y Mensaje se describen por separado para mantener legible el diagrama.</figcaption>
     </figure>
+      <p>Seleccione la imagen para verla a tamaño completo.</p></section>
+    <details class="lectura-completa"><summary>Ver explicación y detalles del paso</summary>
+
+    <h2>Propósito y criterio de sencillez</h2>
+    <p>El diseño transforma los conceptos de P6 en cinco componentes pequeños. La web utiliza HTML, CSS y JavaScript; un único proceso Node.js atiende las peticiones y las conexiones en directo. PostgreSQL conserva los datos.</p>
+    <p>Las clases del diagrama expresan responsabilidades. En la construcción pueden organizarse como módulos y funciones JavaScript, sin obligar a usar herencia ni una estructura de clases extensa.</p>
+    <h2>Diagrama de clases de diseño</h2>
+    <p><a href="#vista-modelo">Ver la imagen del modelo</a>.</p>
     <p>Modelo editable: <a href="Clases_diseno_AzChat.drawio">Clases_diseno_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
     <h2>Componentes y archivos previstos</h2>
     <table class="detalle">
@@ -48,7 +66,7 @@
         <tr><th scope="row">Sesión técnica</th><td>La biblioteca de sesiones conserva el identificador del estudiante y una fecha de vencimiento absoluta de 8 horas desde el ingreso. No añade otro actor ni otra entidad del dominio de P6. Su registro técnico se concreta en <a href="../P11_Modelo_de_datos/index.html">P11</a>.</td></tr>
       </tbody>
     </table>
-    <p>El esquema de tablas, sus tipos SQL y sus relaciones se detallan en <a href="../P11_Modelo_de_datos/index.html">P11</a>. Los identificadores de los mensajes proporcionan un orden estable; el navegador muestra las filas en ese orden y evita duplicarlas.</p>
+    <p>El esquema de tablas, sus tipos SQL y sus relaciones se detallan en <a href="../P11_Modelo_de_datos/index.html">P11</a>. Los identificadores de los mensajes permiten ordenar y evitar duplicados. El diseño de recuperación ante guardados simultáneos se comprobará durante la construcción, como se indica en P11 y P12.</p>
     <h2>Interfaz mínima del servidor</h2>
     <table class="detalle">
       <caption>Peticiones y actualizaciones</caption>
@@ -79,8 +97,10 @@
       <li><a href="https://github.com/ranisalt/node-argon2">Biblioteca Argon2 para Node.js</a>.</li>
       <li><a href="https://socket.io/docs/v4/middlewares/">Middleware de Socket.IO</a> y <a href="https://socket.io/docs/v4/client-offline-behavior/">comportamiento fuera de línea</a>.</li>
     </ul>
-    <section aria-labelledby="equipo">
-      <h2 id="equipo">Equipo del proyecto</h2>
+
+    </details>
+    <section aria-labelledby="equipo"><details class="equipo-desplegable">
+      <summary><h2 id="equipo">Equipo del proyecto</h2></summary>
       <table>
         <caption>Integrantes y c&#243;digos de estudiante</caption>
         <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
@@ -95,7 +115,7 @@
         <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
         </tbody>
       </table>
-    </section>
+    </details></section>
   </main>
   <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P7_Documento_de_analisis/index.html">P7. Documento de análisis</a><a href="../P9_Arquitectura_y_capas/index.html">Continuar a P9</a></nav></footer>
 </body>

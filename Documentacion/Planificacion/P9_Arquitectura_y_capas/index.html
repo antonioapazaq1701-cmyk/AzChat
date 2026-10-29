@@ -9,20 +9,38 @@
 <body>
   <a class="saltar" href="#contenido">Ir al contenido</a>
   <header>
+    <div class="identidad">
+      <a class="identidad-azchat" href="../../index.html" aria-label="Inicio de la documentación de AzChat"><img src="../../recursos/logo-azchat.png" alt=""><span><strong>AzChat</strong><small>Proyecto académico</small></span></a>
+      <img class="identidad-unap" src="../../recursos/logo-unap.png" alt="Universidad Nacional del Altiplano" width="58" height="64">
+    </div>
     <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P8_Clases_de_diseno/index.html">P8. Clases de diseño</a></nav>
     <h1>P9. Arquitectura y capas del sistema</h1>
     <p>Alojamiento, comunicación, persistencia y configuración de la primera versión.</p>
+    <p class="enlace-documento"><a href="../../Documentos_Tecnicos/P09_Arquitectura_y_capas.docx">Consultar documento técnico en Word</a></p>
     <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
   </header>
   <main id="contenido">
-    <h2>Arquitectura elegida</h2>
-    <p>AzChat utiliza una arquitectura cliente–servidor con una base de datos relacional. La primera versión tendrá una aplicación Node.js en Render y una base PostgreSQL en Supabase. El mismo servidor entrega la web y atiende su acceso y mensajería.</p>
-    <p>Esta organización mantiene una única dirección para la aplicación y evita separar el alojamiento de la página del servidor. El diseño se orienta a una demostración gratuita, con crecimiento inicial de 4 a 30 usuarios conectados.</p>
-    <h2>Diagrama de arquitectura</h2>
+    <section class="introduccion" aria-labelledby="resumen">
+      <h2 id="resumen">En pocas palabras</h2>
+      <p>La página web se conectará a un servidor en Render. Ese servidor gestionará el acceso y los mensajes y utilizará una base de datos PostgreSQL en Supabase.</p>
+      <ul>
+        <li>La página y el servidor se alojarán juntos para simplificar la conexión.</li>
+        <li>Se prevé empezar con servicios gratuitos y aceptar la espera de arranque después de inactividad.</li>
+      </ul>
+    </section>
+    <section class="vista-modelo" id="vista-modelo"><h2>Vista del modelo</h2>
     <figure>
       <a href="Arquitectura_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Arquitectura_AzChat.svg" alt="Dos navegadores se conectan mediante HTTPS y actualizaciones Socket.IO a un único servidor Node.js en Render. Solo ese servidor se conecta por TLS a PostgreSQL en Supabase."></a>
       <figcaption>Render aloja la aplicación y sus conexiones en directo. Supabase conserva los datos. GitHub Pages publica esta documentación; la aplicación de chat se construirá y desplegará en otra etapa.</figcaption>
     </figure>
+      <p>Seleccione la imagen para verla a tamaño completo.</p></section>
+    <details class="lectura-completa"><summary>Ver explicación y detalles del paso</summary>
+
+    <h2>Arquitectura elegida</h2>
+    <p>AzChat utiliza una arquitectura cliente–servidor con una base de datos relacional. La primera versión tendrá una aplicación Node.js en Render y una base PostgreSQL en Supabase. El mismo servidor entrega la web y atiende su acceso y mensajería.</p>
+    <p>Esta organización mantiene una única dirección para la aplicación y evita separar el alojamiento de la página del servidor. El diseño se orienta a una demostración gratuita, con crecimiento inicial de 4 a 30 usuarios conectados.</p>
+    <h2>Diagrama de arquitectura</h2>
+    <p><a href="#vista-modelo">Ver la imagen del modelo</a>.</p>
     <p>Modelo editable: <a href="Arquitectura_AzChat.drawio">Arquitectura_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
     <h2>Capas del sistema</h2>
     <table class="detalle">
@@ -93,8 +111,10 @@
       <li><a href="https://supabase.com/docs/guides/database/connecting-to-postgres">Conexión a PostgreSQL en Supabase</a> y <a href="https://supabase.com/docs/guides/auth/passwords">identificadores del acceso con contraseña de Supabase Auth</a>.</li>
       <li><a href="https://expressjs.com/en/resources/middleware/session/">Gestión de sesiones de Express</a>.</li>
     </ul>
-    <section aria-labelledby="equipo">
-      <h2 id="equipo">Equipo del proyecto</h2>
+
+    </details>
+    <section aria-labelledby="equipo"><details class="equipo-desplegable">
+      <summary><h2 id="equipo">Equipo del proyecto</h2></summary>
       <table>
         <caption>Integrantes y c&#243;digos de estudiante</caption>
         <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
@@ -109,7 +129,7 @@
         <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
         </tbody>
       </table>
-    </section>
+    </details></section>
   </main>
   <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P8_Clases_de_diseno/index.html">P8. Clases de diseño</a><a href="../P10_Diseno_de_interfaz/index.html">P10. Diseño de interfaz</a></nav></footer>
 </body>

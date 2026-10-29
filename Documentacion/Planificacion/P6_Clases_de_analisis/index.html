@@ -9,20 +9,38 @@
 <body>
   <a class="saltar" href="#contenido">Ir al contenido</a>
   <header>
+    <div class="identidad">
+      <a class="identidad-azchat" href="../../index.html" aria-label="Inicio de la documentación de AzChat"><img src="../../recursos/logo-azchat.png" alt=""><span><strong>AzChat</strong><small>Proyecto académico</small></span></a>
+      <img class="identidad-unap" src="../../recursos/logo-unap.png" alt="Universidad Nacional del Altiplano" width="58" height="64">
+    </div>
     <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P5_Especificacion_de_requisitos/index.html">P5. Especificación de requisitos</a></nav>
     <h1>P6. Diagrama de clases de análisis</h1>
     <p>Conceptos, responsabilidades y relaciones de la mensajería privada de AzChat.</p>
+    <p class="enlace-documento"><a href="../../Documentos_Tecnicos/P06_Clases_de_analisis.docx">Consultar documento técnico en Word</a></p>
     <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
   </header>
   <main id="contenido">
-    <h2>Propósito del modelo</h2>
-    <p>El diagrama de clases de análisis organiza los conceptos necesarios para entender AzChat. Describe qué representa cada clase y cómo se relaciona con las demás. Se basa en los requisitos de P3, los casos de uso de P4 y las reglas detalladas de P5.</p>
-    <p>El modelo tiene tres entidades del dominio y una clase de control. Sus nombres y responsabilidades son conceptuales; el diseño de componentes, las bibliotecas y las tablas se definirán en pasos posteriores.</p>
-    <h2>Diagrama de clases de análisis</h2>
+    <section class="introduccion" aria-labelledby="resumen">
+      <h2 id="resumen">En pocas palabras</h2>
+      <p>El modelo organiza las ideas principales del sistema: las personas, sus conversaciones y los mensajes. También muestra cómo se relacionan antes de definir el código.</p>
+      <ul>
+        <li>Una conversación privada reúne a dos personas.</li>
+        <li>Cada mensaje pertenece a una conversación y tiene un emisor.</li>
+      </ul>
+    </section>
+    <section class="vista-modelo" id="vista-modelo"><h2>Vista del modelo</h2>
     <figure>
       <a href="Clases_analisis_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Clases_analisis_AzChat.svg" alt="Diagrama con Estudiante, ConversacionPrivada y Mensaje, unidos por asociaciones con multiplicidades, y GestorChat conectado mediante dependencias discontinuas."></a>
       <figcaption>Los recuadros muestran clases, atributos y responsabilidades. Las asociaciones continuas incluyen cantidades en sus extremos. Las dependencias del gestor se representan con flechas discontinuas.</figcaption>
     </figure>
+      <p>Seleccione la imagen para verla a tamaño completo.</p></section>
+    <details class="lectura-completa"><summary>Ver explicación y detalles del paso</summary>
+
+    <h2>Propósito del modelo</h2>
+    <p>El diagrama de clases de análisis organiza los conceptos necesarios para entender AzChat. Describe qué representa cada clase y cómo se relaciona con las demás. Se basa en los requisitos de P3, los casos de uso de P4 y las reglas detalladas de P5.</p>
+    <p>El modelo tiene tres entidades del dominio y una clase de control. Sus nombres y responsabilidades son conceptuales; el diseño de componentes, las bibliotecas y las tablas se definirán en pasos posteriores.</p>
+    <h2>Diagrama de clases de análisis</h2>
+    <p><a href="#vista-modelo">Ver la imagen del modelo</a>.</p>
     <p>Modelo editable: <a href="Clases_analisis_AzChat.drawio">Clases_analisis_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
     <h2>Clases y responsabilidades</h2>
     <table class="detalle">
@@ -68,8 +86,10 @@
       </tbody>
     </table>
     <p>La sesión es una condición de acceso en este modelo. Su representación técnica se describe en P8 y P9 mediante sesiones almacenadas en PostgreSQL, sin añadir una entidad de dominio adicional en este paso.</p>
-    <section aria-labelledby="equipo">
-      <h2 id="equipo">Equipo del proyecto</h2>
+
+    </details>
+    <section aria-labelledby="equipo"><details class="equipo-desplegable">
+      <summary><h2 id="equipo">Equipo del proyecto</h2></summary>
       <table>
         <caption>Integrantes y c&#243;digos de estudiante</caption>
         <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
@@ -84,7 +104,7 @@
         <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
         </tbody>
       </table>
-    </section>
+    </details></section>
   </main>
   <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P5_Especificacion_de_requisitos/index.html">P5. Especificación de requisitos</a><a href="../P7_Documento_de_analisis/index.html">Continuar a P7</a></nav></footer>
 </body>
