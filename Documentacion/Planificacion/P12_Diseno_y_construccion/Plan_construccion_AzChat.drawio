@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="Plan_construccion_AzChat" name="Plan de construcción de AzChat">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="860" pageHeight="845" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="AzChat · Construcción por incrementos" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="10" width="800" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="i0" value="I1. Datos y acceso&#10;Tablas · Registro · Ingreso · Sesiones de 8 horas" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="90" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="rev0" value="Revisar y corregir&#10;antes de continuar" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="455" y="193" width="340" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" value="I2. Conversaciones privadas&#10;Búsqueda exacta · Pareja única · Permisos" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="244" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="rev1" value="Revisar y corregir&#10;antes de continuar" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="455" y="347" width="340" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="i2" value="I3. Mensajes e historial&#10;Guardar · Confirmar · Leer páginas de 50" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="398" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="rev2" value="Revisar y corregir&#10;antes de continuar" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="455" y="501" width="340" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="i3" value="I4. Actualización y fallos&#10;Socket.IO · Reconexión · Reintento manual" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="552" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="rev3" value="Revisar y corregir&#10;antes de continuar" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="455" y="655" width="340" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="i4" value="I5. Despliegue y aceptación&#10;Render + Supabase · Pruebas · Demostración" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="706" width="680" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="i0" target="i1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="i1" target="i2">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="i2" target="i3">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" style="endArrow=classic;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="i3" target="i4">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

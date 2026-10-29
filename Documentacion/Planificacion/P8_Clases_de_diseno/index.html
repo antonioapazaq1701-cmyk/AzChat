@@ -45,10 +45,10 @@
         <tr><th scope="row">Estudiante</th><td><code>id</code>, <code>nombreCompleto</code>, <code>codigoEstudiante</code>, <code>nombreUsuario</code> y <code>hashContrasena</code>. Es información del servidor. Las respuestas de búsqueda entregan solo un identificador técnico y el nombre de usuario.</td></tr>
         <tr><th scope="row">ConversacionPrivada</th><td><code>id</code>, los identificadores de sus dos estudiantes y <code>fechaCreacion</code>. La pareja se ordena siempre de la misma forma para reconocer que A–B y B–A son el mismo chat.</td></tr>
         <tr><th scope="row">Mensaje</th><td><code>id</code> secuencial asignado por la base, <code>conversacionId</code>, <code>emisorId</code>, <code>idEnvio</code>, <code>texto</code> y <code>fechaHora</code>. El servidor decide el emisor y la fecha. <code>idEnvio</code> identifica el intento del navegador y se conserva al reintentar.</td></tr>
-        <tr><th scope="row">Sesión técnica</th><td>La biblioteca de sesiones conserva el identificador del estudiante y una fecha de vencimiento absoluta de 8 horas desde el ingreso. No añade otro actor ni otra entidad del dominio de P6. Su registro técnico se concretará en P11.</td></tr>
+        <tr><th scope="row">Sesión técnica</th><td>La biblioteca de sesiones conserva el identificador del estudiante y una fecha de vencimiento absoluta de 8 horas desde el ingreso. No añade otro actor ni otra entidad del dominio de P6. Su registro técnico se concreta en <a href="../P11_Modelo_de_datos/index.html">P11</a>.</td></tr>
       </tbody>
     </table>
-    <p>El esquema de tablas, sus tipos SQL y sus relaciones se detallarán en P11. Los identificadores de los mensajes proporcionan un orden estable; el navegador muestra las filas en ese orden y evita duplicarlas.</p>
+    <p>El esquema de tablas, sus tipos SQL y sus relaciones se detallan en <a href="../P11_Modelo_de_datos/index.html">P11</a>. Los identificadores de los mensajes proporcionan un orden estable; el navegador muestra las filas en ese orden y evita duplicarlas.</p>
     <h2>Interfaz mínima del servidor</h2>
     <table class="detalle">
       <caption>Peticiones y actualizaciones</caption>

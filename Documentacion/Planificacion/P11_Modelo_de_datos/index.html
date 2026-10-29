@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P11. Modelo de datos y DER | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P10_Diseno_de_interfaz/index.html">P10. Diseño de interfaz</a></nav>
+    <h1>P11. Modelo de datos y DER</h1>
+    <p>Tablas, relaciones y conservación de los datos de AzChat.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Propósito y alcance</h2>
+    <p>AzChat conservará las cuentas, las conversaciones privadas y los mensajes en PostgreSQL administrado en Supabase. El modelo utiliza tres tablas del dominio y una tabla técnica para las sesiones. Un único servidor Node.js consultará estos datos, según la arquitectura de P9.</p>
+    <p>Las tablas pertenecen al esquema privado <code>azchat</code>. El navegador accederá al servidor de la aplicación; las tablas y sus credenciales no se expondrán mediante la Data API. Este documento define el diseño: todavía no crea tablas ni modifica una base en la nube.</p>
+    <h2>Diagrama entidad-relación</h2>
+    <figure>
+      <a href="Modelo_datos_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Modelo_datos_AzChat.svg" alt="Usuarios relacionados dos veces con conversaciones, como participantes A y B; conversaciones y usuarios relacionados con mensajes. Sesiones aparece como tabla técnica con referencia lógica al usuario."></a>
+      <figcaption>Cada conversación tiene exactamente dos participantes. Un usuario puede intervenir en cero o más conversaciones y enviar cero o más mensajes. Una conversación puede estar vacía. La tabla técnica de sesiones se incluye para completar el modelo físico.</figcaption>
+    </figure>
+    <p>Modelo editable: <a href="Modelo_datos_AzChat.drawio">Modelo_datos_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
+    <p><strong>PK</strong> identifica cada registro. <strong>FK</strong> enlaza un registro existente de otra tabla. <strong>UQ</strong> impide repetir un valor o una combinación. Todos los campos descritos son obligatorios.</p>
+    <h2>1. Usuarios</h2>
+    <p>Cada fila representa una cuenta. Los nombres de usuario se guardan normalizados a minúsculas y se utilizan para identificar a las personas en los chats.</p>
+    <table class="detalle">
+      <caption>Diccionario de usuarios</caption>
+      <thead><tr><th scope="col">Campo</th><th scope="col">Tipo y regla</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>id</code></th><td><code>bigint GENERATED ALWAYS AS IDENTITY</code>. Clave primaria generada por PostgreSQL. No se utiliza el código de estudiante como clave interna.</td></tr>
+        <tr><th scope="row"><code>nombre_completo</code></th><td><code>text</code>. Nombre y apellidos obligatorios; no puede quedar vacío después de retirar espacios exteriores.</td></tr>
+        <tr><th scope="row"><code>codigo_estudiante</code></th><td><code>varchar(6)</code>. Único y formado por exactamente 6 dígitos. Se guarda como texto para conservar códigos como <code>012345</code>.</td></tr>
+        <tr><th scope="row"><code>nombre_usuario</code></th><td><code>varchar(20)</code>. Único; de 3 a 20 caracteres, empieza por una letra y admite letras, números y guion bajo. Se normaliza antes del registro, el ingreso y la búsqueda.</td></tr>
+        <tr><th scope="row"><code>hash_contrasena</code></th><td><code>text</code>. Resultado de Argon2id, incluidos los datos que necesita la biblioteca para verificarlo. La contraseña original, de al menos 8 caracteres, no se almacena.</td></tr>
+      </tbody>
+    </table>
+    <h2>2. Conversaciones</h2>
+    <p>La pareja se guarda siempre en el mismo orden: el identificador menor ocupa <code>usuario_a_id</code> y el mayor, <code>usuario_b_id</code>. Por ejemplo, A = 3 y B = 8 identifican el mismo chat aunque quien lo abra sea el usuario 8.</p>
+    <table class="detalle">
+      <caption>Diccionario de conversaciones</caption>
+      <thead><tr><th scope="col">Campo</th><th scope="col">Tipo y regla</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>id</code></th><td><code>bigint GENERATED ALWAYS AS IDENTITY</code>. Clave primaria de la conversación.</td></tr>
+        <tr><th scope="row"><code>usuario_a_id</code></th><td><code>bigint</code>. Clave foránea hacia <code>usuarios.id</code>; primer participante.</td></tr>
+        <tr><th scope="row"><code>usuario_b_id</code></th><td><code>bigint</code>. Clave foránea hacia <code>usuarios.id</code>; segundo participante.</td></tr>
+        <tr><th scope="row"><code>fecha_creacion</code></th><td><code>timestamptz</code>. Instante asignado por el servidor de datos al crear la conversación.</td></tr>
+      </tbody>
+    </table>
+    <p>Una restricción <code>CHECK (usuario_a_id &lt; usuario_b_id)</code> impide conversaciones consigo mismo y obliga a ordenar la pareja. <code>UNIQUE (usuario_a_id, usuario_b_id)</code> impide duplicarla, incluso si ambos participantes la abren al mismo tiempo. Si la pareja ya existe, el servidor devuelve esa conversación.</p>
+    <h2>3. Mensajes</h2>
+    <p>Una fila corresponde a un mensaje confirmado. La identidad del emisor se obtiene de la sesión; el navegador envía únicamente el texto y el identificador del intento.</p>
+    <table class="detalle">
+      <caption>Diccionario de mensajes</caption>
+      <thead><tr><th scope="col">Campo</th><th scope="col">Tipo y regla</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>id</code></th><td><code>bigint GENERATED ALWAYS AS IDENTITY</code>. Clave primaria y orden estable del historial. Las respuestas y los cursores transportarán los identificadores bigint como cadenas decimales para conservar su precisión en JavaScript.</td></tr>
+        <tr><th scope="row"><code>conversacion_id</code></th><td><code>bigint</code>. Clave foránea hacia <code>conversaciones.id</code>.</td></tr>
+        <tr><th scope="row"><code>emisor_id</code></th><td><code>bigint</code>. Clave foránea hacia <code>usuarios.id</code>. Debe ser uno de los dos participantes del chat.</td></tr>
+        <tr><th scope="row"><code>id_envio</code></th><td><code>uuid</code>. Identifica el intento creado en el navegador. Un reintento del mismo mensaje conserva este valor.</td></tr>
+        <tr><th scope="row"><code>texto</code></th><td><code>text</code>. Entre 1 y 1000 caracteres; no puede estar formado solo por espacios. Conserva los saltos de línea y se muestra como texto.</td></tr>
+        <tr><th scope="row"><code>fecha_hora</code></th><td><code>timestamptz</code>. Instante asignado al guardar el mensaje. La interfaz lo presenta según la hora local del navegador.</td></tr>
+      </tbody>
+    </table>
+    <p><code>UNIQUE (emisor_id, id_envio)</code> impide guardar dos veces el mismo intento. Si ya existe, se comprueba que el chat y el texto coincidan y se devuelve el registro original. Utilizar ese intento para otro contenido o conversación produce un conflicto.</p>
+    <h2>4. Sesiones técnicas</h2>
+    <p>La tabla <code>azchat.sesiones</code> utiliza el formato de <code>connect-pg-simple</code>, configurado con <code>schemaName: 'azchat'</code> y <code>tableName: 'sesiones'</code>. Sus nombres de campo corresponden a la biblioteca.</p>
+    <table class="detalle">
+      <caption>Diccionario de sesiones</caption>
+      <thead><tr><th scope="col">Campo</th><th scope="col">Tipo y regla</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>sid</code></th><td><code>varchar</code>. Clave primaria. Identificador aleatorio de la sesión que administra la biblioteca; no es el código de estudiante.</td></tr>
+        <tr><th scope="row"><code>sess</code></th><td><code>json</code>. Datos de sesión: identificador del usuario, vencimiento absoluto <code>venceEn</code> y datos de la cookie. No incluye la contraseña ni su hash.</td></tr>
+        <tr><th scope="row"><code>expire</code></th><td><code>timestamp(6)</code>. Vencimiento que usa el almacén de sesiones. El proceso y la conexión trabajan en UTC y se configura la expiración para coincidir con el plazo de acceso.</td></tr>
+      </tbody>
+    </table>
+    <p>El usuario queda referenciado dentro de <code>sess</code>; no existe una clave foránea SQL en ese JSON. El servidor comprueba que la cuenta exista y que no hayan pasado 8 horas desde el ingreso, tanto en las peticiones como en el canal en directo. La actividad no modifica <code>venceEn</code>; el almacén se configura sin renovación por <code>touch</code>.</p>
+    <p>Al salir se elimina la sesión y se desconectan sus canales. La limpieza de sesiones vencidas elimina únicamente datos de acceso, nunca conversaciones o mensajes.</p>
+    <h2>Integridad y acceso</h2>
+    <table class="detalle">
+      <caption>Responsabilidad de cada validación</caption>
+      <thead><tr><th scope="col">Lugar</th><th scope="col">Reglas</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Base de datos</th><td>Claves primarias y foráneas; campos obligatorios; código de 6 dígitos; usuario en minúsculas con longitud de 3 a 20; pareja ordenada y única; intento único; longitud del texto de 1 a 1000 y rechazo de texto formado solo por espacios. Las referencias utilizan <code>ON DELETE RESTRICT</code>.</td></tr>
+        <tr><th scope="row">Servidor</th><td>Valida también el formato completo del usuario y del texto, calcula el hash y verifica la sesión. En cada lectura o escritura comprueba que el usuario participe en la conversación. Las claves foráneas por sí solas no demuestran que el emisor sea participante.</td></tr>
+        <tr><th scope="row">Guardado del mensaje</th><td>La comprobación de participación y la inserción forman una operación transaccional. La confirmación y el evento se producen después del guardado. Las parejas no se modifican y el emisor nunca se toma del cuerpo de una petición.</td></tr>
+        <tr><th scope="row">Permisos</th><td>El rol de la aplicación puede leer e insertar los datos del chat y usar sus secuencias. No puede editar ni borrar usuarios, parejas o mensajes. En la tabla técnica de sesiones dispone de los permisos necesarios para crear, actualizar y terminar sesiones.</td></tr>
+      </tbody>
+    </table>
+    <p>Las consultas usan parámetros. La búsqueda entrega solo el identificador técnico y el nombre de usuario; nunca devuelve códigos, nombres completos, hashes o sesiones de otras cuentas. El esquema privado no se añade a los esquemas expuestos de la Data API.</p>
+    <h2>Índices y lectura del historial</h2>
+    <table class="detalle">
+      <caption>Índices mínimos previstos</caption>
+      <thead><tr><th scope="col">Índice</th><th scope="col">Finalidad</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Claves primarias y valores únicos</th><td>PostgreSQL crea los índices de las claves primarias, del código, del usuario, de la pareja y de <code>(emisor_id, id_envio)</code>. No se duplican con otros índices iguales.</td></tr>
+        <tr><th scope="row"><code>conversaciones (usuario_b_id)</code></th><td>Facilita listar los chats del segundo participante. El índice único de la pareja ya comienza por <code>usuario_a_id</code>.</td></tr>
+        <tr><th scope="row"><code>mensajes (conversacion_id, id)</code></th><td>Permite obtener las páginas de mensajes de una conversación. La búsqueda del emisor también dispone del índice único que comienza por <code>emisor_id</code>.</td></tr>
+        <tr><th scope="row"><code>sesiones (expire)</code></th><td>Permite limpiar sesiones vencidas, siguiendo el formato de la biblioteca.</td></tr>
+      </tbody>
+    </table>
+    <p>La primera consulta obtiene los últimos 50 mensajes ordenados por <code>id</code> descendente. El servidor los entrega en orden ascendente para mostrarlos. Para consultar anteriores se usa el menor identificador cargado como cursor: <code>id &lt; cursor</code>, siempre dentro de la conversación autorizada. Tras una reconexión se actualiza el historial y se permiten consultar las páginas anteriores. Se eliminan duplicados por <code>id</code>. El límite de 50 corresponde a cada página; todos los mensajes confirmados se conservan.</p>
+    <h2>Correspondencia con el diseño</h2>
+    <p><code>Estudiante</code> de P6 y P8 corresponde a <code>usuarios</code>; <code>ConversacionPrivada</code>, a <code>conversaciones</code>; y <code>Mensaje</code>, a <code>mensajes</code>. Los nombres JavaScript de P8, como <code>idEnvio</code> y <code>fechaHora</code>, se traducen a <code>id_envio</code> y <code>fecha_hora</code> en las consultas. La sesión técnica completa la persistencia prevista en P9.</p>
+    <p>Este modelo cubre el historial permanente de la primera versión. No incorpora tablas de grupos, archivos, llamadas ni administradores. Su creación y las pruebas de integridad se programan en P12.</p>
+    <h2>Referencias técnicas</h2>
+    <ul>
+      <li><a href="https://www.postgresql.org/docs/current/ddl-constraints.html">PostgreSQL: claves, restricciones e índices asociados</a> y <a href="https://www.postgresql.org/docs/current/ddl-identity-columns.html">columnas de identidad</a>.</li>
+      <li><a href="https://github.com/voxpelli/node-connect-pg-simple">connect-pg-simple: configuración y sesiones</a> y <a href="https://github.com/voxpelli/node-connect-pg-simple/blob/main/table.sql">formato de su tabla técnica</a>.</li>
+      <li><a href="https://supabase.com/docs/guides/api/securing-your-api">Supabase: esquemas y acceso mediante la Data API</a>.</li>
+    </ul>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P10_Diseno_de_interfaz/index.html">P10. Diseño de interfaz</a><a href="../P12_Diseno_y_construccion/index.html">P12. Diseño y organización de la construcción</a></nav></footer>
+</body>
+</html>

@@ -19,8 +19,9 @@ Consulta la [documentación en GitHub Pages](https://antonioapazaq1701-cmyk.gith
 | P7 | [Documento de análisis](Documentacion/Planificacion/P7_Documento_de_analisis/index.html) |
 | P8 | [Clases de diseño](Documentacion/Planificacion/P8_Clases_de_diseno/index.html) |
 | P9 | [Arquitectura y capas](Documentacion/Planificacion/P9_Arquitectura_y_capas/index.html) |
-
 | P10 | [Diseño de interfaz](Documentacion/Planificacion/P10_Diseno_de_interfaz/index.html) |
+| P11 | [Modelo de datos y DER](Documentacion/Planificacion/P11_Modelo_de_datos/index.html) |
+| P12 | [Diseño y organización de la construcción](Documentacion/Planificacion/P12_Diseno_y_construccion/index.html) |
 
 El modelo de P4 está disponible como **[archivo editable de Draw.io](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.drawio)** y como **[vista SVG](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.svg)**.
 
@@ -30,7 +31,9 @@ P7 incluye la secuencia de envío, P8 las clases de diseño y P9 la arquitectura
 
 P10 incluye tres bocetos progresivos (estructura, color y contenido), ingreso, registro y adaptación al celular en un archivo Draw.io editable. El [prototipo navegable](Documentacion/Planificacion/P10_Diseno_de_interfaz/prototipo.html) utiliza datos ficticios y no requiere instalación.
 
-P11 y P12 se desarrollarán en los siguientes pasos. El contenido actual corresponde a la planificación del sistema.
+P11 define tres tablas del chat y una tabla técnica de sesiones, con un DER editable. P12 consolida el diseño y organiza cinco incrementos con criterios de aceptación; incluye su plan visual en Draw.io.
+
+Los 12 pasos de planificación están documentados. El sistema conectado a la base de datos y sus pruebas de aceptación corresponden a la siguiente etapa de construcción.
 
 ## Funciones previstas
 

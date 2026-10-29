@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P12. Diseño y organización de la construcción | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+  <style>pre{max-width:100%;overflow-x:auto;padding:16px;background:#f2f5f7;border:1px solid #d8e1e8;line-height:1.5}pre code{font-size:.78rem}</style>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P11_Modelo_de_datos/index.html">P11. Modelo de datos y DER</a></nav>
+    <h1>P12. Diseño y organización de la construcción</h1>
+    <p>Diseño consolidado, entregas Ágiles y comprobación de la primera versión.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Propósito y resultado previsto</h2>
+    <p>Este documento reúne las decisiones de diseño y organiza la etapa de construcción. La primera versión de AzChat permitirá registrarse, ingresar con usuario o código y conversar en privado mediante texto, con historial conservado. Se utilizará inicialmente con hasta 4 personas y se comprobará una capacidad de 30 conectadas.</p>
+    <p>La planificación P1–P12 queda documentada. El prototipo de P10 demuestra la navegación con datos ficticios; el servidor, la persistencia y la comunicación entre cuentas reales corresponden a la construcción que se organiza a continuación.</p>
+    <h2>Diseño que se construirá</h2>
+    <table class="detalle">
+      <caption>Decisiones consolidadas</caption>
+      <thead><tr><th scope="col">Elemento</th><th scope="col">Diseño acordado</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Interfaz</th><td>HTML, CSS y JavaScript, siguiendo P10: tonos grafito y azul, paneles rectangulares unidos, lista y chat en escritorio, una vista a la vez en celular. Enter envía y Shift + Enter agrega una línea.</td></tr>
+        <tr><th scope="row">Servidor</th><td>Un único proceso Node.js con Express entrega la web y la API. Socket.IO comunica los mensajes ya guardados. Los componentes y las rutas están definidos en <a href="../P8_Clases_de_diseno/index.html">P8</a>.</td></tr>
+        <tr><th scope="row">Datos y acceso</th><td>PostgreSQL en Supabase con las cuatro tablas de <a href="../P11_Modelo_de_datos/index.html">P11</a>. Argon2id protege las contraseñas; express-session y connect-pg-simple administran sesiones de 8 horas.</td></tr>
+        <tr><th scope="row">Alojamiento</th><td>Una instancia en Render para la web y el servidor, con la base separada en Supabase. Se acepta el arranque tras inactividad de la modalidad gratuita. GitHub Pages aloja la documentación y el prototipo.</td></tr>
+        <tr><th scope="row">Alcance</th><td>Chats privados de texto, búsqueda exacta, una conversación por pareja y mensajes de hasta 1000 caracteres. Se conserva el historial; no se incluyen edición, borrado, recuperación de contraseña, grupos, archivos, audios, llamadas ni administrador.</td></tr>
+      </tbody>
+    </table>
+    <h2>Organización de la construcción</h2>
+    <p>La metodología Ágil se aplica mediante cinco incrementos. Cada uno termina con una demostración, una revisión de sus pruebas y la corrección de los problemas encontrados. El siguiente incremento utiliza la entrega anterior ya revisada.</p>
+    <figure>
+      <a href="Plan_construccion_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Plan_construccion_AzChat.svg" alt="Cinco incrementos: datos y acceso, conversaciones, mensajes e historial, actualización y fallos, despliegue y aceptación. Se revisa y corrige entre entregas."></a>
+      <figcaption>La secuencia organiza las dependencias. Las observaciones de cada revisión pueden actualizar el diseño y los documentos relacionados.</figcaption>
+    </figure>
+    <p>Modelo editable: <a href="Plan_construccion_AzChat.drawio">Plan_construccion_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>    <table class="detalle">
+      <caption>Entregas y condiciones de cierre</caption>
+      <thead><tr><th scope="col">Incremento</th><th scope="col">Trabajo y resultado comprobable</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">I1. Datos y acceso</th><td>Crear el esquema y las tablas de P11. Preparar conexión, registro, hash, ingreso y cierre de sesión. Configurar el vencimiento absoluto y las cookies. <strong>Cierre:</strong> dos cuentas distintas ingresan con usuario o código; se rechazan datos inválidos y duplicados; el acceso vencido o cerrado no autoriza peticiones. CA-01 a CA-04 y parte de CA-12.</td></tr>
+        <tr><th scope="row">I2. Conversaciones privadas</th><td>Conectar la búsqueda exacta, la lista propia y la apertura de la pareja única. Aplicar los permisos de lectura y escritura. <strong>Cierre:</strong> A y B abren el mismo chat, incluso al crearlo simultáneamente; C no puede acceder. CA-05, CA-06 y la parte HTTP de CA-10.</td></tr>
+        <tr><th scope="row">I3. Mensajes e historial</th><td>Guardar mensajes válidos, confirmar después de guardar y consultar páginas de 50. Incorporar el emisor y la hora; mostrar el texto sin ejecutarlo. <strong>Cierre:</strong> los mensajes permanecen al salir, volver a entrar y reiniciar el proceso; las páginas no repiten ni omiten registros del historial de prueba. CA-07, CA-09, CA-12 y parte de CA-08.</td></tr>
+        <tr><th scope="row">I4. Actualización y fallos</th><td>Integrar Socket.IO con la misma sesión; actualizar solo a los participantes. Conservar el borrador y el idEnvio al fallar; reintentar únicamente al pulsar el botón. <strong>Cierre:</strong> ambos navegadores reciben una sola copia, la reconexión recupera el historial y cerrar o vencer la sesión corta sus canales. CA-08, CA-10, CA-11 y la parte en directo de CA-04.</td></tr>
+        <tr><th scope="row">I5. Despliegue y aceptación</th><td>Publicar la aplicación en Render, conectarla a Supabase y ejecutar todos los criterios de P5. Revisar celular, teclado, permisos, conservación y capacidad. <strong>Cierre:</strong> todos los CA-01 a CA-14 cuentan con evidencia y se demuestra el chat desde dos navegadores distintos.</td></tr>
+      </tbody>
+    </table>
+    <h2>Archivos previstos</h2>
+    <p>La construcción mantendrá la documentación separada del código. La siguiente estructura concreta los módulos de P8; es una organización prevista, no un inventario de una aplicación ya implementada.</p>
+    <pre><code>AzChat/
+  Documentacion/           Documentos P1 a P12 y prototipo
+  source/
+    servidor.js           Express, rutas y Socket.IO
+    acceso.js             Registro, contraseñas y sesiones
+    chat.js               Conversaciones, permisos y mensajes
+    datos.js              Conexión y consultas PostgreSQL
+    base.sql              Definición de las tablas de P11
+    publico/
+      index.html          Interfaz de la aplicación
+      estilos.css
+      app.js
+  pruebas/                Pruebas de la construcción
+  package.json            Inicio y dependencias
+  package-lock.json       Versiones instaladas
+  .env.example            Nombres de variables, sin secretos</code></pre>
+    <p>Las dependencias principales serán Express, Socket.IO, pg, argon2, express-session y connect-pg-simple. Se fijarán versiones compatibles y se conservará el archivo de bloqueo. El inicio se preparará como <code>npm start</code>, ejecutando <code>node source/servidor.js</code>. Esos comandos serán utilizables cuando exista la aplicación.</p>
+    <h2>Relación entre requisitos, diseño y pruebas</h2>
+    <table class="detalle">
+      <caption>Trazabilidad de la primera versión</caption>
+      <thead><tr><th scope="col">Necesidad</th><th scope="col">Referencias y evidencia prevista</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Cuenta y acceso</th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-01">RF-01</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-02">RF-02</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RNF-07">RNF-07</a>; <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-01">CU-01</a>, <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-02">CU-02</a>, <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-08">CU-08</a>. ServicioAcceso; usuarios y sesiones; pantallas de ingreso y registro. <strong>I1:</strong> CA-01 a CA-04, CA-12.</td></tr>
+        <tr><th scope="row">Buscar, abrir y listar</th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-04">RF-04</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-07">RF-07</a>; <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-03">CU-03</a>, <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-04">CU-04</a>. ServicioChat; usuarios y conversaciones; búsqueda y lista de P10. <strong>I2:</strong> CA-05 y CA-06.</td></tr>
+        <tr><th scope="row">Enviar, recibir e identificar</th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-03">RF-03</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-05">RF-05</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-06">RF-06</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RNF-04">RNF-04</a>; <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-05">CU-05</a>, <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-06">CU-06</a>. ClienteChat, ServidorChat y ServicioChat; mensajes; historial y escritura. <strong>I3–I4:</strong> CA-07 y CA-08.</td></tr>
+        <tr><th scope="row">Conservar y recuperar</th><td><a href="../P3_Catalogo_de_requisitos/index.html#RF-08">RF-08</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RF-09">RF-09</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RNF-05">RNF-05</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RNF-06">RNF-06</a>; <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-05">CU-05</a>, <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-06">CU-06</a>, <a href="../P4_Modelo_de_casos_de_uso/index.html#CU-07">CU-07</a>. AccesoDatos y ServicioChat; mensajes e idEnvio; historial, estado y Reintentar. <strong>I3–I4:</strong> CA-09, CA-11 y CA-12.</td></tr>
+        <tr><th scope="row">Privacidad</th><td><a href="../P3_Catalogo_de_requisitos/index.html#RNF-03">RNF-03</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RNF-07">RNF-07</a>. Sesión, permisos en cada operación y canales asignados por el servidor. <strong>I1–I4:</strong> CA-04, CA-10 y CA-12.</td></tr>
+        <tr><th scope="row">Uso y capacidad</th><td><a href="../P3_Catalogo_de_requisitos/index.html#RNF-01">RNF-01</a>, <a href="../P3_Catalogo_de_requisitos/index.html#RNF-02">RNF-02</a>. Vistas de P10 y arquitectura de P9. <strong>I5:</strong> CA-13 y CA-14.</td></tr>
+      </tbody>
+    </table>
+    <h2>Pruebas de aceptación</h2>
+    <p>La referencia completa es <a href="../P5_Especificacion_de_requisitos/index.html">P5, criterios CA-01 a CA-14</a>. Cada prueba registrará la versión, el entorno, los pasos, el resultado esperado, el resultado obtenido y una evidencia breve. Una prueba pendiente no se marcará como aprobada.</p>
+    <ul>
+      <li><strong>Datos:</strong> comprobar claves, duplicados, pareja inversa, intento repetido y límites de texto. Probar también peticiones que omitan la validación de la interfaz.</li>
+      <li><strong>Privacidad:</strong> usar A y B como pareja y C como cuenta ajena. C no puede leer, escribir ni recibir eventos del chat A–B. Las respuestas no muestran datos privados del registro.</li>
+      <li><strong>Persistencia:</strong> enviar mientras B está desconectado, volver a entrar, reiniciar el servidor y consultar más de 50 mensajes. El historial confirmado permanece disponible.</li>
+      <li><strong>Fallos:</strong> interrumpir antes y después del guardado, incluida la pérdida de confirmación. La recuperación de conexión no envía borradores; el reintento manual conserva un solo registro. Reutilizar idEnvio con otro texto o chat se rechaza.</li>
+      <li><strong>Sesiones:</strong> comprobar salida y vencimiento absoluto con peticiones y conexiones en directo. Se simulará el tiempo en un entorno de prueba para verificar las 8 horas sin esperar ese plazo.</li>
+      <li><strong>Interfaz:</strong> comprobar computadora, celular, teclado, Enter y Shift + Enter. Diferenciar las pruebas del prototipo local de las pruebas de la aplicación conectada al servidor.</li>
+    </ul>
+    <h3>Escenario de 30 usuarios</h3>
+    <p>Con el servidor activo y conexión estable, 30 usuarios forman 15 parejas. Durante 2 minutos, cada usuario envía un texto cada 10 segundos, según CA-13. Cada mensaje debe aparecer en el destinatario en un máximo de 3 segundos desde la acción de enviar, sin pérdida ni duplicación de mensajes confirmados.</p>
+    <p>La herramienta de prueba registrará los instantes de envío y visualización con una referencia de tiempo común, además de los identificadores para comprobar la correspondencia con la base. Las conexiones simuladas servirán para medir carga; la demostración funcional se hará además desde dos navegadores distintos. El arranque inicial del alojamiento gratuito se registra por separado.</p>
+    <h2>Preparación y despliegue</h2>
+    <ol>
+      <li>Preparar las cuentas de Render y Supabase y elegir sus configuraciones gratuitas para la demostración. Confirmar sus condiciones al momento de desplegar.</li>
+      <li>Crear el esquema privado azchat y un rol de conexión con permisos limitados. Revisar que las tablas no estén expuestas por la Data API. Mantener una copia exportada de los datos de prueba y comprobar su restauración antes de la demostración.</li>
+      <li>Configurar en Render <code>DATABASE_URL</code>, <code>SESSION_SECRET</code> y <code>APP_URL</code>. Utilizar el <code>PORT</code> que proporcione el alojamiento y el mismo grupo inicial de hasta 5 conexiones para datos y sesiones.</li>
+      <li>Publicar una sola aplicación con su interfaz y servidor en el mismo origen HTTPS. Configurar cookies seguras, comprobación del origen, límite de intentos de acceso y autorización de los canales.</li>
+      <li>Crear cuentas ficticias de prueba, ejecutar la aceptación y registrar la dirección real de la aplicación. Las credenciales se mantienen en las variables del servidor; el repositorio conserva solo sus nombres en .env.example.</li>
+    </ol>
+    <h2>Revisión del equipo y cierre de planificación</h2>
+    <p>El equipo organizará las tareas de cada incremento en una lista sencilla: pendiente, en curso y terminado. Cada tarea tendrá una persona responsable; otra revisará el resultado y las pruebas. Los integrantes se indican al final del documento. Las fechas y asignaciones se acordarán al iniciar cada entrega.</p>
+    <p>Una entrega se considera terminada cuando sus funciones están integradas, pasan las comprobaciones previstas y la documentación coincide con el resultado. Los problemas detectados se anotan con pasos para reproducirlos y se corrigen antes de dar por aceptada la entrega.</p>
+    <p>Los 12 pasos de planificación están disponibles. Esta entrega no acredita que el chat ya esté construido o desplegado, ni que haya superado la prueba de 30 usuarios. La siguiente etapa es implementar I1 y continuar con los incrementos definidos.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P11_Modelo_de_datos/index.html">P11. Modelo de datos y DER</a></nav></footer>
+</body>
+</html>

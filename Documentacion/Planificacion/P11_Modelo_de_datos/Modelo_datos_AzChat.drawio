@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="Modelo_datos_AzChat" name="Modelo de datos de AzChat">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1170" pageHeight="1010" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="AzChat · Modelo de datos relacional" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="12" width="1080" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="usuarios" value="usuarios" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="430" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="campos-usuarios" value="PK  id : bigint identity&#10;nombre_completo : text&#10;UQ  codigo_estudiante : varchar(6)&#10;UQ  nombre_usuario : varchar(20)&#10;hash_contrasena : text" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="usuarios">
+          <mxGeometry x="10" y="58" width="410" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="conversaciones" value="conversaciones" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="100" width="430" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="campos-conversaciones" value="PK  id : bigint identity&#10;FK  usuario_a_id : bigint&#10;FK  usuario_b_id : bigint&#10;fecha_creacion : timestamptz&#10;UQ  (usuario_a_id, usuario_b_id)" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="conversaciones">
+          <mxGeometry x="10" y="54" width="410" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="mensajes" value="mensajes" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="565" width="430" height="285" as="geometry" />
+        </mxCell>
+        <mxCell id="campos-mensajes" value="PK  id : bigint identity&#10;FK  conversacion_id : bigint&#10;FK  emisor_id : bigint&#10;id_envio : uuid&#10;texto : text · 1 a 1000 caracteres&#10;fecha_hora : timestamptz&#10;UQ  (emisor_id, id_envio)" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=19;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="mensajes">
+          <mxGeometry x="10" y="52" width="410" height="222" as="geometry" />
+        </mxCell>
+        <mxCell id="sesiones" value="sesiones · tabla técnica" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="625" width="430" height="225" as="geometry" />
+        </mxCell>
+        <mxCell id="campos-sesiones" value="PK  sid : varchar&#10;sess : json&#10;expire : timestamp(6)&#10;Datos de acceso; no guarda mensajes." style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=19;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="sesiones">
+          <mxGeometry x="10" y="50" width="410" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="uno-a" value="1" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="488" y="150" width="28" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="muchos-a" value="0..N" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="630" y="150" width="55" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rol-a" value="participante A" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="115" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uno-b" value="1" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="488" y="270" width="28" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="muchos-b" value="0..N" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="630" y="270" width="55" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rol-b" value="participante B" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="292" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uno-c" value="1" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="920" y="380" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="muchos-c" value="0..N" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="920" y="525" width="65" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-c" value="contiene" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="940" y="443" width="130" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="uno-e" value="1" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="394" y="405" width="28" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="muchos-e" value="0..N" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=20;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="618" y="660" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rol-emisor" value="envía" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="430" y="465" width="130" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-s" value="Referencia lógica al usuario&#10;en sess; sin clave foránea." style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="180" y="494" width="340" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="nota" value="PK: clave primaria · FK: clave foránea · UQ: valor o combinación únicos&#10;Cada conversación tiene dos usuarios distintos; usuario_a_id &lt; usuario_b_id.&#10;Las líneas continuas representan claves foráneas. La línea discontinua es una referencia lógica." style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=18;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="885" width="1090" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" style="endArrow=none;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.25;exitPerimeter=1;entryX=0;entryY=0.278;entryPerimeter=1;" edge="1" parent="1" source="usuarios" target="conversaciones">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" style="endArrow=none;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.65;exitPerimeter=1;entryX=0;entryY=0.722;entryPerimeter=1;" edge="1" parent="1" source="usuarios" target="conversaciones">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" style="endArrow=none;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;" edge="1" parent="1" source="conversaciones" target="mensajes">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" style="endArrow=none;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.8;exitY=1;exitPerimeter=1;entryX=0;entryY=0.42;entryPerimeter=1;" edge="1" parent="1" source="usuarios" target="mensajes">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="394" y="470" />
+              <mxPoint x="590" y="470" />
+              <mxPoint x="590" y="684.7" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" style="endArrow=none;startArrow=none;endFill=1;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.25;exitY=1;exitPerimeter=1;entryX=0.25;entryY=0;entryPerimeter=1;dashed=1;" edge="1" parent="1" source="usuarios" target="sesiones">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
