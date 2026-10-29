@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AzChat · Prototipo de interfaz</title>
+  <link rel="stylesheet" href="prototipo.css">
+  <script src="prototipo.js" defer></script>
+</head>
+<body data-vista="ingreso" data-panel="lista">
+  <div class="barra-prototipo">
+    <p><strong>Prototipo</strong> · Datos ficticios; acceso y mensajes simulados.</p>
+    <div class="controles-prototipo">
+      <a href="index.html" target="_top">Documentación P10</a>
+      <button id="red-ejemplo" type="button" aria-pressed="false" hidden>Simular desconexión</button>
+    </div>
+  </div>
+
+  <main class="acceso" id="ingreso">
+    <section class="formulario-acceso" aria-labelledby="titulo-ingreso">
+      <div class="marca">AzChat</div>
+      <h1 id="titulo-ingreso" tabindex="-1">Iniciar sesión</h1>
+      <p class="texto-suave">Usa datos ficticios para explorar el diseño.</p>
+      <form id="form-ingreso" novalidate autocomplete="off">
+        <label for="identificador">Usuario o código de estudiante</label>
+        <input id="identificador" name="identificador" autocomplete="off" required placeholder="alumno_01 o 012345" aria-describedby="error-ingreso">
+        <label for="clave-ingreso">Contraseña</label>
+        <input id="clave-ingreso" name="clave" type="password" autocomplete="off" required placeholder="Mínimo 8 caracteres ficticios" aria-describedby="error-ingreso">
+        <p class="error" id="error-ingreso" role="alert"></p>
+        <button class="primario ancho" type="submit">Ingresar</button>
+      </form>
+      <p>¿Primera vez? <button class="enlace" type="button" data-vista="registro">Crear cuenta</button></p>
+      <button class="secundario ancho" type="button" id="ver-ejemplo">Ver chat de ejemplo</button>
+      <p class="nota-acceso">Esta demostración valida el formato de los campos. La verificación de credenciales y la conservación de datos corresponden al sistema que se construirá.</p>
+    </section>
+  </main>
+
+  <main class="acceso" id="registro" hidden>
+    <section class="formulario-acceso" aria-labelledby="titulo-registro">
+      <div class="marca">AzChat</div>
+      <h1 id="titulo-registro" tabindex="-1">Crear cuenta</h1>
+      <p class="texto-suave">Registro de ejemplo, sin guardar contraseñas.</p>
+      <form id="form-registro" novalidate autocomplete="off">
+        <label for="nombre-completo">Nombre completo</label>
+        <input id="nombre-completo" name="nombre" required autocomplete="off" aria-describedby="error-registro">
+        <label for="codigo-estudiante">Código de estudiante</label>
+        <input id="codigo-estudiante" name="codigo" required inputmode="numeric" placeholder="6 dígitos" autocomplete="off" aria-describedby="error-registro">
+        <label for="nombre-usuario">Nombre de usuario</label>
+        <input id="nombre-usuario" name="usuario" required placeholder="De 3 a 20 caracteres; comienza con una letra" autocomplete="off" aria-describedby="error-registro">
+        <label for="clave-registro">Contraseña</label>
+        <input id="clave-registro" name="clave" type="password" required autocomplete="off" placeholder="Mínimo 8 caracteres ficticios" aria-describedby="error-registro">
+        <p class="error" id="error-registro" role="alert"></p>
+        <button class="primario ancho" type="submit">Crear cuenta de ejemplo</button>
+      </form>
+      <p>¿Ya tienes cuenta? <button class="enlace" type="button" data-vista="ingreso">Iniciar sesión</button></p>
+    </section>
+  </main>
+
+  <main id="chat" class="pantalla-chat" hidden>
+    <div class="aplicacion">
+      <aside class="panel lateral" aria-label="Conversaciones">
+        <header class="cabecera-lateral">
+          <h1 class="marca">AzChat</h1>
+          <p id="usuario-actual">alumno_01</p>
+        </header>
+        <form class="busqueda" id="form-busqueda" novalidate>
+          <label for="buscar-usuario">Buscar usuario exacto</label>
+          <div class="fila-busqueda">
+            <input id="buscar-usuario" name="usuario" autocomplete="off" placeholder="Ej.: kenyi_01" aria-describedby="resultado-busqueda">
+            <button class="secundario" type="submit">Buscar</button>
+          </div>
+          <p id="resultado-busqueda" role="status"></p>
+          <button class="secundario" id="abrir-resultado" type="button" hidden>Abrir conversación</button>
+        </form>
+        <h2 class="titulo-lista" id="titulo-conversaciones" tabindex="-1">Conversaciones</h2>
+        <div class="lista-conversaciones" id="lista-conversaciones"></div>
+        <footer class="pie-lateral"><button class="secundario ancho" id="salir" type="button">Cerrar sesión</button></footer>
+      </aside>
+
+      <section class="panel conversacion" aria-labelledby="titulo-chat">
+        <header class="cabecera-chat">
+          <button class="secundario volver" id="volver-lista" type="button" aria-label="Volver a conversaciones">Volver</button>
+          <div class="datos-chat">
+            <h2 id="titulo-chat" tabindex="-1">alex_01</h2>
+            <p id="estado-conexion">Chat privado · Conexión simulada activa</p>
+          </div>
+        </header>
+        <div class="historial" id="historial" role="log" aria-label="Mensajes de ejemplo" aria-live="off">
+          <button class="secundario anteriores" id="anteriores" type="button">Ver mensajes anteriores</button>
+          <div id="mensajes"></div>
+        </div>
+        <form class="redaccion" id="form-mensaje" novalidate>
+          <label class="solo-lectores" for="texto-mensaje">Mensaje</label>
+          <div class="fila-redaccion">
+            <textarea id="texto-mensaje" name="texto" rows="2" placeholder="Escribe un mensaje" aria-describedby="ayuda-escritura contador error-envio"></textarea>
+            <button class="primario" type="submit" id="enviar">Enviar</button>
+          </div>
+          <div class="ayuda-redaccion"><span id="contador">0 / 1000</span><span id="ayuda-escritura">Enter: enviar · Shift + Enter: nueva línea</span></div>
+          <p class="error" id="error-envio" role="alert"></p>
+          <button class="secundario" id="reintentar" type="button" hidden>Reintentar envío</button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <p class="solo-lectores" id="aviso" role="status" aria-live="polite"></p>
+</body>
+</html>

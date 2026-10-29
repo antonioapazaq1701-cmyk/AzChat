@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P10. Diseño de interfaz | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+  <style>.prototipo{display:block;width:100%;height:760px;border:1px solid #596b86;box-sizing:border-box} @media print{.prototipo{display:none}}</style>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P9_Arquitectura_y_capas/index.html">P9. Arquitectura y capas</a></nav>
+    <h1>P10. Diseño de interfaz</h1>
+    <p>Bocetos progresivos y prototipo navegable de AzChat.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Objetivo del diseño</h2>
+    <p>AzChat presenta una interfaz sencilla para registrarse, ingresar y conversar en privado. Este documento desarrolla el diseño en tres niveles de detalle a partir de una referencia visual de tonos grafito y azul. Las etapas permiten entender cómo se pasa de la estructura al contenido final.</p>
+    <p>Los paneles son rectangulares y están unidos por divisiones finas. La lista de conversaciones queda a la izquierda y el chat a la derecha. Los controles tienen texto directo y los mensajes propios se distinguen por el color azul y su alineación a la derecha.</p>
+    <h2>1. Estructura en blanco y negro</h2>
+    <p>El primer boceto utiliza únicamente cuadros y líneas. Define el espacio de la búsqueda, la lista, el encabezado, el historial y la escritura, sin incorporar colores ni conversaciones.</p>
+    <figure><a href="imagenes/01_estructura.svg"><img class="diagrama" src="imagenes/01_estructura.svg" alt="Boceto de dos paneles unidos con cuadros vacíos en blanco y negro."></a><figcaption>La distribución se define antes de añadir el estilo y los datos.</figcaption></figure>
+    <h2>2. Aplicación del color</h2>
+    <p>Se conserva la misma distribución. El grafito organiza las superficies y el azul identifica la conversación seleccionada, los mensajes propios y la acción de enviar. Los cuadros todavía representan contenido pendiente.</p>
+    <figure><a href="imagenes/02_color.svg"><img class="diagrama" src="imagenes/02_color.svg" alt="La misma estructura con superficies grafito y acentos azules, sin nombres."></a><figcaption>El color se incorpora sin cambiar la posición de los paneles.</figcaption></figure>
+    <h2>3. Conversaciones y contenido</h2>
+    <p>El último boceto incorpora nombres de usuario, mensajes, horas y etiquetas. Los alias <strong>alumno_01, alex_01, raul_01 y daniel_01</strong> son datos ficticios para mostrar la interfaz; no representan cuentas registradas. Las conversaciones y cada mensaje muestran el nombre de usuario.</p>
+    <figure><a href="imagenes/03_contenido.svg"><img class="diagrama" src="imagenes/03_contenido.svg" alt="Chat completo con alex_01 seleccionado, mensajes identificados y campo para escribir."></a><figcaption>La estructura y los colores se completan con contenido de ejemplo.</figcaption></figure>
+    <h2>Ingreso y registro</h2>
+    <p>El ingreso solicita usuario o código de estudiante y contraseña. El registro solicita nombre completo, código, usuario y contraseña. Cada campo conserva una etiqueta visible y los errores indican qué debe corregirse. La recuperación de contraseña queda fuera de la primera versión.</p>
+    <figure><a href="imagenes/04_acceso_registro.svg"><img class="diagrama" src="imagenes/04_acceso_registro.svg" alt="Formularios rectangulares de ingreso y registro con los campos requeridos."></a><figcaption>El código tiene 6 dígitos; el usuario, de 3 a 20 caracteres, empieza con una letra y admite letras, números y guion bajo. La contraseña requiere al menos 8 caracteres.</figcaption></figure>
+    <h2>Adaptación al celular</h2>
+    <p>En pantallas de hasta 700 píxeles se muestra una vista a la vez. Al elegir una conversación se abre el chat; el botón Volver permite regresar a la lista. El borrador se mantiene al cambiar de conversación durante la vista de ejemplo.</p>
+    <figure><a href="imagenes/05_movil.svg"><img class="diagrama" src="imagenes/05_movil.svg" alt="Lista de conversaciones y chat como dos vistas consecutivas en celular."></a><figcaption>La navegación mantiene los controles principales sin reducir los dos paneles de escritorio a columnas estrechas.</figcaption></figure>
+    <h2>Comportamiento de los controles</h2>
+    <table class="detalle">
+      <caption>Acciones y respuesta esperada</caption>
+      <thead><tr><th scope="col">Acción</th><th scope="col">Comportamiento</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Buscar destinatario</th><td>Nombre de usuario exacto, sin distinguir mayúsculas. Si ya existe una conversación con esa persona se abre la misma.</td></tr>
+        <tr><th scope="row">Escribir</th><td>Enter envía; Shift + Enter agrega una nueva línea. También puede utilizarse el botón Enviar.</td></tr>
+        <tr><th scope="row">Validar mensaje</th><td>Admite hasta 1000 caracteres. Un texto vacío o compuesto solo por espacios se rechaza y se conserva para corregirlo.</td></tr>
+        <tr><th scope="row">Leer mensajes</th><td>Cada mensaje muestra usuario y hora. El historial permite desplazarse y solicitar mensajes anteriores.</td></tr>
+        <tr><th scope="row">Envío fallido</th><td>El texto se conserva y se ofrece Reintentar. Recuperar la conexión no envía mensajes automáticamente.</td></tr>
+        <tr><th scope="row">Cerrar sesión</th><td>Regresa al ingreso. En el sistema construido, la sesión finalizará también al cumplir 8 horas desde el acceso.</td></tr>
+      </tbody>
+    </table>
+    <h2>Prototipo navegable</h2>
+    <p>El prototipo permite explorar las pantallas y sus controles. Utiliza datos ficticios en memoria: no crea cuentas, no verifica contraseñas reales ni conserva mensajes al recargar. El historial persistente, las sesiones y la comunicación entre personas se implementarán en el servidor descrito en P9.</p>
+    <p><a href="prototipo.html">Abrir prototipo desde el ingreso</a> · <a href="prototipo.html#chat">Abrir chat de ejemplo</a></p>
+    <iframe class="prototipo" src="prototipo.html#chat" title="Prototipo de la interfaz de AzChat con datos ficticios" loading="lazy"></iframe>
+    <p>Para revisar el envío fallido, pulse Simular desconexión e intente enviar un texto. Después restablezca la conexión y pulse Reintentar. La búsqueda dispone de los alias de ejemplo y de <strong>kenyi_01</strong> para abrir una conversación vacía.</p>
+    <h2>Bocetos editables y revisión</h2>
+    <p><a href="Bocetos_interfaz_AzChat.drawio">Abrir archivo Draw.io con los cinco bocetos</a>. En Draw.io seleccione Archivo → Abrir desde → Dispositivo. Cada etapa está en una página y sus cuadros y textos se pueden editar.</p>
+    <p>La metodología Ágil permite revisar estos bocetos y ajustar la interfaz antes de construir el sistema. Esta entrega corresponde al diseño de P10. P11 definirá el modelo de datos y P12 organizará la construcción por incrementos.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P9_Arquitectura_y_capas/index.html">P9. Arquitectura y capas</a></nav></footer>
+</body>
+</html>

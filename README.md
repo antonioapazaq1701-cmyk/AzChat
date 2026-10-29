@@ -6,7 +6,7 @@ El proyecto utiliza una **metodología Ágil, incremental e iterativa**: entrega
 
 ## Consultar la documentación
 
-Consulta la [documentación en GitHub Pages](https://antonioapazaq1701-cmyk.github.io/AzChat/). También puedes descargar el repositorio y abrir **[Documentacion/index.html](Documentacion/index.html)** con doble clic. Los documentos HTML y el diagrama se consultan sin instalar dependencias.
+Consulta la [documentación en GitHub Pages](https://antonioapazaq1701-cmyk.github.io/AzChat/). También puedes descargar el repositorio y abrir **[Documentacion/index.html](Documentacion/index.html)** con doble clic. Los documentos HTML, los diagramas y el prototipo se consultan sin instalar dependencias.
 
 | Paso | Documento |
 |---|---|
@@ -20,13 +20,17 @@ Consulta la [documentación en GitHub Pages](https://antonioapazaq1701-cmyk.gith
 | P8 | [Clases de diseño](Documentacion/Planificacion/P8_Clases_de_diseno/index.html) |
 | P9 | [Arquitectura y capas](Documentacion/Planificacion/P9_Arquitectura_y_capas/index.html) |
 
+| P10 | [Diseño de interfaz](Documentacion/Planificacion/P10_Diseno_de_interfaz/index.html) |
+
 El modelo de P4 está disponible como **[archivo editable de Draw.io](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.drawio)** y como **[vista SVG](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.svg)**.
 
 P5 incluye el flujo de envío y P6 el modelo de clases de análisis; ambos tienen archivos Draw.io editables y vistas SVG en sus carpetas.
 
 P7 incluye la secuencia de envío, P8 las clases de diseño y P9 la arquitectura. Sus diagramas están disponibles como archivos Draw.io y vistas SVG.
 
-P10 a P12 se desarrollarán en los siguientes pasos. El contenido actual corresponde a la planificación del sistema.
+P10 incluye tres bocetos progresivos (estructura, color y contenido), ingreso, registro y adaptación al celular en un archivo Draw.io editable. El [prototipo navegable](Documentacion/Planificacion/P10_Diseno_de_interfaz/prototipo.html) utiliza datos ficticios y no requiere instalación.
+
+P11 y P12 se desarrollarán en los siguientes pasos. El contenido actual corresponde a la planificación del sistema.
 
 ## Funciones previstas
 
