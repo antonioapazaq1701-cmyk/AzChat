@@ -26,7 +26,7 @@
       <thead><tr><th scope="col">Requisito</th><th scope="col">Comportamiento esperado</th></tr></thead>
       <tbody>
         <tr><th scope="row" id="RF-01">RF-01. Registro</th><td>La aplicación deberá permitir que cada persona cree su cuenta ingresando nombre completo, código de estudiante, nombre de usuario y contraseña. Todos estos campos serán obligatorios. El código tendrá 6 dígitos; el usuario tendrá de 3 a 20 caracteres, empezará por una letra y admitirá letras, números y guion bajo; la contraseña tendrá al menos 8 caracteres. El usuario no distinguirá mayúsculas y minúsculas.</td></tr>
-        <tr><th scope="row" id="RF-02">RF-02. Sesión</th><td>La aplicación deberá permitir ingresar con el nombre de usuario o el código de estudiante, junto con la contraseña, y cerrar sesión. Será necesario iniciar sesión para acceder a las conversaciones.</td></tr>
+        <tr><th scope="row" id="RF-02">RF-02. Sesión</th><td>La aplicación deberá permitir ingresar con el nombre de usuario o el código de estudiante, junto con la contraseña, y cerrar sesión. Será necesario iniciar sesión para acceder a las conversaciones. Cada sesión vencerá a las 8 horas desde el ingreso, sin renovación automática por actividad.</td></tr>
         <tr><th scope="row" id="RF-03">RF-03. Identidad</th><td>Los mensajes y las conversaciones deberán identificar a cada participante por su nombre de usuario.</td></tr>
         <tr><th scope="row" id="RF-04">RF-04. Chat privado</th><td>Una persona deberá poder buscar a otra persona registrada por su nombre de usuario exacto e iniciar una conversación privada entre ambas. Si no existe una coincidencia, la aplicación deberá indicarlo. Cada pareja de personas distintas tendrá una única conversación; las búsquedas posteriores abrirán ese mismo chat.</td></tr>
         <tr><th scope="row" id="RF-05">RF-05. Envío</th><td>El participante deberá poder enviar mensajes de texto de hasta 1000 caracteres. Se rechazarán los mensajes vacíos, formados únicamente por espacios o superiores al límite.</td></tr>
@@ -76,7 +76,7 @@
         <tr><th scope="row">Contraseña</th><td>Comprobar el acceso a la cuenta. Se conservará únicamente su hash seguro.</td></tr>
       </tbody>
     </table>
-    <p>El proveedor en la nube, el modelo de datos y los componentes técnicos se especificarán en los documentos de diseño.</p>
+    <p>P8 detalla los componentes técnicos y P9 la arquitectura en Render y PostgreSQL de Supabase. El modelo de datos se detallará en P11.</p>
     <section aria-labelledby="equipo">
       <h2 id="equipo">Equipo del proyecto</h2>
       <table>

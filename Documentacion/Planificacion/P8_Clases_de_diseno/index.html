@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P8. Diagrama de clases de diseño | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P7_Documento_de_analisis/index.html">P7. Documento de análisis</a></nav>
+    <h1>P8. Diagrama de clases de diseño</h1>
+    <p>Componentes implementables, sus responsabilidades y las interfaces mínimas de AzChat.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Propósito y criterio de sencillez</h2>
+    <p>El diseño transforma los conceptos de P6 en cinco componentes pequeños. La web utiliza HTML, CSS y JavaScript; un único proceso Node.js atiende las peticiones y las conexiones en directo. PostgreSQL conserva los datos.</p>
+    <p>Las clases del diagrama expresan responsabilidades. En la construcción pueden organizarse como módulos y funciones JavaScript, sin obligar a usar herencia ni una estructura de clases extensa.</p>
+    <h2>Diagrama de clases de diseño</h2>
+    <figure>
+      <a href="Clases_diseno_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Clases_diseno_AzChat.svg" alt="Cinco componentes: ClienteChat utiliza ServidorChat; este utiliza ServicioAcceso y ServicioChat, que comparten AccesoDatos."></a>
+      <figcaption>Las flechas discontinuas indican dependencias de uso. Los datos Estudiante, ConversacionPrivada y Mensaje se describen por separado para mantener legible el diagrama.</figcaption>
+    </figure>
+    <p>Modelo editable: <a href="Clases_diseno_AzChat.drawio">Clases_diseno_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
+    <h2>Componentes y archivos previstos</h2>
+    <table class="detalle">
+      <caption>Responsabilidades del diseño</caption>
+      <thead><tr><th scope="col">Componente</th><th scope="col">Responsabilidad</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">ClienteChat</th><td><code>source/publico/app.js</code>. Controla registro, ingreso, búsqueda y lectura del chat. Conserva el intento pendiente y su identificador. Envía peticiones HTTPS y recibe actualizaciones de Socket.IO. Cada mensaje se inserta o actualiza por su identificador para no repetirlo.</td></tr>
+        <tr><th scope="row">ServidorChat</th><td><code>source/servidor.js</code>. Entrega la web, recibe las peticiones y comparte el acceso de sesión con Socket.IO. Llama a los servicios de acceso y chat y publica mensajes ya conservados a los participantes autorizados.</td></tr>
+        <tr><th scope="row">ServicioAcceso</th><td><code>source/acceso.js</code>. Valida el registro y los identificadores únicos, calcula y verifica el hash de contraseña y administra el acceso. Utiliza <code>argon2</code>, <code>express-session</code> y el almacenamiento de sesiones en PostgreSQL.</td></tr>
+        <tr><th scope="row">ServicioChat</th><td><code>source/chat.js</code>. Busca usuarios exactos, abre el único chat de cada pareja y consulta sus mensajes. Comprueba la participación antes de leer o guardar. Reconoce los reintentos y devuelve el mismo mensaje si ya fue conservado.</td></tr>
+        <tr><th scope="row">AccesoDatos</th><td><code>source/datos.js</code>. Mantiene un grupo pequeño de conexiones PostgreSQL y ejecuta consultas con parámetros y transacciones. Se comparte con el almacenamiento de sesiones. El navegador no utiliza este componente ni recibe su contraseña de conexión.</td></tr>
+      </tbody>
+    </table>
+    <p>Las rutas anteriores son una organización prevista para la construcción. El alcance de estos documentos corresponde al diseño; no presenta esos módulos como implementados.</p>
+    <h2>Datos que intercambian los componentes</h2>
+    <table class="detalle">
+      <caption>Estructuras del diseño</caption>
+      <thead><tr><th scope="col">Estructura</th><th scope="col">Información y uso</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Estudiante</th><td><code>id</code>, <code>nombreCompleto</code>, <code>codigoEstudiante</code>, <code>nombreUsuario</code> y <code>hashContrasena</code>. Es información del servidor. Las respuestas de búsqueda entregan solo un identificador técnico y el nombre de usuario.</td></tr>
+        <tr><th scope="row">ConversacionPrivada</th><td><code>id</code>, los identificadores de sus dos estudiantes y <code>fechaCreacion</code>. La pareja se ordena siempre de la misma forma para reconocer que A–B y B–A son el mismo chat.</td></tr>
+        <tr><th scope="row">Mensaje</th><td><code>id</code> secuencial asignado por la base, <code>conversacionId</code>, <code>emisorId</code>, <code>idEnvio</code>, <code>texto</code> y <code>fechaHora</code>. El servidor decide el emisor y la fecha. <code>idEnvio</code> identifica el intento del navegador y se conserva al reintentar.</td></tr>
+        <tr><th scope="row">Sesión técnica</th><td>La biblioteca de sesiones conserva el identificador del estudiante y una fecha de vencimiento absoluta de 8 horas desde el ingreso. No añade otro actor ni otra entidad del dominio de P6. Su registro técnico se concretará en P11.</td></tr>
+      </tbody>
+    </table>
+    <p>El esquema de tablas, sus tipos SQL y sus relaciones se detallarán en P11. Los identificadores de los mensajes proporcionan un orden estable; el navegador muestra las filas en ese orden y evita duplicarlas.</p>
+    <h2>Interfaz mínima del servidor</h2>
+    <table class="detalle">
+      <caption>Peticiones y actualizaciones</caption>
+      <thead><tr><th scope="col">Función</th><th scope="col">Interfaz prevista</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Registro y acceso</th><td><code>POST /api/registro</code> crea la cuenta. <code>POST /api/sesion</code> verifica usuario o código y contraseña. <code>GET /api/sesion</code> consulta el acceso actual. <code>DELETE /api/sesion</code> lo termina.</td></tr>
+        <tr><th scope="row">Búsqueda</th><td><code>GET /api/usuarios?nombre=...</code> busca el usuario completo, normalizado a minúsculas. Requiere sesión y devuelve solo la identidad visible necesaria para iniciar el chat.</td></tr>
+        <tr><th scope="row">Conversaciones</th><td><code>GET /api/conversaciones</code> lista los chats propios. <code>POST /api/conversaciones</code> recibe el destinatario y devuelve el chat existente o crea el de esa pareja.</td></tr>
+        <tr><th scope="row">Historial</th><td><code>GET /api/conversaciones/:id/mensajes</code> obtiene los últimos 50 mensajes. Un cursor basado en el identificador permite solicitar los anteriores. La paginación limita cada consulta, no la conservación del historial.</td></tr>
+        <tr><th scope="row">Envío</th><td><code>POST /api/conversaciones/:id/mensajes</code> recibe <code>idEnvio</code> y <code>texto</code>. El servidor comprueba la sesión y el chat. Un envío nuevo devuelve el mensaje guardado; un reintento válido devuelve el mismo registro. Reutilizar el intento con otro texto o chat se rechaza como conflicto.</td></tr>
+        <tr><th scope="row">Actualización en directo</th><td>Socket.IO emite <code>mensaje:nuevo</code> con datos de un mensaje ya guardado. El servidor asigna las conexiones a canales internos de usuario y sesión; el navegador no elige canales de otras cuentas. Al reconectar se vuelve a verificar el acceso y se consulta el historial.</td></tr>
+      </tbody>
+    </table>
+    <h2>Reglas del acceso y los envíos</h2>
+    <ul>
+      <li>La contraseña se protege con Argon2id mediante una biblioteca de hash; no se implementa un algoritmo propio ni se entrega el hash al navegador.</li>
+      <li>La sesión vence a las 8 horas desde el ingreso, sin ampliar ese plazo por actividad. Antes de acceder al chat se comprueba también ese vencimiento.</li>
+      <li>La cookie contiene únicamente un identificador de sesión firmado. En la nube se configura con <code>HttpOnly</code>, <code>Secure</code> y <code>SameSite=Lax</code>.</li>
+      <li>El identificador de sesión se renueva al ingresar. Al salir se invalida su registro, se elimina la cookie y se desconectan las actualizaciones de esa sesión. Al vencer también se cierra su canal en directo.</li>
+      <li>El servicio toma el emisor de la sesión y valida pertenencia, contenido e identidad del intento antes de guardar.</li>
+      <li>El intento utiliza un UUID generado por el navegador y se reutiliza únicamente para el mismo texto y chat. La base impide dos registros con la misma pareja emisor–intento.</li>
+      <li>La confirmación y la notificación se producen después de guardar. Una respuesta o evento repetido actualiza el mensaje existente en la interfaz.</li>
+      <li>Los mensajes se envían por HTTPS, sin cola automática fuera de línea. La reconexión de Socket.IO recupera el canal y consulta el historial; no reintenta los envíos fallidos.</li>
+    </ul>
+    <h2>Referencias técnicas</h2>
+    <ul>
+      <li><a href="https://expressjs.com/en/resources/middleware/session/">Sesiones de Express</a> y <a href="https://github.com/voxpelli/node-connect-pg-simple">almacenamiento de sesiones en PostgreSQL</a>.</li>
+      <li><a href="https://github.com/ranisalt/node-argon2">Biblioteca Argon2 para Node.js</a>.</li>
+      <li><a href="https://socket.io/docs/v4/middlewares/">Middleware de Socket.IO</a> y <a href="https://socket.io/docs/v4/client-offline-behavior/">comportamiento fuera de línea</a>.</li>
+    </ul>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P7_Documento_de_analisis/index.html">P7. Documento de análisis</a><a href="../P9_Arquitectura_y_capas/index.html">Continuar a P9</a></nav></footer>
+</body>
+</html>

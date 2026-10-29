@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P9. Arquitectura y capas del sistema | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P8_Clases_de_diseno/index.html">P8. Clases de diseño</a></nav>
+    <h1>P9. Arquitectura y capas del sistema</h1>
+    <p>Alojamiento, comunicación, persistencia y configuración de la primera versión.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Arquitectura elegida</h2>
+    <p>AzChat utiliza una arquitectura cliente–servidor con una base de datos relacional. La primera versión tendrá una aplicación Node.js en Render y una base PostgreSQL en Supabase. El mismo servidor entrega la web y atiende su acceso y mensajería.</p>
+    <p>Esta organización mantiene una única dirección para la aplicación y evita separar el alojamiento de la página del servidor. El diseño se orienta a una demostración gratuita, con crecimiento inicial de 4 a 30 usuarios conectados.</p>
+    <h2>Diagrama de arquitectura</h2>
+    <figure>
+      <a href="Arquitectura_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Arquitectura_AzChat.svg" alt="Dos navegadores se conectan mediante HTTPS y actualizaciones Socket.IO a un único servidor Node.js en Render. Solo ese servidor se conecta por TLS a PostgreSQL en Supabase."></a>
+      <figcaption>Render aloja la aplicación y sus conexiones en directo. Supabase conserva los datos. GitHub Pages publica esta documentación; la aplicación de chat se construirá y desplegará en otra etapa.</figcaption>
+    </figure>
+    <p>Modelo editable: <a href="Arquitectura_AzChat.drawio">Arquitectura_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
+    <h2>Capas del sistema</h2>
+    <table class="detalle">
+      <caption>Separación de responsabilidades</caption>
+      <thead><tr><th scope="col">Capa</th><th scope="col">Responsabilidad</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Presentación</th><td>HTML, CSS y JavaScript en el navegador. Muestra campos, conversaciones y mensajes. El propio servicio de Render entrega estos archivos, de modo que la página y la API comparten el mismo origen.</td></tr>
+        <tr><th scope="row">Aplicación y comunicación</th><td>Node.js con Express, ServicioAcceso y ServicioChat. Las peticiones HTTPS registran, verifican acceso, consultan y guardan. Socket.IO distribuye las actualizaciones de mensajes ya conservados.</td></tr>
+        <tr><th scope="row">Persistencia</th><td>PostgreSQL administrado en Supabase. Conserva estudiantes, conversaciones, mensajes y los registros técnicos de sesión. El servidor accede mediante el controlador <code>pg</code>; el navegador no se conecta a la base.</td></tr>
+      </tbody>
+    </table>
+    <h2>Tecnologías mínimas previstas</h2>
+    <table class="detalle">
+      <caption>Herramientas y finalidad</caption>
+      <thead><tr><th scope="col">Tecnología</th><th scope="col">Finalidad</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">HTML, CSS y JavaScript</th><td>Interfaz web sin un framework de componentes ni un paso de compilación obligatorio.</td></tr>
+        <tr><th scope="row">Node.js y Express</th><td>Un solo servidor entrega la página y ofrece las peticiones de acceso y chat.</td></tr>
+        <tr><th scope="row">Socket.IO</th><td>Canal de actualizaciones y reconexión. La aplicación no utiliza este canal para poner en cola los envíos pendientes.</td></tr>
+        <tr><th scope="row">PostgreSQL y pg</th><td>Historial persistente, consultas con parámetros, relaciones y restricciones que impiden duplicar parejas o intentos de envío.</td></tr>
+        <tr><th scope="row">express-session y connect-pg-simple</th><td>Sesión compartida por las peticiones y las conexiones; almacenamiento en PostgreSQL con vencimiento de 8 horas.</td></tr>
+        <tr><th scope="row">argon2</th><td>Creación y comprobación de hashes Argon2id de contraseñas.</td></tr>
+      </tbody>
+    </table>
+    <p>Se utilizará una versión LTS de Node.js compatible con las bibliotecas al comenzar la construcción. Las dependencias se fijarán en el proyecto y su archivo de bloqueo. El diseño no requiere un ORM ni servicios separados por cada función.</p>
+    <h2>Ingreso sin correo ni teléfono</h2>
+    <p>El servidor verificará el nombre de usuario o código y la contraseña mediante ServicioAcceso. Supabase se utilizará como PostgreSQL administrado. Su inicio de sesión con contraseña documentado se basa en correo o teléfono; ese flujo de Supabase Auth no forma parte de esta arquitectura.</p>
+    <p>La sesión tendrá una duración absoluta de 8 horas desde el ingreso. Se guardará en la misma base para no depender de la memoria del proceso. El servidor verificará su vigencia para las consultas y al establecer el canal en directo, y lo desconectará al vencer o cerrar sesión.</p>
+    <h2>Recorrido de un mensaje</h2>
+    <ol>
+      <li>El navegador envía una petición HTTPS con la conversación, el texto y el identificador del intento.</li>
+      <li>El servicio verifica la sesión, la participación en el chat y el contenido; obtiene el emisor del acceso verificado.</li>
+      <li>PostgreSQL conserva el mensaje o reconoce que ese mismo intento ya está guardado. Un intento reutilizado con otro contenido se rechaza.</li>
+      <li>El servidor devuelve el registro conservado y notifica a los dos usuarios mediante canales internos de Socket.IO.</li>
+      <li>Los navegadores muestran el mensaje una sola vez. La reconexión vuelve a consultar el historial, sin reenviar textos pendientes automáticamente.</li>
+    </ol>
+    <h2>Acceso a la base y protección de datos</h2>
+    <ul>
+      <li>La conexión PostgreSQL se realizará con TLS y validación del certificado. La cadena se obtendrá del panel del proyecto; no se inventarán el host ni las credenciales.</li>
+      <li>Se utilizará el pooler (intermediario de conexiones) en modo sesión de Supabase cuando el alojamiento requiera acceso IPv4. La aplicación compartirá un grupo inicial de hasta 5 conexiones, incluidas las usadas por el almacén de sesiones.</li>
+      <li>Las tablas de la aplicación y las sesiones se ubicarán en un esquema privado, <code>azchat</code>, sin exponerlo por la Data API. El rol de la aplicación tendrá únicamente los permisos necesarios.</li>
+      <li>Las reglas de acceso se aplicarán en el servidor antes de cada operación. El servicio no confiará en un emisor ni en un canal privado elegido por el navegador.</li>
+      <li>Los canales internos se asignarán por el usuario y la sesión verificados. Las conexiones de una sesión se desconectarán al salir y al cumplirse sus 8 horas.</li>
+      <li>Las peticiones de escritura y las conexiones en directo se limitarán al origen de la aplicación. La cookie segura no sustituye la comprobación del origen ni de los permisos.</li>
+      <li>Las contraseñas se procesarán con una biblioteca de hash y se limitarán los intentos de acceso. Las respuestas no incluirán hashes, códigos ni nombres completos de otras cuentas.</li>
+    </ul>
+    <h2>Configuración prevista</h2>
+    <table class="detalle">
+      <caption>Valores de configuración de la construcción</caption>
+      <thead><tr><th scope="col">Valor</th><th scope="col">Uso</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">DATABASE_URL</th><td>Credencial secreta de conexión PostgreSQL, disponible únicamente en el servidor.</td></tr>
+        <tr><th scope="row">SESSION_SECRET</th><td>Secreto del servidor para firmar el identificador de sesión. No se publica en GitHub ni en la web.</td></tr>
+        <tr><th scope="row">APP_URL</th><td>Origen HTTPS permitido de la aplicación en Render. Se usa para verificar las peticiones y conexiones.</td></tr>
+        <tr><th scope="row">PORT</th><td>Puerto que proporcione el alojamiento. Node.js atenderá en la interfaz y el puerto esperados por Render.</td></tr>
+      </tbody>
+    </table>
+    <h2>Modalidad gratuita y capacidad</h2>
+    <p>Render gratuito puede suspender el servicio tras 15 minutos sin tráfico y tardar aproximadamente un minuto en arrancar. Esa espera inicial es una condición de la demostración gratuita. El criterio CA-13 de P5 se ejecutará con el servidor activo y los 30 usuarios ya conectados; conserva la meta de hasta 3 segundos por mensaje.</p>
+    <p>Los datos y las sesiones se guardarán en PostgreSQL, de modo que no dependan del disco temporal de Render. Los planes gratuitos están sujetos a las cuotas y condiciones del proveedor. La disponibilidad de los proyectos se revisará antes de la demostración.</p>
+    <p>La primera versión usa una instancia del servidor. El crecimiento inicial se atenderá con consultas acotadas, índices y un ajuste de recursos según las pruebas. Antes de utilizar varias instancias deberá incorporarse una coordinación compartida de las notificaciones. Ese cambio se evaluará si la carga futura lo requiere.</p>
+    <h2>Estado del proyecto y pasos siguientes</h2>
+    <p>P7, P8 y P9 describen el análisis y el diseño. El sistema de chat todavía requiere construcción y pruebas. P10 detallará la interfaz, P11 el modelo de datos y P12 organizará la implementación por entregas pequeñas.</p>
+    <h2>Referencias técnicas</h2>
+    <ul>
+      <li><a href="https://render.com/docs/web-services">Servicios web de Render</a> y <a href="https://render.com/docs/free">condiciones del servicio gratuito</a>.</li>
+      <li><a href="https://render.com/docs/websocket">WebSockets en Render</a> y <a href="https://socket.io/docs/v4/middlewares/">autorización mediante middleware de Socket.IO</a>.</li>
+      <li><a href="https://supabase.com/docs/guides/database/connecting-to-postgres">Conexión a PostgreSQL en Supabase</a> y <a href="https://supabase.com/docs/guides/auth/passwords">identificadores del acceso con contraseña de Supabase Auth</a>.</li>
+      <li><a href="https://expressjs.com/en/resources/middleware/session/">Gestión de sesiones de Express</a>.</li>
+    </ul>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P8_Clases_de_diseno/index.html">P8. Clases de diseño</a></nav></footer>
+</body>
+</html>

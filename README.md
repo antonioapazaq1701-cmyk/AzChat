@@ -16,12 +16,17 @@ Consulta la [documentación en GitHub Pages](https://antonioapazaq1701-cmyk.gith
 | P4 | [Modelo de casos de uso](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/index.html) |
 | P5 | [Especificación de requisitos](Documentacion/Planificacion/P5_Especificacion_de_requisitos/index.html) |
 | P6 | [Clases de análisis](Documentacion/Planificacion/P6_Clases_de_analisis/index.html) |
+| P7 | [Documento de análisis](Documentacion/Planificacion/P7_Documento_de_analisis/index.html) |
+| P8 | [Clases de diseño](Documentacion/Planificacion/P8_Clases_de_diseno/index.html) |
+| P9 | [Arquitectura y capas](Documentacion/Planificacion/P9_Arquitectura_y_capas/index.html) |
 
 El modelo de P4 está disponible como **[archivo editable de Draw.io](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.drawio)** y como **[vista SVG](Documentacion/Planificacion/P4_Modelo_de_casos_de_uso/Casos_de_uso_AzChat.svg)**.
 
 P5 incluye el flujo de envío y P6 el modelo de clases de análisis; ambos tienen archivos Draw.io editables y vistas SVG en sus carpetas.
 
-P7 a P12 se desarrollarán en los siguientes pasos. El contenido actual corresponde a la planificación del sistema.
+P7 incluye la secuencia de envío, P8 las clases de diseño y P9 la arquitectura. Sus diagramas están disponibles como archivos Draw.io y vistas SVG.
+
+P10 a P12 se desarrollarán en los siguientes pasos. El contenido actual corresponde a la planificación del sistema.
 
 ## Funciones previstas
 
@@ -31,6 +36,12 @@ P7 a P12 se desarrollarán en los siguientes pasos. El contenido actual correspo
 - Chats privados con mensajes de hasta 1000 caracteres.
 - Historial conservado sin edición ni borrado de mensajes en la primera versión.
 - Aplicación web adaptable a computadora y celular.
+
+## Arquitectura prevista
+
+La web utilizará HTML, CSS y JavaScript. Un único servidor Node.js con Express y Socket.IO en Render entregará la página, gestionará el acceso y distribuirá las actualizaciones. PostgreSQL administrado en Supabase conservará los datos y las sesiones de 8 horas.
+
+La primera demostración se plantea con alojamiento gratuito, aceptando el arranque tras inactividad. GitHub Pages publica la documentación; el chat requiere construcción y despliegue posterior.
 
 ## Equipo del proyecto
 

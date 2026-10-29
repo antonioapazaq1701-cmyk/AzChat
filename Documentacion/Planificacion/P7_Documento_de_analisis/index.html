@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P7. Documento de análisis | AzChat</title>
+  <link rel="stylesheet" href="../../estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header>
+    <nav aria-label="Documentación"><a href="../../index.html">Índice</a><a href="../P6_Clases_de_analisis/index.html">P6. Clases de análisis</a></nav>
+    <h1>P7. Documento de análisis</h1>
+    <p>Funcionamiento lógico, recorrido de los mensajes y respuesta ante errores.</p>
+    <p class="metodo">Metodología <a href="../../index.html#metodologia">Ágil · Enfoque incremental e iterativo</a></p>
+  </header>
+  <main id="contenido">
+    <h2>Propósito del análisis</h2>
+    <p>Este documento explica cómo funcionan juntos los casos de uso de AzChat. Describe el recorrido de los datos y las respuestas ante errores, manteniendo el alcance de una web de mensajes privados entre dos estudiantes.</p>
+    <p>El análisis utiliza los conceptos Estudiante, ConversacionPrivada, Mensaje y GestorChat de P6. Los componentes que los implementarán se detallan en P8 y su ubicación en la nube se explica en P9.</p>
+    <h2>Funcionamiento principal</h2>
+    <table class="detalle">
+      <caption>Recorrido de uso de AzChat</caption>
+      <thead><tr><th scope="col">Etapa</th><th scope="col">Funcionamiento</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Registro y acceso</th><td>El estudiante completa los cuatro datos de registro. El servicio valida el código de 6 dígitos, el usuario de 3 a 20 caracteres y la contraseña de al menos 8 caracteres. Comprueba que los identificadores sean únicos y conserva la contraseña protegida. Para ingresar, verifica el usuario o código y la contraseña antes de abrir una sesión de hasta 8 horas. La actividad no renueva ese plazo.</td></tr>
+        <tr><th scope="row">Inicio de una conversación</th><td>Con la sesión vigente, el estudiante busca el nombre de usuario exacto del destinatario, sin distinguir mayúsculas. El sistema abre la conversación existente de esa pareja o crea una si todavía no existe. Ambos participantes deben ser personas distintas. Después se consulta el historial propio.</td></tr>
+        <tr><th scope="row">Envío de un mensaje</th><td>La web asigna un identificador al intento y envía el texto y la conversación. El servicio obtiene el emisor de la sesión; comprueba que participe en el chat y valida el límite de 1000 caracteres. Guarda el mensaje antes de confirmarlo. Si ya recibió ese mismo intento, devuelve el mensaje guardado sin crear un duplicado.</td></tr>
+        <tr><th scope="row">Recepción y consulta</th><td>El servicio actualiza a los participantes conectados después de conservar el mensaje. Cada navegador muestra el usuario del emisor y evita repetir mensajes con el mismo identificador. Al volver a entrar o recuperar la conexión se consulta el historial para obtener lo que no se recibió en directo.</td></tr>
+        <tr><th scope="row">Cierre de sesión</th><td>El servicio termina el acceso de esa sesión y sus conexiones de actualización. Los mensajes y la conversación permanecen guardados. Un nuevo acceso requiere verificar las credenciales otra vez.</td></tr>
+      </tbody>
+    </table>
+    <h2>Secuencia de envío</h2>
+    <figure>
+      <a href="Secuencia_envio_AzChat.svg" aria-label="Abrir el diagrama a tamaño completo"><img class="diagrama" src="Secuencia_envio_AzChat.svg" alt="Secuencia entre el navegador de A, el servicio de AzChat, la base de datos y el navegador de B. El mensaje se guarda antes de confirmar y notificar."></a>
+      <figcaption>La secuencia representa un envío válido con ambos participantes conectados. La conservación en la base de datos ocurre antes de la confirmación y de la actualización del destinatario.</figcaption>
+    </figure>
+    <p>Modelo editable: <a href="Secuencia_envio_AzChat.drawio">Secuencia_envio_AzChat.drawio</a>. Puede abrirse en Draw.io mediante <strong>Archivo → Abrir desde → Dispositivo</strong>.</p>
+    <h2>Situaciones alternativas</h2>
+    <table class="detalle">
+      <caption>Respuestas ante errores y desconexiones</caption>
+      <thead><tr><th scope="col">Situación</th><th scope="col">Respuesta del sistema</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Datos o credenciales incorrectos</th><td>El registro no se completa si faltan datos, el formato es inválido o un identificador ya existe. Un ingreso incorrecto no crea una sesión. La interfaz muestra un aviso breve y permite corregir los campos.</td></tr>
+        <tr><th scope="row">Destinatario inexistente</th><td>Una búsqueda sin coincidencia exacta no abre una conversación con otra persona ni expone una lista de cuentas. Se informa que no se encontró el usuario.</td></tr>
+        <tr><th scope="row">Texto inválido</th><td>Se rechazan un mensaje vacío, uno formado solo por espacios y un texto superior a 1000 caracteres. No se guarda ni se distribuye el mensaje rechazado.</td></tr>
+        <tr><th scope="row">Envío fallido o sin confirmación</th><td>Se conserva el texto en la página abierta y se informa el fallo. El estudiante decide cuándo pulsar Reintentar. Se mantiene el identificador del mismo intento; si el servicio ya lo guardó, no se duplica. Un contenido distinto constituye otro intento.</td></tr>
+        <tr><th scope="row">Conexión perdida</th><td>Se informa la desconexión. La recuperación del canal permite volver a recibir actualizaciones y consultar el historial; no reenvía automáticamente los textos pendientes.</td></tr>
+        <tr><th scope="row">Sesión vencida o conversación ajena</th><td>Una sesión vencida exige ingresar de nuevo. Si la cuenta no pertenece a la conversación, el servicio rechaza tanto la consulta como el envío y las actualizaciones en directo.</td></tr>
+      </tbody>
+    </table>
+    <h2>Reglas que se mantienen durante todo el flujo</h2>
+    <ul>
+      <li>Una conversación tiene exactamente dos participantes distintos y una pareja comparte un único chat.</li>
+      <li>El emisor se obtiene del acceso verificado; no se acepta que el navegador elija otra identidad.</li>
+      <li>Consultar, enviar y recibir mensajes requiere pertenecer a la conversación y mantener una sesión vigente.</li>
+      <li>El historial se conserva y se muestra con un orden estable. Se permite consultar mensajes anteriores sin cargar todo el historial a la vez.</li>
+      <li>Las búsquedas y los mensajes muestran el nombre de usuario. Los códigos, nombres completos y credenciales no se exponen a otras cuentas.</li>
+      <li>Un mensaje guardado se reconoce por su identidad, incluso si su confirmación o actualización se perdió.</li>
+    </ul>
+    <h2>Correspondencia con los requisitos</h2>
+    <table class="detalle">
+      <caption>Relación con P3 y P4</caption>
+      <thead><tr><th scope="col">Funciones</th><th scope="col">Referencias</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Registro, ingreso y salida</th><td>RF-01 y RF-02; CU-01, CU-02 y CU-08.</td></tr>
+        <tr><th scope="row">Búsqueda y conversaciones</th><td>RF-04 y RF-07; CU-03 y CU-04.</td></tr>
+        <tr><th scope="row">Mensajería e identidad</th><td>RF-03, RF-05 y RF-06; CU-05 y CU-06.</td></tr>
+        <tr><th scope="row">Historial y fallos</th><td>RF-08 y RF-09; CU-07 y alternativas de los casos de envío y recepción.</td></tr>
+      </tbody>
+    </table>
+    <p>Los 30 usuarios simultáneos y el tiempo máximo de 3 segundos son condiciones de aceptación de P5 para el sistema construido. La documentación del flujo no sustituye la ejecución de esas pruebas.</p>
+    <section aria-labelledby="equipo">
+      <h2 id="equipo">Equipo del proyecto</h2>
+      <table>
+        <caption>Integrantes y c&#243;digos de estudiante</caption>
+        <thead><tr><th scope="col">Apellidos y nombres</th><th scope="col">C&#243;digo</th></tr></thead>
+        <tbody>
+        <tr><td>Apaza Quispe Antonio Vicente</td><td>236876</td></tr>
+        <tr><td>Arias Ramirez Alex</td><td>236104</td></tr>
+        <tr><td>Chura Chambilla Raul Cristian</td><td>236567</td></tr>
+        <tr><td>Escobedo Arapa Kenyi Blanca</td><td>236171</td></tr>
+        <tr><td>Mamani Pari Yimmy Jonathan</td><td>237317</td></tr>
+        <tr><td>Quispe Ramos Daniel Jhosimar</td><td>236568</td></tr>
+        <tr><td>Roque Mamani Vidman Ruis</td><td>236232</td></tr>
+        <tr><td>Vidal Fuentes Jordy Anthony</td><td>236535</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer><nav aria-label="Otros documentos"><a href="../../index.html">Volver al índice</a><a href="../P6_Clases_de_analisis/index.html">P6. Clases de análisis</a><a href="../P8_Clases_de_diseno/index.html">Continuar a P8</a></nav></footer>
+</body>
+</html>
