@@ -14,3 +14,5 @@ dialog{padding:0;border:1px solid #adc1d1;width:min(96vw,1400px);max-width:96vw;
 .pagina main p,.pagina main dd{max-width:76ch}.portada>section>p{max-width:80ch}
 .menu-pasos a span,.numero,.ubicacion,.continuar small,.recorrido strong:before,.ejemplo-chat>small{color:#50687b}
 @media print{body{background:#fff}.cabecera,.lateral,.pie,.word,.continuar,.saltar,dialog,.ampliar-imagen span,.archivo-modelo{display:none}.pagina{display:block}.pagina main,.portada{padding:0;max-width:none;border:0}.portada .presentacion{display:block}.ejemplo-chat{display:none}h1,h2,h3{break-after:avoid}figure{break-inside:avoid}a{color:inherit}}
+
+.pagina main table td:last-child{white-space:normal;overflow-wrap:anywhere}.pagina main details.word{margin-top:30px}.pagina main details.word summary{padding-left:0}.pagina main details.word a{overflow-wrap:anywhere}
