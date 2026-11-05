@@ -270,7 +270,7 @@
         <mxCell id="n8" value="" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#1e2735;strokeColor=#354153;fontColor=#edf2f7;fontSize=17;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="188" y="96" width="58" height="40" />
         </mxCell>
-        <mxCell id="n9" value="Usuario exacto" style="rounded=0;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#a6b1c0;fontSize=14;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="1">
+        <mxCell id="n9" value="Usuario" style="rounded=0;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#a6b1c0;fontSize=14;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="14" y="96" width="174" height="40" />
         </mxCell>
         <mxCell id="n10" value="Buscar" style="rounded=0;html=0;whiteSpace=wrap;fillColor=none;strokeColor=none;fontColor=#edf2f7;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="1">
@@ -460,7 +460,7 @@
         <mxCell id="n1" value="AzChat · alumno_01" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#1e2735;strokeColor=#354153;fontColor=#edf2f7;fontSize=20;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="0" y="0" width="350" height="78" />
         </mxCell>
-        <mxCell id="n2" value="Usuario exacto" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#10151d;strokeColor=#354153;fontColor=#a6b1c0;fontSize=15;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="1">
+        <mxCell id="n2" value="Usuario" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#10151d;strokeColor=#354153;fontColor=#a6b1c0;fontSize=15;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="14" y="96" width="242" height="42" />
         </mxCell>
         <mxCell id="n3" value="Buscar" style="rounded=0;html=0;whiteSpace=wrap;fillColor=#1e2735;strokeColor=#354153;fontColor=#edf2f7;fontSize=15;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=10;" vertex="1" parent="1">

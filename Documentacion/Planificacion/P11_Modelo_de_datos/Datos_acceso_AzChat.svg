@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1130" viewBox="0 0 1000 1130" role="img" aria-labelledby="title desc">
+<title id="title">Datos de acceso y recuperación</title><desc id="desc">Cinco tablas de apoyo completan las once tablas del diseño.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#375d7b" stroke-width="1.4"/></marker></defs>
+<rect width="1000" height="1130" fill="white"/>
+<text x="30" y="38" font-family="Arial, sans-serif" font-size="25" font-weight="bold" fill="#243b50" text-anchor="start">Datos de acceso y recuperación</text>
+<text x="30" y="68" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Cinco tablas de apoyo completan las once tablas del diseño.</text>
+<path d="M500.0,210 L240.0,325" stroke="#375d7b" stroke-width="2" fill="none" stroke-dasharray="7 5"/>
+<path d="M240.0,325 L250.76337743669367,324.6130812032561 L247.52732931847206,317.29679850118987 Z" fill="#375d7b"/>
+<rect x="349.0" y="240.5" width="42" height="24" fill="white"/>
+<text x="370.0" y="258.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">Lógica</text>
+<path d="M500.0,210 L760.0,325" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M760.0,325 L752.4726706815279,317.29679850118987 L749.2366225633064,324.6130812032561 Z" fill="#375d7b"/>
+<rect x="612.5" y="240.5" width="35" height="24" fill="white"/>
+<text x="630.0" y="258.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">1 a N</text>
+<path d="M240.0,495 L240.0,620" stroke="#375d7b" stroke-width="2" fill="none" stroke-dasharray="7 5"/>
+<path d="M240.0,620 L244.0,610.0 L236.0,610.0 Z" fill="#375d7b"/>
+<rect x="201.5" y="530.5" width="77" height="24" fill="white"/>
+<text x="240.0" y="548.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">Sesión hash</text>
+<path d="M445,717.5 L555,717.5" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M555,717.5 L545.0,713.5 L545.0,721.5 Z" fill="#375d7b"/>
+<rect x="482.5" y="690.5" width="35" height="24" fill="white"/>
+<text x="500.0" y="708.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">1 a N</text>
+<rect x="280" y="110" width="440" height="100" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M280,153 H720" stroke="#b9ccd9"/>
+<text x="295" y="139" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">usuarios · referencia del núcleo</text>
+<text x="295" y="180" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">La cuenta del estudiante es la referencia.</text>
+<rect x="35" y="325" width="410" height="170" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M35,368 H445" stroke="#b9ccd9"/>
+<text x="50" y="354" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">sesiones</text>
+<text x="50" y="395" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">PK sid; sess JSON y expire.</text>
+<text x="50" y="420" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">usuarioId y venceEn dentro de sess.</text>
+<text x="50" y="445" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Referencia lógica a usuarios.</text>
+<text x="50" y="470" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">No hay FK para ese campo JSON.</text>
+<rect x="555" y="325" width="410" height="170" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M555,368 H965" stroke="#b9ccd9"/>
+<text x="570" y="354" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">notificaciones_push</text>
+<text x="570" y="395" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">PK id; FK usuario_id.</text>
+<text x="570" y="420" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">UQ endpoint; claves y sesion_id.</text>
+<text x="570" y="445" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Sesión vigente para entregar avisos.</text>
+<text x="570" y="470" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">sesion_id: referencia lógica, sin FK.</text>
+<rect x="35" y="620" width="410" height="195" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M35,663 H445" stroke="#b9ccd9"/>
+<text x="50" y="649" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">solicitudes_recuperacion</text>
+<text x="50" y="690" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">PK id UUID; FK usuario opcional.</text>
+<text x="50" y="715" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">sesion_hash y correo propuesto.</text>
+<text x="50" y="740" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">estado, vencimiento y decisión.</text>
+<text x="50" y="765" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">version_clave y token_admin_hash.</text>
+<rect x="555" y="620" width="410" height="195" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M555,663 H965" stroke="#b9ccd9"/>
+<text x="570" y="649" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">correo_desafios</text>
+<text x="570" y="690" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">PK id UUID; FK usuario opcional.</text>
+<text x="570" y="715" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">FK solicitud_id opcional.</text>
+<text x="570" y="740" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">código HMAC, propósito e intentos.</text>
+<text x="570" y="765" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">envío, vencimiento y consumo.</text>
+<rect x="280" y="930" width="440" height="120" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M280,973 H720" stroke="#b9ccd9"/>
+<text x="295" y="959" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">contactos_privados</text>
+<text x="295" y="1000" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">PK (usuario_id, contacto_id).</text>
+<text x="295" y="1025" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Dos FK a usuarios; nombre por propietario.</text>
+<text x="30" y="1092" font-family="Arial, sans-serif" font-size="16" font-weight="normal" fill="#243b50" text-anchor="start">Las líneas discontinuas indican vínculos lógicos. Las demás FK se detallan en el diccionario de P11.</text>
+</svg>

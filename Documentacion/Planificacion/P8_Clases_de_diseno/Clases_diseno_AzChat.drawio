@@ -1,82 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mxfile host="app.diagrams.net" type="device" compressed="false">
-  <diagram id="Clases_diseno_AzChat" name="Clases de diseño de AzChat">
-    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1070" pageHeight="1440" background="#ffffff">
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram name="Responsabilidades de los módulos" id="Clases_diseno_AzChat">
+    <mxGraphModel dx="1000" dy="850" grid="1" gridSize="10" page="1" pageWidth="1000" pageHeight="850">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="titulo" value="P8. Clases de diseño de AzChat" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=28;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="20" y="10" width="1030" height="50" as="geometry" />
+        <mxCell id="heading" value="Responsabilidades de los módulos&#10;Un único servidor organiza el intercambio entre estudiantes." style="text;html=0;align=left;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="12" width="940" height="64" />
         </mxCell>
-        <mxCell id="cliente" value="ClienteChat" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="365" y="90" width="340" height="220" as="geometry" />
-        </mxCell>
-        <mxCell id="cliente-detalle" value="usuarioActual: UsuarioVisible&#10;intentoPendiente: IntentoEnvio&#10;ingresar()&#10;enviarMensaje()&#10;reintentarEnvio()" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="cliente">
-          <mxGeometry x="8" y="53" width="324" height="154" as="geometry" />
-        </mxCell>
-        <mxCell id="servidor" value="ServidorChat" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="365" y="400" width="340" height="220" as="geometry" />
-        </mxCell>
-        <mxCell id="servidor-detalle" value="acceso: ServicioAcceso&#10;chat: ServicioChat&#10;atenderHTTP()&#10;verificarSocket()&#10;notificarUsuarios()" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="servidor">
-          <mxGeometry x="8" y="53" width="324" height="154" as="geometry" />
-        </mxCell>
-        <mxCell id="acceso" value="ServicioAcceso" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="20" y="730" width="340" height="220" as="geometry" />
-        </mxCell>
-        <mxCell id="acceso-detalle" value="datos: AccesoDatos&#10;registrar()&#10;ingresar()&#10;validarSesion()&#10;cerrarSesion()" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="acceso">
-          <mxGeometry x="8" y="53" width="324" height="154" as="geometry" />
-        </mxCell>
-        <mxCell id="chat" value="ServicioChat" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="710" y="730" width="340" height="220" as="geometry" />
-        </mxCell>
-        <mxCell id="chat-detalle" value="datos: AccesoDatos&#10;buscarUsuario()&#10;abrirConversacion()&#10;listarMensajes()&#10;guardarMensaje()" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="chat">
-          <mxGeometry x="8" y="53" width="324" height="154" as="geometry" />
-        </mxCell>
-        <mxCell id="datos" value="AccesoDatos" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=22;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;swimlane;startSize=46;horizontal=1;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="365" y="1060" width="340" height="220" as="geometry" />
-        </mxCell>
-        <mxCell id="datos-detalle" value="pool: PostgreSQL&#10;consultar(sql, parametros)&#10;transaccion(trabajo)" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;align=left;spacingLeft=8;" vertex="1" parent="datos">
-          <mxGeometry x="8" y="53" width="324" height="154" as="geometry" />
-        </mxCell>
-        <mxCell id="transporte" value="HTTPS / Socket.IO" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="570" y="337" width="350" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="nota" value="Cinco componentes; un solo proceso de servidor.&#10;Los datos del dominio se detallan en el documento." style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="20" y="1300" width="1030" height="65" as="geometry" />
-        </mxCell>
-        <mxCell id="agil" value="Metodología Ágil · Diseño de la primera versión" style="html=0;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#222222;strokeColor=#222222;strokeWidth=1.5;fillColor=#ffffff;align=center;verticalAlign=middle;text;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="20" y="1380" width="1030" height="35" as="geometry" />
-        </mxCell>
-        <mxCell id="edge-0" style="endArrow=open;startArrow=none;endFill=0;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;dashed=1;" edge="1" parent="1" source="cliente" target="servidor">
+        <mxCell id="edge0" value="HTTPS / JSON" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;" edge="1" parent="1" source="ui" target="srv">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="edge-1" style="endArrow=open;startArrow=none;endFill=0;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0;exitY=0.65;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;dashed=1;" edge="1" parent="1" source="servidor" target="acceso">
-          <mxGeometry as="geometry" relative="1">
-            <Array as="points">
-              <mxPoint x="190" y="543" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="edge1" value="Rutas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;" edge="1" parent="1" source="srv" target="conv">
+          <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="edge-2" style="endArrow=open;startArrow=none;endFill=0;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=1;exitY=0.65;exitPerimeter=1;entryX=0.5;entryY=0;entryPerimeter=1;dashed=1;" edge="1" parent="1" source="servidor" target="chat">
-          <mxGeometry as="geometry" relative="1">
-            <Array as="points">
-              <mxPoint x="880" y="543" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="edge2" value="Rutas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;" edge="1" parent="1" source="srv" target="ext">
+          <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="edge-3" style="endArrow=open;startArrow=none;endFill=0;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=0;entryY=0.5;entryPerimeter=1;dashed=1;" edge="1" parent="1" source="acceso" target="datos">
-          <mxGeometry as="geometry" relative="1">
-            <Array as="points">
-              <mxPoint x="190" y="1170" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="edge3" value="SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;" edge="1" parent="1" source="conv" target="db">
+          <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="edge-4" style="endArrow=open;startArrow=none;endFill=0;rounded=0;html=0;strokeColor=#222222;strokeWidth=1.5;exitX=0.5;exitY=1;exitPerimeter=1;entryX=1;entryY=0.5;entryPerimeter=1;dashed=1;" edge="1" parent="1" source="chat" target="datos">
-          <mxGeometry as="geometry" relative="1">
-            <Array as="points">
-              <mxPoint x="880" y="1170" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="edge4" value="SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;" edge="1" parent="1" source="ext" target="db">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="ui" value="ClienteChat · publico/&#10;Pantallas, borradores y pendientes.&#10;Peticiones HTTP y conciliación por ID.&#10;Audio, imágenes y avisos." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="110" width="400" height="150" />
+        </mxCell>
+        <mxCell id="srv" value="ServidorChat · servidor.js&#10;Registro, acceso y sesión.&#10;Montaje de rutas y errores.&#10;Entrega de la interfaz." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="560" y="110" width="400" height="150" />
+        </mxCell>
+        <mxCell id="conv" value="Conversaciones y archivos&#10;conversaciones.js: chats y mensajes.&#10;perfil-archivos.js: perfil y binarios.&#10;exportar.js: historial TXT." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="560" y="370" width="400" height="150" />
+        </mxCell>
+        <mxCell id="ext" value="Recuperación y avisos&#10;recuperacion.js + correo.js.&#10;novedades.js: presencia y push.&#10;Servicios externos desde el servidor." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="370" width="400" height="150" />
+        </mxCell>
+        <mxCell id="db" value="AccesoDatos · datos.js&#10;Pool PostgreSQL privado.&#10;utilidades.js: transacción y permisos." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="290" y="640" width="420" height="125" />
+        </mxCell>
+        <mxCell id="note" value="Son responsabilidades implementables con módulos y funciones; no exige herencia ni microservicios." style="text;html=0;align=left;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="786" width="940" height="60" />
         </mxCell>
       </root>
     </mxGraphModel>

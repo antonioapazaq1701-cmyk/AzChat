@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+<title id="title">Ciclo de los archivos y notas de voz</title><desc id="desc">Subir, vincular a un mensaje y descargar requieren controles diferentes.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#375d7b" stroke-width="1.4"/></marker></defs>
+<rect width="1000" height="620" fill="white"/>
+<text x="30" y="38" font-family="Arial, sans-serif" font-size="25" font-weight="bold" fill="#243b50" text-anchor="start">Ciclo de los archivos y notas de voz</text>
+<text x="30" y="68" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Subir, vincular a un mensaje y descargar requieren controles diferentes.</text>
+<path d="M455,182.5 L545,182.5" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M545,182.5 L535.0,178.5 L535.0,186.5 Z" fill="#375d7b"/>
+<rect x="458.0" y="155.5" width="84" height="24" fill="white"/>
+<text x="500.0" y="173.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">POST archivo</text>
+<path d="M750.0,255 L750.0,365" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M750.0,365 L754.0,355.0 L746.0,355.0 Z" fill="#375d7b"/>
+<rect x="736.0" y="283.0" width="28" height="24" fill="white"/>
+<text x="750.0" y="301.0" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">UUID</text>
+<path d="M545,437.5 L455,437.5" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M455,437.5 L465.0,441.5 L465.0,433.5 Z" fill="#375d7b"/>
+<rect x="468.5" y="410.5" width="63" height="24" fill="white"/>
+<text x="500.0" y="428.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">Consultar</text>
+<rect x="45" y="110" width="410" height="145" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M45,153 H455" stroke="#b9ccd9"/>
+<text x="60" y="139" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">1  Preparar en el navegador</text>
+<text x="60" y="180" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Seleccionar, editar o grabar.</text>
+<text x="60" y="205" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Confirmar la previsualización.</text>
+<text x="60" y="230" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Cancelar aquí no sube el contenido.</text>
+<rect x="545" y="110" width="410" height="145" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M545,153 H955" stroke="#b9ccd9"/>
+<text x="560" y="139" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">2  Subir a la API</text>
+<text x="560" y="180" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Sesión, pertenencia y límites.</text>
+<text x="560" y="205" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Guardar binario y metadatos.</text>
+<text x="560" y="230" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Devolver el UUID del archivo.</text>
+<rect x="545" y="365" width="410" height="145" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M545,408 H955" stroke="#b9ccd9"/>
+<text x="560" y="394" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">3  Confirmar el mensaje</text>
+<text x="560" y="435" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Validar dueño y conversación.</text>
+<text x="560" y="460" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Vincular en mensaje_archivos.</text>
+<text x="560" y="485" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Guardar todo en la transacción.</text>
+<rect x="45" y="365" width="410" height="145" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M45,408 H455" stroke="#b9ccd9"/>
+<text x="60" y="394" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">4  Abrir o descargar</text>
+<text x="60" y="435" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Verificar pertenencia actual.</text>
+<text x="60" y="460" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Rechazar un mensaje eliminado.</text>
+<text x="60" y="485" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Audio: permitir rangos autenticados.</text>
+<text x="30" y="582" font-family="Arial, sans-serif" font-size="16" font-weight="normal" fill="#243b50" text-anchor="start">Una subida ya realizada cuenta en la cuota aunque no llegue a vincularse a un mensaje.</text>
+</svg>

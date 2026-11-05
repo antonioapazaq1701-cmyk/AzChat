@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram name="Datos de acceso y recuperación" id="Datos_acceso_AzChat">
+    <mxGraphModel dx="1000" dy="1130" grid="1" gridSize="10" page="1" pageWidth="1000" pageHeight="1130">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="Datos de acceso y recuperación&#10;Cinco tablas de apoyo completan las once tablas del diseño." style="text;html=0;align=left;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="12" width="940" height="64" />
+        </mxCell>
+        <mxCell id="edge0" value="Lógica" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;dashed=1;" edge="1" parent="1" source="u" target="ses">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" value="1 a N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;" edge="1" parent="1" source="u" target="push">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" value="Sesión hash" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;dashed=1;" edge="1" parent="1" source="ses" target="sol">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" value="1 a N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;strokeColor=#375d7b;" edge="1" parent="1" source="sol" target="code">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="u" value="usuarios · referencia del núcleo&#10;La cuenta del estudiante es la referencia." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="110" width="440" height="100" />
+        </mxCell>
+        <mxCell id="ses" value="sesiones&#10;PK sid; sess JSON y expire.&#10;usuarioId y venceEn dentro de sess.&#10;Referencia lógica a usuarios.&#10;No hay FK para ese campo JSON." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="325" width="410" height="170" />
+        </mxCell>
+        <mxCell id="push" value="notificaciones_push&#10;PK id; FK usuario_id.&#10;UQ endpoint; claves y sesion_id.&#10;Sesión vigente para entregar avisos.&#10;sesion_id: referencia lógica, sin FK." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="555" y="325" width="410" height="170" />
+        </mxCell>
+        <mxCell id="sol" value="solicitudes_recuperacion&#10;PK id UUID; FK usuario opcional.&#10;sesion_hash y correo propuesto.&#10;estado, vencimiento y decisión.&#10;version_clave y token_admin_hash." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="620" width="410" height="195" />
+        </mxCell>
+        <mxCell id="code" value="correo_desafios&#10;PK id UUID; FK usuario opcional.&#10;FK solicitud_id opcional.&#10;código HMAC, propósito e intentos.&#10;envío, vencimiento y consumo." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="555" y="620" width="410" height="195" />
+        </mxCell>
+        <mxCell id="cp" value="contactos_privados&#10;PK (usuario_id, contacto_id).&#10;Dos FK a usuarios; nombre por propietario." style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;spacing=14;fontSize=17;fillColor=#f5f9fc;strokeColor=#6a8ba6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="930" width="440" height="120" />
+        </mxCell>
+        <mxCell id="note" value="Las líneas discontinuas indican vínculos lógicos. Las demás FK se detallan en el diccionario de P11." style="text;html=0;align=left;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="1066" width="940" height="60" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

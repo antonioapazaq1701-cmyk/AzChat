@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1060" viewBox="0 0 1000 1060" role="img" aria-labelledby="title desc">
+<title id="title">Recuperación del acceso de un estudiante</title><desc id="desc">Aprobar un correo nuevo y demostrar su posesión son comprobaciones distintas.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#375d7b" stroke-width="1.4"/></marker></defs>
+<rect width="1000" height="1060" fill="white"/>
+<text x="30" y="38" font-family="Arial, sans-serif" font-size="25" font-weight="bold" fill="#243b50" text-anchor="start">Recuperación del acceso de un estudiante</text>
+<text x="30" y="68" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Aprobar un correo nuevo y demostrar su posesión son comprobaciones distintas.</text>
+<path d="M500.0,220 L240.0,330" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M240.0,330 L250.76823247403237,329.7874690959073 L247.65111254733878,322.4197310873588 Z" fill="#375d7b"/>
+<rect x="342.0" y="248.0" width="56" height="24" fill="white"/>
+<text x="370.0" y="266.0" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">Coincide</text>
+<path d="M500.0,220 L760.0,330" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M760.0,330 L752.3488874526612,322.4197310873588 L749.2317675259677,329.7874690959073 Z" fill="#375d7b"/>
+<rect x="591.5" y="248.0" width="77" height="24" fill="white"/>
+<text x="630.0" y="266.0" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">No coincide</text>
+<path d="M240.0,470 L500.0,585" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M500.0,585 L492.472670681528,577.2967985011899 L489.2366225633063,584.6130812032561 Z" fill="#375d7b"/>
+<rect x="338.5" y="500.5" width="63" height="24" fill="white"/>
+<text x="370.0" y="518.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">Solicitar</text>
+<path d="M760.0,470 L500.0,585" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M500.0,585 L510.7633774366937,584.6130812032561 L507.527329318472,577.2967985011899 Z" fill="#375d7b"/>
+<rect x="602.0" y="500.5" width="56" height="24" fill="white"/>
+<text x="630.0" y="518.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">Aprobada</text>
+<path d="M500.0,725 L500.0,820" stroke="#375d7b" stroke-width="2" fill="none"/>
+<path d="M500.0,820 L504.0,810.0 L496.0,810.0 Z" fill="#375d7b"/>
+<rect x="465.0" y="745.5" width="70" height="24" fill="white"/>
+<text x="500.0" y="763.5" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#243b50" text-anchor="middle">Verificado</text>
+<rect x="280" y="105" width="440" height="115" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M280,148 H720" stroke="#b9ccd9"/>
+<text x="295" y="134" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">Identificar cuenta y correo</text>
+<text x="295" y="175" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Revisar datos y confirmar la solicitud.</text>
+<text x="295" y="200" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Vincularla al navegador solicitante.</text>
+<rect x="35" y="330" width="410" height="140" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M35,373 H445" stroke="#b9ccd9"/>
+<text x="50" y="359" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">Correo ya vinculado</text>
+<text x="50" y="400" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Si coincide con el correo confirmado,</text>
+<text x="50" y="425" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">la solicitud permite pedir el código.</text>
+<text x="50" y="450" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">No exige revisión administrativa.</text>
+<rect x="555" y="330" width="410" height="140" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M555,373 H965" stroke="#b9ccd9"/>
+<text x="570" y="359" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">Correo nuevo o no coincidente</text>
+<text x="570" y="400" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Estado pendiente; avisar al responsable.</text>
+<text x="570" y="425" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Revisar identidad y previsualizar.</text>
+<text x="570" y="450" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Confirmar aprobación o rechazo.</text>
+<rect x="280" y="585" width="440" height="140" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M280,628 H720" stroke="#b9ccd9"/>
+<text x="295" y="614" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">Probar posesión del correo</text>
+<text x="295" y="655" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Enviar y validar un código de un uso.</text>
+<text x="295" y="680" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">La aprobación sola no cambia la clave.</text>
+<text x="295" y="705" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Un código inválido impide continuar.</text>
+<rect x="280" y="820" width="440" height="145" fill="#f5f9fc" stroke="#6a8ba6" stroke-width="1.5"/>
+<path d="M280,863 H720" stroke="#b9ccd9"/>
+<text x="295" y="849" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#243b50" text-anchor="start">Confirmar nueva contraseña</text>
+<text x="295" y="890" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Guardar hash y correo confirmado.</text>
+<text x="295" y="915" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Consumir solicitud y códigos.</text>
+<text x="295" y="940" font-family="Arial, sans-serif" font-size="17" font-weight="normal" fill="#243b50" text-anchor="start">Revocar sesiones y avisos anteriores.</text>
+<text x="30" y="1022" font-family="Arial, sans-serif" font-size="16" font-weight="normal" fill="#243b50" text-anchor="start">Rechazo, vencimiento o cambio de la cuenta impiden continuar. Las vigencias están en P5.</text>
+</svg>

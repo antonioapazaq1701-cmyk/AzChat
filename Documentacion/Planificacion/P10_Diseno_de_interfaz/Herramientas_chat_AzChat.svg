@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="t d"><title id="t">Boceto de imágenes audios y perfil del chat universitario</title><desc id="d">Conversación de un equipo de estudiantes con imagen, archivo, nota de voz y perfil. Todos los datos son ficticios.</desc><rect width="1200" height="780" fill="#ffffff"/>
+<text x="25" y="37" font-family="Arial,sans-serif" font-size="26" fill="#153957" font-weight="bold">Herramientas del chat universitario</text>
+<text x="25" y="67" font-family="Arial,sans-serif" font-size="18" fill="#50687b" font-weight="normal">Boceto de planificación con datos ficticios de un equipo de estudiantes.</text>
+<rect x="25" y="95" width="1150" height="620" fill="#10151d" stroke="#354153"/>
+<rect x="25" y="95" width="235" height="620" fill="#171e29" stroke="#354153"/>
+<rect x="260" y="95" width="595" height="72" fill="#171e29" stroke="#354153"/>
+<rect x="855" y="95" width="320" height="620" fill="#171e29" stroke="#354153"/>
+<text x="43" y="133" font-family="Arial,sans-serif" font-size="25" fill="#78b5ff" font-weight="bold">AzChat</text>
+<text x="43" y="174" font-family="Arial,sans-serif" font-size="17" fill="#edf2f7" font-weight="normal">Chats   Perfil   Ajustes</text>
+<rect x="40" y="197" width="205" height="59" fill="#28364b" stroke="#354153"/>
+<text x="54" y="222" font-family="Arial,sans-serif" font-size="18" fill="#edf2f7" font-weight="bold">Equipo de informe</text>
+<text x="54" y="244" font-family="Arial,sans-serif" font-size="14" fill="#a6b1c0" font-weight="normal">Materiales de la entrega</text>
+<text x="43" y="289" font-family="Arial,sans-serif" font-size="18" fill="#edf2f7" font-weight="normal">Ana del equipo</text>
+<text x="43" y="316" font-family="Arial,sans-serif" font-size="14" fill="#a6b1c0" font-weight="normal">Conversación privada</text>
+<text x="280" y="127" font-family="Arial,sans-serif" font-size="21" fill="#edf2f7" font-weight="bold">Equipo de informe</text>
+<text x="280" y="151" font-family="Arial,sans-serif" font-size="16" fill="#a6b1c0" font-weight="normal">Información del grupo y participantes</text>
+<rect x="280" y="189" width="367" height="240" fill="#263244" stroke="#354153"/>
+<text x="296" y="216" font-family="Arial,sans-serif" font-size="17" fill="#78b5ff" font-weight="bold">Ana  ·  Compañera de curso</text>
+<rect x="296" y="231" width="333" height="139" fill="#d8e6f3" stroke="#d8e6f3"/>
+<path d="M296 370 L400 275 L466 324 L520 272 L629 370 Z" fill="#6a8ba6"/>
+<text x="296" y="398" font-family="Arial,sans-serif" font-size="17" fill="#edf2f7" font-weight="normal">Comparto el esquema del informe.</text>
+<rect x="427" y="449" width="408" height="63" fill="#28436b" stroke="#354153"/>
+<text x="443" y="475" font-family="Arial,sans-serif" font-size="18" fill="#edf2f7" font-weight="normal">avance-informe.pdf</text>
+<text x="443" y="498" font-family="Arial,sans-serif" font-size="15" fill="#d5e6ff" font-weight="normal">Archivo  ·  Descargar</text>
+<rect x="280" y="531" width="387" height="72" fill="#263244" stroke="#354153"/>
+<text x="296" y="559" font-family="Arial,sans-serif" font-size="17" fill="#78b5ff" font-weight="normal">Nota de voz de Ana</text>
+<text x="296" y="586" font-family="Arial,sans-serif" font-size="17" fill="#edf2f7" font-weight="normal">Escuchar     00:18     1x     Descargar</text>
+<rect x="276" y="635" width="563" height="59" fill="#1e2735" stroke="#354153"/>
+<text x="289" y="658" font-family="Arial,sans-serif" font-size="15" fill="#a6b1c0" font-weight="normal">Imagen   Archivo   Micrófono</text>
+<text x="289" y="683" font-family="Arial,sans-serif" font-size="17" fill="#edf2f7" font-weight="normal">Escribe a tus compañeros…       Enviar</text>
+<text x="875" y="131" font-family="Arial,sans-serif" font-size="20" fill="#edf2f7" font-weight="bold">Perfil del compañero</text>
+<rect x="932" y="159" width="154" height="93" fill="#28436b" stroke="#354153"/>
+<text x="980" y="214" font-family="Arial,sans-serif" font-size="29" fill="#d5e6ff" font-weight="bold">AC</text>
+<text x="875" y="292" font-family="Arial,sans-serif" font-size="23" fill="#edf2f7" font-weight="bold">Ana</text>
+<text x="875" y="320" font-family="Arial,sans-serif" font-size="17" fill="#a6b1c0" font-weight="normal">@ana_curso</text>
+<text x="875" y="350" font-family="Arial,sans-serif" font-size="16" fill="#edf2f7" font-weight="normal">Coordinando el informe del curso.</text>
+<text x="875" y="408" font-family="Arial,sans-serif" font-size="17" fill="#78b5ff" font-weight="bold">Nombre privado para ti</text>
+<rect x="875" y="426" width="279" height="45" fill="#10151d" stroke="#354153"/>
+<text x="888" y="455" font-family="Arial,sans-serif" font-size="18" fill="#edf2f7" font-weight="normal">Ana del equipo</text>
+<text x="875" y="500" font-family="Arial,sans-serif" font-size="15" fill="#a6b1c0" font-weight="normal">Solo cambia tu propia vista.</text>
+<rect x="875" y="527" width="122" height="44" fill="#78b5ff" stroke="#354153"/>
+<text x="891" y="555" font-family="Arial,sans-serif" font-size="18" fill="#102439" font-weight="bold">Guardar</text>
+<text x="875" y="622" font-family="Arial,sans-serif" font-size="16" fill="#a6b1c0" font-weight="normal">Las fotos y los materiales</text>
+<text x="875" y="647" font-family="Arial,sans-serif" font-size="16" fill="#a6b1c0" font-weight="normal">se pueden abrir en el visor.</text>
+<text x="25" y="754" font-family="Arial,sans-serif" font-size="17" fill="#50687b" font-weight="normal">Las acciones de edición, grabación y recuperación se especifican en el texto de P10.</text>
+</svg>
