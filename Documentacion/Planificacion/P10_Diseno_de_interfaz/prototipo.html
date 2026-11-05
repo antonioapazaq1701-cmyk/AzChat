@@ -49,6 +49,9 @@
         <input id="nombre-usuario" name="usuario" required placeholder="De 3 a 20 caracteres; comienza con una letra" autocomplete="off" aria-describedby="error-registro">
         <label for="clave-registro">Contraseña</label>
         <input id="clave-registro" name="clave" type="password" required autocomplete="off" placeholder="Mínimo 8 caracteres ficticios" aria-describedby="error-registro">
+        <label for="correo-recuperacion">Correo de recuperación (opcional)</label>
+        <input id="correo-recuperacion" name="correo" type="email" autocomplete="off" placeholder="ejemplo@correo.com" aria-describedby="error-registro">
+        <details class="ayuda-boceto"><summary aria-label="Indicaciones del correo opcional">!</summary><p>Se propone verificar este correo para recuperar el acceso. En este boceto no se envían correos ni se guardan datos.</p></details>
         <p class="error" id="error-registro" role="alert"></p>
         <button class="primario ancho" type="submit">Crear cuenta de ejemplo</button>
       </form>

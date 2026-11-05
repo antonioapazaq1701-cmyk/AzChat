@@ -161,6 +161,7 @@ $('form-registro').addEventListener('submit', event => {
   if (!usuarioValido(usuario)) return errorFormulario(form, 'error-registro', $('nombre-usuario'), 'Usa de 3 a 20 letras, números o guion bajo, comenzando por una letra.');
   if (personas.includes(usuario)) return errorFormulario(form, 'error-registro', $('nombre-usuario'), 'Ese usuario ya aparece en los datos de ejemplo. Elige otro.');
   if (largo($('clave-registro').value) < 8) return errorFormulario(form, 'error-registro', $('clave-registro'), 'La contraseña de ejemplo necesita al menos 8 caracteres.');
+  if (!$('correo-recuperacion').validity.valid) return errorFormulario(form, 'error-registro', $('correo-recuperacion'), 'Revisa el formato del correo o deja el campo vacío.');
   errorFormulario(form, 'error-registro', null, ''); form.reset(); entrar(usuario);
 });
 $('form-busqueda').addEventListener('submit', event => {
