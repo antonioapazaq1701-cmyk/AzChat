@@ -9,7 +9,7 @@
 </head>
 <body data-vista="ingreso" data-panel="lista">
   <div class="barra-prototipo">
-    <p><strong>Prototipo</strong> · Chat universitario con datos ficticios; acceso y conversación privada simulados.</p>
+    <p><strong>Boceto interactivo</strong> · Datos ficticios; distribución aproximada del sistema.</p>
     <div class="controles-prototipo">
       <a href="index.html" target="_top">Documentación P10</a><a href="https://azchat-complete.onrender.com/" target="_top">Abrir chat universitario</a>
       <button id="red-ejemplo" type="button" aria-pressed="false" hidden>Simular desconexión</button>
@@ -31,7 +31,7 @@
       </form>
       <p>¿Primera vez? <button class="enlace" type="button" data-vista="registro">Crear cuenta</button></p>
       <button class="secundario ancho" type="button" id="ver-ejemplo">Ver chat de ejemplo</button>
-      <p class="nota-acceso">Esta demostración valida el formato de los campos. La verificación de credenciales y la conservación de datos corresponden al sistema que se construirá.</p>
+      <p class="nota-acceso">Esta demostración valida el formato de los campos. La verificación de credenciales y la conservación de datos corresponden a la aplicación real.</p>
     </section>
   </main>
 
@@ -49,7 +49,7 @@
         <input id="nombre-usuario" name="usuario" required placeholder="De 3 a 20 caracteres; comienza con una letra" autocomplete="off" aria-describedby="error-registro">
         <label for="clave-registro">Contraseña</label>
         <input id="clave-registro" name="clave" type="password" required autocomplete="off" placeholder="Mínimo 8 caracteres ficticios" aria-describedby="error-registro">
-        <label for="correo-recuperacion">Correo de recuperación (opcional)</label>
+        <label for="confirmar-clave">Confirmar contraseña</label><input id="confirmar-clave" type="password" autocomplete="off" required><label for="correo-recuperacion">Correo de recuperación (opcional)</label>
         <input id="correo-recuperacion" name="correo" type="email" autocomplete="off" placeholder="ejemplo@correo.com" aria-describedby="error-registro">
         <details class="ayuda-boceto"><summary aria-label="Indicaciones del correo opcional">!</summary><p>Se propone verificar este correo para recuperar el acceso. En este boceto no se envían correos ni se guardan datos.</p></details>
         <p class="error" id="error-registro" role="alert"></p>
@@ -61,6 +61,7 @@
 
   <main id="chat" class="pantalla-chat" hidden>
     <div class="aplicacion">
+<nav class="rail-boceto" aria-label="Secciones del boceto"><strong>Az</strong><button data-seccion="lista">Chats</button><button data-seccion="perfil">Perfil</button><button data-seccion="ajustes">Ajustes</button></nav>
       <aside class="panel lateral" aria-label="Conversaciones">
         <header class="cabecera-lateral">
           <h1 class="marca">AzChat</h1>
@@ -80,7 +81,10 @@
         <footer class="pie-lateral"><button class="secundario ancho" id="salir" type="button">Cerrar sesión</button></footer>
       </aside>
 
-      <section class="panel conversacion" aria-labelledby="titulo-chat">
+      <aside id="panel-boceto" class="panel panel-boceto" hidden><header><h2 id="titulo-panel">Ajustes</h2><button id="cerrar-panel" aria-label="Cerrar panel">Cerrar</button></header>
+<section id="boceto-ajustes"><p>Preferencias de ejemplo.</p><details open><summary>Apariencia</summary><label for="tema-boceto">Tema</label><select id="tema-boceto"><option value="claro">Claro</option><option value="oscuro">Oscuro</option></select></details><details><summary>Notificaciones y sonido</summary><label><input type="checkbox"> Sonido de ejemplo</label><p>No se solicita permiso real.</p></details><details><summary>Este dispositivo</summary><p>Acceso a pantalla de inicio.</p></details><details><summary>Historial</summary><p>Exportar conversaciones a TXT.</p></details><details><summary>Seguridad y correo</summary><p>Contraseña y correo verificado.</p></details></section>
+<section id="boceto-perfil" hidden><div class="foto-boceto" aria-label="Espacio de foto cuadrada">Foto 1:1</div><label for="nombre-boceto">Nombre</label><input id="nombre-boceto" value="Estudiante de ejemplo"><label for="bio-boceto">Descripción</label><textarea id="bio-boceto" rows="3">Equipo del curso</textarea><p>Los datos son ficticios y no se guardan.</p></section></aside>
+<section class="panel conversacion" aria-labelledby="titulo-chat">
         <header class="cabecera-chat">
           <button class="secundario volver" id="volver-lista" type="button" aria-label="Volver a conversaciones">Volver</button>
           <div class="datos-chat">
@@ -94,7 +98,7 @@
         </div>
         <form class="redaccion" id="form-mensaje" novalidate>
           <label class="solo-lectores" for="texto-mensaje">Mensaje</label>
-          <div class="fila-redaccion">
+          <div class="herramientas-boceto" aria-label="Herramientas representadas"><span>Imagen</span><span>Archivo</span><span>Audio</span></div><div class="fila-redaccion">
             <textarea id="texto-mensaje" name="texto" rows="2" placeholder="Escribe un mensaje" aria-describedby="ayuda-escritura contador error-envio"></textarea>
             <button class="primario" type="submit" id="enviar">Enviar</button>
           </div>

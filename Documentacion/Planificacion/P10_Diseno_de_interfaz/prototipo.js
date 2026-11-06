@@ -161,6 +161,7 @@ $('form-registro').addEventListener('submit', event => {
   if (!usuarioValido(usuario)) return errorFormulario(form, 'error-registro', $('nombre-usuario'), 'Usa de 3 a 20 letras, números o guion bajo, comenzando por una letra.');
   if (personas.includes(usuario)) return errorFormulario(form, 'error-registro', $('nombre-usuario'), 'Ese usuario ya aparece en los datos de ejemplo. Elige otro.');
   if (largo($('clave-registro').value) < 8) return errorFormulario(form, 'error-registro', $('clave-registro'), 'La contraseña de ejemplo necesita al menos 8 caracteres.');
+  if ($('confirmar-clave').value !== $('clave-registro').value) return errorFormulario(form, 'error-registro', $('confirmar-clave'), 'Las contraseñas deben coincidir.');
   if (!$('correo-recuperacion').validity.valid) return errorFormulario(form, 'error-registro', $('correo-recuperacion'), 'Revisa el formato del correo o deja el campo vacío.');
   errorFormulario(form, 'error-registro', null, ''); form.reset(); entrar(usuario);
 });
@@ -198,3 +199,18 @@ $('salir').addEventListener('click', () => {
   mostrarVista('ingreso'); anunciar('Se cerró la vista de ejemplo.');
 });
 if (location.hash === '#chat') entrar();
+
+const distribucion = document.querySelector('.aplicacion');
+function cerrarPanelBoceto(){ $('panel-boceto').hidden=true;distribucion.classList.remove('con-panel'); }
+document.querySelectorAll('[data-seccion]').forEach(b=>b.addEventListener('click',()=>{
+ document.body.dataset.panel='lista';
+ const perfil=b.dataset.seccion==='perfil';
+ if(b.dataset.seccion==='lista'){cerrarPanelBoceto();return;}
+ $('panel-boceto').hidden=false;distribucion.classList.add('con-panel');
+ $('titulo-panel').textContent=perfil?'Perfil':'Ajustes';
+ $('boceto-perfil').hidden=!perfil;$('boceto-ajustes').hidden=perfil;
+}));
+$('cerrar-panel').addEventListener('click',cerrarPanelBoceto);
+$('tema-boceto').addEventListener('change',e=>document.documentElement.dataset.tema=e.target.value);
+$('salir').addEventListener('click',cerrarPanelBoceto);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarPanelBoceto();});
